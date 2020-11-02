@@ -4,7 +4,7 @@
 
 To install Ruby use a tool called `rbenv`, which makes it easy to install and manage Ruby versions.
 
-        brew install rbenv ruby-build
+    brew install rbenv ruby-build
 
 - To see all the installed Ruby versions run
 
@@ -16,29 +16,29 @@ To install Ruby use a tool called `rbenv`, which makes it easy to install and ma
 
 ### Install Rails
 
-        gem install rails -v x.x.x
+    gem install rails -v x.x.x
 
 ### After that run
 
-        rbenv rehash
+    rbenv rehash
 
 ### Create a new rails project
 
-        rails new app-name --webpack=react --database=postgresql
+    rails new app-name --webpack=react --database=postgresql
 
 ### Create a new database
 
-        rails db:create
+    rails db:create
 
 ### Create a model
 
-        rails g model Model-name column_name:type table-name:belongs_to
+    rails g model Model-name column_name:type table-name:belongs_to
 
-    - Models in Rails use a singular name, and their corresponding database tables use a plural name.
+- Models in Rails use a singular name, and their corresponding database tables use a plural name.
 
 ### Serialization
 
-        gem 'fast_jsonapi'
+    gem 'fast_jsonapi'
 
 ### httparty
 
