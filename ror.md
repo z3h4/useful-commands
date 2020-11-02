@@ -39,3 +39,12 @@ To install Ruby use a tool called `rbenv`, which makes it easy to install and ma
 ### Serialization
 
         gem 'fast_jsonapi'
+
+### httparty
+
+- HTTParty makes it extremely easy to ingest Restful services, converting them to Ruby Hashes
+- Supports JSON and XML formats
+
+### capybara
+
+- Acceptance testing
