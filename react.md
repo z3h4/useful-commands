@@ -4,12 +4,21 @@
 
 1.  Install Node.js (to get npm)
 
-2.  Install package `create-react-app`
+2.  Create a new project
 
-        npm i -g create-react-app
+        npx creare-react-app app-name
+
+- In mac if you get an error about Xcode, run
+
+        xcode-select --install
+
+- If the previous command fails download `Command Line Tools for Xcode` from https://developer.apple.com/download/more/ and install it.
 
 #### VS Code extentions
 
+- `Reactjs code snippets`
+  - rcc => React Class Component
+  - rsf => React Stateless Function
 - `Simple React Snippets`
 - `Prettier - Code formatter`
   - Set settings to formats code on save
@@ -91,3 +100,11 @@
 ### Display Toast Notifications
 
 - Use `react-toastify`
+
+### Logging Errors
+
+- If you want to use logging as a service, try [Sentry](https://sentry.io/)
+
+### Decode JSON Web Token
+
+- Use `jwt-decode`
