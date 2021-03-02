@@ -83,11 +83,11 @@ Install these 3 gems in the `development` group
 
 ### Installation
 
-- Add RSpec to the `Gemfile`
+- https://rspec.info/documentation/4.0/rspec-rails/
 
-      rspec-rails
+- Add RSpec to the `Gemfile` and run `bundle install`
 
-- Generate the Rspec files
+- Generate boilerplate configuration files
 
       rails genarate rspec:install
 
@@ -98,7 +98,13 @@ Install these 3 gems in the `development` group
 
       --format doc
 
+  Or use `bundle exec rspec --format doc file_name.rb` command
+
   - It outputs all the info from the `describe` and the examples.
+
+- To use default/progress format use
+
+        --format progress
 
 ### Testing Models
 
@@ -108,22 +114,34 @@ Install these 3 gems in the `development` group
 
 - Create a `models` directory inside `spec` directory.
 
+### Testing APIs
+
+- We create these tests in the `spec/requests` directory.
+
 ### Important Rspec Commands
 
 - Only run the failing tests
 
       bundle exec rspec --only-failures
 
+- Only run the next failing test (one failing test at a time)
+
+      bundle exec rspec --next-failure
+
 - `spec/examples.txt` file contains a short summary of all our specs
 
   - We should add this file to `.gitignore`
 
-    .sqlite3
-    spec/examples.txt
+        *.sqlite3
+        spec/examples.txt
 
 - Output the slowest tests
 
       bundle exec rspec --profile
+
+- If you find an order dependency and want to debug it, you can fix the order by providing the seed, which is printed after each run.
+
+      bundle exec rspec --seed 22362 --format doc
 
 - Prepare test database
 
@@ -131,6 +149,37 @@ Install these 3 gems in the `development` group
 
 - Use `shoulda-matchers` gem for simplifying tests
 
+### RSpec Matchers
+
+- https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+- https://relishapp.com/rspec/rspec-rails/v/4-0/docs/matchers
+
+### RSpec `eq` vs `eql` in `expect` tests
+
+    a.equal?(b) # object identity - a and b refer to the same object
+    a.eql?(b) # object equivalence - a and b have the same value
+    a == b # object equivalence - a and b have the same value with type conversions
+
+- `eq` uses the `==` operator for comparison, and `eql` ignores type conversions.
+
 ### capybara
 
 - Acceptance testing
+
+- Steps to use `capybara`
+
+  1.  Update `rails_helper` with
+
+          require 'capybara/rspec'
+
+      This will allow `capybara` DSL to be used with RSpec tests.
+
+  2.  Create a `features` directory inside `spec` directory for the feature tests.
+      - Feature tests are high-level acceptance tests that verify the application works in a certain way or certain content is available.
+      - Capybara lets us make assertions based on that.
+
+- Methods
+  -     visit('url')
+  -     click_link('About')
+  -     expect(page).to have_content('Game Tracker')
+  -     expect(current_path).to eql('/about')
