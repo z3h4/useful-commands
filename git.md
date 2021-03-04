@@ -333,6 +333,37 @@ We use tags to bookmark certain points in the history of our project.
 
       git merge --abort
 
+### Undoing a faulty merge
+
+      git reset --hard HEAD~1
+
+- When resetting the HEAD pointer we have 3 options.
+  - soft
+  - mixed
+  - hard
+
+### Squash Merge
+
+      git merge --squash branchName
+
+- Always remove the `branchName` after squash merge
+
+### Rebase
+
+      git rebase master
+
+- Continue rebasing after fixing merge conflicts
+
+      git rebase --continue
+
+- If we don't care about the next commit, we can skip it. To skip rebasing
+
+      git rebase --skip
+
+- To abort rebasing
+
+      git rebase --abort
+
 ### Cherry Picking
 
 Pick one commit from a branch and apply it to another branch.
