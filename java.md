@@ -1,3 +1,9 @@
+# Variables
+
+### We can assign multiple variables in a single line
+
+    first = last = node;
+
 # Arrays
 
 ### Sort a 2D array
@@ -8,9 +14,19 @@
 
     Arrays.sort(numbers, (a, b) -> (b + a).compareTo(a + b));
 
+### Sort an array between indexes
+
+    Arrays.sort(nums, i, j);
+
+- `i` is inclusive, `j` is exclusive
+
 ### Convert a Linked List to a 2D integer (int[]) array
 
     list.toArray(new int[list.size()][])
+
+### Convert an array to a list
+
+    Arrays.asList(arr);
 
 ### Copying an array into another
 
@@ -62,3 +78,27 @@ or
 ### Count # of occurrances of a particular character in a string
 
       s.chars().filter(ch -> ch == '.').count()
+
+### Joining array of words to make sentence
+
+    String.join(" ", words);    // " " is the delimiter
+
+### Replace multiple spaces with a single space using regular expression
+
+    s.replaceAll(" +", " ")
+
+### Parsing a String to a hexadecimal number
+
+    Integer.parseInt(s, 16);
+
+# List Interface
+
+### Reverse a List type
+
+    Collections.reverse(list);
+
+# Queue
+
+### Create a priority queue in reverse order
+
+    PriorityQueue<Integer> min = new PriorityQueue<>(Collections.reverseOrder());
