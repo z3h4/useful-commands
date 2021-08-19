@@ -65,6 +65,10 @@ All these configurations are stored in a text file. To see/edit this file use
 
             git config --global core.excludesfile ~/.gitignore
 
+## Using multiple github accounts with ssh keys
+- https://gist.github.com/oanhnn/80a89405ab9023894df7
+
+
 
 ### Diff Tool
 
