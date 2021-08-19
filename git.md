@@ -49,12 +49,22 @@ All these configurations are stored in a text file. To see/edit this file use
 - On Mac install `zsh`
 - On Windows install `posh-git`
 
-### .gitignore
+## `.gitignore`
 
 - Use this to ignore files and directories in git.
 - Adding any file/directory to `gitignore` only works if we have not already included that file/directory in our git repository.
 - This file should be at the root of the project.
 - https://github.com/github/gitignore contains various `gitignore` templates for different programming languages.
+
+### `.gitignore` global configuration
+- To exclude same (type of) files from all projects, use global `.gitignore` file localted at the root directory.
+  - For example, we never want to include `.DS_Store` files, so make a global rule.
+
+            echo .DS_Store >> ~/.gitignore
+ - Now tell git to use it for all repositories:
+
+            git config --global core.excludesfile ~/.gitignore
+
 
 ### Diff Tool
 
