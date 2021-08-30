@@ -34,6 +34,94 @@ Depending on the use case, it's usually a good idea to create a non-unique index
 - If you don't need to do anything with the relationship model, it may be simpler to set up a `has_and_belongs_to_many` relationship.
 - You should use `has_many :through` if you need validations, callbacks, or extra attributes on the join model.
 
+## Updating the Schema based on the association
+
+- Associations are extremely useful, but they are not magic. You are responsible for maintaining your database schema to match your associations.
+- In practice, this means two things, depending on what sort of associations you are creating.
+  1. For `belongs_to` associations you need to create foreign keys
+  2. For `has_and_belongs_to_many` associations you need to create the appropriate join table.
+
+1. **Creating Foreign Keys for belongs_to Associations**
+When you declare a belongs_to association, you need to create foreign keys as appropriate. For example, consider this model:
+
+        class Book < ApplicationRecord
+          belongs_to :author
+        end
+
+This declaration needs to be backed up by a corresponding foreign key column in the books table. For a brand new table, the migration might look something like this:
+
+      class CreateBooks < ActiveRecord::Migration[6.0]
+        def change
+          create_table :books do |t|
+            t.datetime   :published_at
+            t.string     :book_number
+            t.references :author
+          end
+        end
+      end
+
+Whereas for an existing table, it might look like this:
+
+    class AddAuthorToBooks < ActiveRecord::Migration[6.0]
+      def change
+        add_reference :books, :author
+      end
+    end
+
+If you wish to enforce referential integrity at the database level, add the foreign_key: true option to the ‘reference’ column declarations.
+
+      class CreateBooks < ActiveRecord::Migration[6.0]
+        def change
+          create_table :books do |t|
+            t.datetime   :published_at
+            t.string     :book_number
+            t.references :author, foreign_key: true 
+          end
+        end
+      end
+
+**Creating Join Tables for has_and_belongs_to_many Associations**
+
+- If you create a has_and_belongs_to_many association, you need to explicitly create the joining table.
+- Unless the name of the join table is explicitly specified by using the `:join_table` option, Active Record creates the name by using the lexical order of the class names. So a join between author and book models will give the default join table name of "authors_books".
+- Whatever the name, you must manually generate the join table with an appropriate migration. For example, consider these associations:
+
+      class Assembly < ApplicationRecord
+        has_and_belongs_to_many :parts
+      end
+
+      class Part < ApplicationRecord
+        has_and_belongs_to_many :assemblies
+      end
+- These need to be backed up by a migration to create the `assemblies_parts` table. **This table should be created without a primary key:**
+
+      class CreateAssembliesPartsJoinTable < ActiveRecord::Migration[6.0]
+        def change
+          create_table :assemblies_parts, id: false do |t|
+            t.bigint :assembly_id
+            t.bigint :part_id
+          end
+
+          add_index :assemblies_parts, :assembly_id
+          add_index :assemblies_parts, :part_id
+        end
+      end
+
+  - We pass `id: false` to create_table because that table does not represent a model. That's required for the association to work properly.
+- We can also use the method `create_join_table`
+
+      class CreateAssembliesPartsJoinTable < ActiveRecord::Migration[6.0]
+        def change
+          create_join_table :assemblies, :parts do |t|
+            t.index :assembly_id
+            t.index :part_id
+          end
+        end
+      end
+
+
+
+
 ## Polymorphic Associations
 
 - With polymorphic associations, a model can **belong to** more than one other model, on a single association.
