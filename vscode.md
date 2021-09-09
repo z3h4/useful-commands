@@ -1,4 +1,4 @@
-## Setup
+# Setup
 
 ### Mac
 
@@ -7,10 +7,18 @@
 - Open the **Command Palette** via `Command+Shift+P` and type `shell command`
 - Select `Install 'code' command in PATH`
 
-## Shortcuts
+# Shortcuts
 
-### Mac
+## Mac
 
-#### Duplicating a line/selection
+### Duplicating a line/selection
 
-    Shift+Option+Down
+    Shift + Option + Down
+
+### Multi select
+
+    Command + D
+
+### Multiline select
+
+    Option + Command + arrow-key (up/down)

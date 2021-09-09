@@ -1,11 +1,73 @@
 # Rails Associations
 ## `belongs_to` association
-`belongs_to` does not ensure reference consistency, so depending on the use case, you might also need to add a database-level foreign key constraint on the reference column, like this:
+- In database terms, the `belongs_to` association says that this model's table contains a column which represents a reference to another table. 
+- This can be used to set up one-to-one or one-to-many relations.
+- If the table of the other class contains the reference in a one-to-one relation, then you should use has_one instead.
+- `belongs_to` does not ensure reference consistency, so depending on the use case, you might also need to add a database-level foreign key constraint on the reference column, like this:
 
     create_table :books do |t|
       t.belongs_to :author, foreign_key: true
       # ...
     end
+
+### Methods Added by belongs_to
+- When you declare a belongs_to association, the declaring class automatically gains 6 methods related to the association.
+- In all of these methods, association is replaced with the symbol passed as the first argument to belongs_to. For example, given the declaration:
+
+      class Book < ApplicationRecord
+        belongs_to :author
+      end
+
+  | Name | Example |
+  ------ | :--------:
+  | association | author |
+  | association=(associate) | author= |
+  | build_association(attributes = {}) | build_author
+  | create_association(attributes = {}) | create_author
+  | create_association!(attributes = {}) | create_author!
+  | reload_association | reload_author
+
+- When initializing a new `has_one` or `belongs_to` association you must use the `build_` prefix to build the association.
+- To create one, use the `create_` prefix.
+
+### Options for belongs_to
+- We can customize the behavior of the `belongs_to` association by passing options and scope blocks when we create the association.
+- The belongs_to association supports these options:
+  1. `:autosave`
+      - If you set the `:autosave` option to true, Rails will save any loaded association members and destroy members that are marked for destruction whenever you save the parent object.
+      - Setting `:autosave` to false is not the same as not setting the `:autosave` option. If the `:autosave` option is not present, then new associated objects will be saved, but updated associated objects will not be saved.
+  2. `class_name`
+      - If the name of the other model cannot be derived from the association name, you can use the `:class_name` option to supply the model name.
+  3. `counter_cache`
+      - The `:counter_cache` option can be used to make finding the number of belonging objects more efficient. 
+      - https://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-counter-cache
+  4. `dependent`
+      - If you set the :dependent option to:
+        - `:destroy`, when the object is destroyed, destroy will be called on its associated objects.
+        - `:delete`, when the object is destroyed, all its associated objects will be deleted directly from the database without calling their destroy method.
+        - `:destroy_async` when the object is destroyed, an `ActiveRecord::DestroyAssociationAsyncJob` job is enqueued which will call destroy on its associated objects. Active Job must be set up for this to work.
+  5. `foreign_key`
+      - By convention, Rails assumes that the column used to hold the foreign key on this model is the name of the association with the suffix `_id` added.
+      - The `:foreign_key` option lets you set the name of the foreign key directly:
+
+            class Book < ApplicationRecord
+              belongs_to :author, class_name: "Patron",
+                                  foreign_key: "patron_id"
+            end
+      - **In any case, Rails will not create foreign key columns for you. You need to explicitly define them as part of your migrations.**
+  6. `primary_key`
+      - By convention, Rails assumes that the `id` column is used to hold the primary key of its tables. The `:primary_key` option allows you to specify a different column.
+      - For example, given we have a users table with guid as the primary key. If we want a separate todos table to hold the foreign key user_id in the guid column, then we can use `primary_key` to achieve this like so:
+
+            class User < ApplicationRecord
+              self.primary_key = 'guid' # primary key is guid and not id
+            end
+
+            class Todo < ApplicationRecord
+              belongs_to :user, primary_key: 'guid'
+            end
+        - When we execute `@user.todos.create` then the `@todo` record will have its user_id value as the guid value of @user.
+---------------------------------------------------------------------------
 
 ## `has_one` association
 
@@ -15,6 +77,8 @@ Depending on the use case, you might also need to create a unique index and/or a
       t.belongs_to :supplier, index: { unique: true }, foreign_key: true
       # ...
     end
+
+---------------------------------------------------------------------------
 
 ## `has_many` association
 
@@ -118,8 +182,6 @@ If you wish to enforce referential integrity at the database level, add the fore
           end
         end
       end
-
-
 
 
 ## Polymorphic Associations

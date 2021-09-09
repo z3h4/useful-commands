@@ -24,7 +24,7 @@
 ## Skipping Validations
 - The following methods skip validations, and will save the object to the database regardless of its validity.
   - `insert`/`insert!`
-  - `insert_all`/`insert_all`!
+  - `insert_all`/`insert_all!`
   - `update_all`
   - `update_attribute`
   - `update_column`
