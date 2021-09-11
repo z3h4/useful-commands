@@ -174,3 +174,55 @@ Same as `find_each`
 
 - https://guides.rubyonrails.org/active_record_querying.html#find-in-batches
 - https://api.rubyonrails.org/classes/ActiveRecord/Batches.html#method-i-find_in_batches
+
+
+## Conditions
+- The where method allows you to specify conditions to limit the records returned, representing the WHERE-part of the SQL statement. 
+- Conditions can either be specified as a string, array, or hash.
+- It returns a new relation, which is the result of filtering the current relation according to the conditions in the arguments.
+
+### Strings
+- A single string, without additional arguments, is passed.
+
+      Client.where("orders_count = '2'")
+      Book.where("title = 'Introduction to Algorithms'")
+
+- Note that building your own string from user input may expose your application to injection attacks if not done properly. For example, `Book.where("title LIKE '%#{params[:title]}%'")` is not safe.
+- As an alternative, it is recommended to use one of the following methods.
+
+### Array
+- If `where` is called with multiple arguments, these are treated as if they were passed as the elements of a single array.
+  - The following two queries are equivalent:
+
+        Book.where("title = ?", params[:title])
+        Book.where(["title = ?", params[:title]])
+
+- If an array is passed, Active Record will take the first argument as the conditions string and any additional arguments will replace the question marks (?) in it.
+
+      User.where("name = ? and email = ?", "Joe", "joe@example.com")
+
+- Alternatively, you can use named placeholders in the template, and pass a hash as the second element of the array. 
+
+      User.where("name = :name and email = :email", { name: "Joe", email: "joe@example.com" })
+
+### Hash Conditions
+- `where` will also accept a hash condition, in which the keys are fields and the values are values to be searched for.
+- Fields can be symbols or strings. Values can be single values, arrays, or ranges.
+- Only equality, range, and subset checking are possible with Hash conditions.
+
+      User.where({ name: "Joe", email: "joe@example.com" })
+
+#### Range Conditions
+This will use a `BETWEEN` SQL statement
+
+      User.where({ created_at: (Time.now.midnight - 1.day)..Time.now.midnight })
+
+#### Subset Conditions
+This will use the `IN` SQL statement
+
+      User.where({ name: ["Alice", "Bob"]})
+
+### NOT Conditions
+`NOT` SQL queries can be built by where.not:
+
+      Customer.where.not(orders_count: [1,3,5])
