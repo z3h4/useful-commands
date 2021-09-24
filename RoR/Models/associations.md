@@ -1,52 +1,68 @@
 # Rails Associations
+
+- In Rails, an association is a connection between two Active Record models.
+- Rails supports six types of associations:
+  - `belongs_to`
+  - `has_one`
+  - `has_many`
+  - `has_many :through`
+  - `has_one :through`
+  - `has_and_belongs_to_many`
+
 ## `belongs_to` association
-- In database terms, the `belongs_to` association says that this model's table contains a column which represents a reference to another table. 
+
+- In database terms, the `belongs_to` association says that this model's table contains a column which represents a reference to another table.
 - This can be used to set up one-to-one or one-to-many relations.
-- If the table of the other class contains the reference in a one-to-one relation, then you should use has_one instead.
+- If the table of the other class contains the reference in a one-to-one relation, then you should use `has_one` instead.
 - `belongs_to` does not ensure reference consistency, so depending on the use case, you might also need to add a database-level foreign key constraint on the reference column, like this:
 
-    create_table :books do |t|
-      t.belongs_to :author, foreign_key: true
-      # ...
-    end
+      create_table :books do |t|
+        t.belongs_to :author, foreign_key: true # ...
+      end
 
-### Methods Added by belongs_to
-- When you declare a belongs_to association, the declaring class automatically gains 6 methods related to the association.
-- In all of these methods, association is replaced with the symbol passed as the first argument to belongs_to. For example, given the declaration:
+- `belongs_to` associations must use the singular term.
+
+### Methods Added by `belongs_to`
+
+- When you declare a `belongs_to` association, the declaring class automatically gains 6 methods related to the association.
+- In all of these methods, association is replaced with the symbol passed as the first argument to `belongs_to`. For example, given the declaration:
 
       class Book < ApplicationRecord
         belongs_to :author
       end
 
-  | Name | Example |
-  ------ | :--------:
-  | association | author |
-  | association=(associate) | author= |
-  | build_association(attributes = {}) | build_author
-  | create_association(attributes = {}) | create_author
-  | create_association!(attributes = {}) | create_author!
-  | reload_association | reload_author
+  | Name                                 |    Example     |
+  | ------------------------------------ | :------------: |
+  | association                          |     author     |
+  | association=(associate)              |    author=     |
+  | build_association(attributes = {})   |  build_author  |
+  | create_association(attributes = {})  | create_author  |
+  | create_association!(attributes = {}) | create_author! |
+  | reload_association                   | reload_author  |
 
 - When initializing a new `has_one` or `belongs_to` association you must use the `build_` prefix to build the association.
 - To create one, use the `create_` prefix.
 
-### Options for belongs_to
+### Options for `belongs_to`
+
 - We can customize the behavior of the `belongs_to` association by passing options and scope blocks when we create the association.
 - The belongs_to association supports these options:
-  1. `:autosave`
+
+  1.  `:autosave`
       - If you set the `:autosave` option to true, Rails will save any loaded association members and destroy members that are marked for destruction whenever you save the parent object.
       - Setting `:autosave` to false is not the same as not setting the `:autosave` option. If the `:autosave` option is not present, then new associated objects will be saved, but updated associated objects will not be saved.
-  2. `class_name`
+  2.  `class_name`
       - If the name of the other model cannot be derived from the association name, you can use the `:class_name` option to supply the model name.
-  3. `counter_cache`
-      - The `:counter_cache` option can be used to make finding the number of belonging objects more efficient. 
+  3.  `counter_cache`
+      - The `:counter_cache` option can be used to make finding the number of belonging objects more efficient.
       - https://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-counter-cache
-  4. `dependent`
-      - If you set the :dependent option to:
+  4.  `dependent`
+      - If you set the `:dependent` option to:
         - `:destroy`, when the object is destroyed, destroy will be called on its associated objects.
         - `:delete`, when the object is destroyed, all its associated objects will be deleted directly from the database without calling their destroy method.
         - `:destroy_async` when the object is destroyed, an `ActiveRecord::DestroyAssociationAsyncJob` job is enqueued which will call destroy on its associated objects. Active Job must be set up for this to work.
-  5. `foreign_key`
+  5.  `foreign_key`
+
       - By convention, Rails assumes that the column used to hold the foreign key on this model is the name of the association with the suffix `_id` added.
       - The `:foreign_key` option lets you set the name of the foreign key directly:
 
@@ -54,8 +70,11 @@
               belongs_to :author, class_name: "Patron",
                                   foreign_key: "patron_id"
             end
+
       - **In any case, Rails will not create foreign key columns for you. You need to explicitly define them as part of your migrations.**
-  6. `primary_key`
+
+  6.  `primary_key`
+
       - By convention, Rails assumes that the `id` column is used to hold the primary key of its tables. The `:primary_key` option allows you to specify a different column.
       - For example, given we have a users table with guid as the primary key. If we want a separate todos table to hold the foreign key user_id in the guid column, then we can use `primary_key` to achieve this like so:
 
@@ -66,8 +85,18 @@
             class Todo < ApplicationRecord
               belongs_to :user, primary_key: 'guid'
             end
-        - When we execute `@user.todos.create` then the `@todo` record will have its user_id value as the guid value of @user.
----------------------------------------------------------------------------
+
+        - When we execute `@user.todos.create` then the `@todo` record will have its user_id value as the guid value of `@user`.
+
+### Scopes
+
+- We can pass a second argument `scope` as a callable (i.e. proc or lambda) to retrieve a specific record or customize the generated query when you access the associated object.
+
+      belongs_to :firm, -> { where(id: 2) }
+      belongs_to :user, -> { joins(:friends) }
+      belongs_to :level, ->(game) { where("game_level > ?", game.current_level) }
+
+---
 
 ## `has_one` association
 
@@ -78,7 +107,7 @@ Depending on the use case, you might also need to create a unique index and/or a
       # ...
     end
 
----------------------------------------------------------------------------
+---
 
 ## `has_many` association
 
@@ -90,7 +119,37 @@ Depending on the use case, it's usually a good idea to create a non-unique index
     end
 
 ## `has_many :through` association
+
 - used to set up a many-to-many connection with another model.
+- This association indicates that the declaring model can be matched with zero or more instances of another model by proceeding through a third model.
+
+## `has_and_belongs_to_many` Association
+
+- A has_and_belongs_to_many association creates a direct many-to-many connection with another model, with no intervening model.
+- This association indicates that each instance of the declaring model refers to zero or more instances of another model.
+- This associates two classes via an intermediate join table.
+  - Unless the join table is explicitly specified as an option, it is guessed using the lexical order of the class names.
+    - So a join between Developer and Project will give the default join table name of “developers_projects” because “D” precedes “P” alphabetically.
+- The join table should not have a primary key or a model associated with it.
+- You must manually generate the join table with a migration such as this:
+
+      class CreateDevelopersProjectsJoinTable < ActiveRecord::Migration[6.0]
+        def change
+          create_join_table :developers, :projects
+        end
+      end
+
+- https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_and_belongs_to_many
+
+### Options
+
+### `:join_table `
+
+- Specify the name of the join table if the default based on lexical order isn't what you want. WARNING: If you're overwriting the table name of either class, the table_name method MUST be declared underneath any `has_and_belongs_to_many` declaration in order to work.
+
+### `:validate`
+
+When set to true, validates new objects added to association when saving the parent object. true by default. If you want to ensure associated objects are revalidated on every update, use `validates_associated`.
 
 ## Choosing Between `has_many :through` and `has_and_belongs_to_many`
 
@@ -105,12 +164,12 @@ Depending on the use case, it's usually a good idea to create a non-unique index
   1. For `belongs_to` associations you need to create foreign keys
   2. For `has_and_belongs_to_many` associations you need to create the appropriate join table.
 
-1. **Creating Foreign Keys for belongs_to Associations**
-When you declare a belongs_to association, you need to create foreign keys as appropriate. For example, consider this model:
+1.  **Creating Foreign Keys for belongs_to Associations**
+    When you declare a belongs_to association, you need to create foreign keys as appropriate. For example, consider this model:
 
-        class Book < ApplicationRecord
-          belongs_to :author
-        end
+            class Book < ApplicationRecord
+              belongs_to :author
+            end
 
 This declaration needs to be backed up by a corresponding foreign key column in the books table. For a brand new table, the migration might look something like this:
 
@@ -139,7 +198,7 @@ If you wish to enforce referential integrity at the database level, add the fore
           create_table :books do |t|
             t.datetime   :published_at
             t.string     :book_number
-            t.references :author, foreign_key: true 
+            t.references :author, foreign_key: true
           end
         end
       end
@@ -157,6 +216,7 @@ If you wish to enforce referential integrity at the database level, add the fore
       class Part < ApplicationRecord
         has_and_belongs_to_many :assemblies
       end
+
 - These need to be backed up by a migration to create the `assemblies_parts` table. **This table should be created without a primary key:**
 
       class CreateAssembliesPartsJoinTable < ActiveRecord::Migration[6.0]
@@ -172,6 +232,7 @@ If you wish to enforce referential integrity at the database level, add the fore
       end
 
   - We pass `id: false` to create_table because that table does not represent a model. That's required for the association to work properly.
+
 - We can also use the method `create_join_table`
 
       class CreateAssembliesPartsJoinTable < ActiveRecord::Migration[6.0]
@@ -182,7 +243,6 @@ If you wish to enforce referential integrity at the database level, add the fore
           end
         end
       end
-
 
 ## Polymorphic Associations
 
@@ -200,6 +260,7 @@ If you wish to enforce referential integrity at the database level, add the fore
       class Product < ApplicationRecord
         has_many :pictures, as: :imageable
       end
+
 - You can think of a polymorphic `belongs_to` declaration as setting up an interface that any other model can use.
 - From an instance of the `Employee` model, you can retrieve a collection of pictures: `@employee.pictures`.
 - Similarly, you can retrieve `@product.pictures`.
@@ -207,7 +268,7 @@ If you wish to enforce referential integrity at the database level, add the fore
 
 ### Delete child record when parent record is deleted
 
-- Use `dependent: :destroy`. 
+- Use `dependent: :destroy`.
 
       class Author < ApplicationRecord
         has_many :books, dependent: :destroy
@@ -216,6 +277,7 @@ If you wish to enforce referential integrity at the database level, add the fore
       class Book < ApplicationRecord
         belongs_to :author
       end
+
   - Now, delete an author and all of its books:
 
         @author.destroy

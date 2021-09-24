@@ -226,3 +226,28 @@ This will use the `IN` SQL statement
 `NOT` SQL queries can be built by where.not:
 
       Customer.where.not(orders_count: [1,3,5])
+
+### OR Conditions
+OR conditions between two relations can be built by calling `or` on the first relation, and passing the second one as an argument.
+
+      Customer.where(last_name: 'Smith').or(Customer.where(orders_count: [1,3,5]))
+
+### Ordering
+- Allows to retrieve records from the database in a specific order.
+
+      Customer.order(:created_at)
+      
+      Customer.order(created_at: :desc)
+      Customer.order(created_at: :asc)
+
+Or ordering by multiple fields:
+
+      Customer.order(orders_count: :asc, created_at: :desc)
+      Customer.order(:orders_count, created_at: :desc)
+
+- If you want to call order multiple times, subsequent orders will be appended to the first:
+
+      Customer.order("orders_count ASC").order("created_at DESC")
+      # SELECT * FROM customers ORDER BY orders_count ASC, created_at DESC
+
+- In most database systems, on selecting fields with distinct from a result set using methods like `select`, `pluck` and `ids`; the order method will raise an `ActiveRecord::StatementInvalid` exception unless the field(s) used in order clause are included in the select list. 
