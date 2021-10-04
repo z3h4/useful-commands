@@ -39,7 +39,7 @@
 ### Viewport
 
 - `viewport` is the visible area of a web page.
-- We need this element so our webpages look good on all devices - desktop, mobile etc.
+- We need this element so our webpages look good on all devices - desktops, tablets, mobiles etc.
 
 ## `<body>` element
 
@@ -61,7 +61,7 @@
 
 - The `<strong>` element is used to represent important content.
 - Browsers, by default, render strong content in bold.
-- Conceptually, it's similar to `<em>`. So, where we should use it depend's on the context.
+- Conceptually, it's similar to `<em>`. So, where we should use `<em>` and `<strong>` depend's on the context.
 
 ### `<i>` and `<b>`
 
@@ -195,15 +195,63 @@
 ### Containers
 
 - Quite often we need to group a bunch of elements for styling purposes.
-- In HTML we have a few container elements.
+- In HTML we have a few container elements. `<div>` and `<span>` are general purpose containers.
   - `<div>` (division)
     - `<div>` is a block-level element. A block-level element always starts on a new line and fill up the entire available space.
   - `<span>`
     - It is often used for styling texts.
     - `<span>` is an inline element. So, it does not take up the entire width of the page.
 
+### Semantic Elements
+
+- Semantic elements help us write markup that is more meaningful and descriptive to search engines, screen readers and other software.
+- So, use `<div>` and `<span>` elements when no other semantic element is appropriate.
+- The semantic elements in HTML5 are:
+  - `<header>`
+    - Represents introductory content.
+    - We can use `<header>` inside a page, `<section>` or `<article>`
+  - `<footer>`
+    - Same as `<header>`
+  - `<nav>`
+    - Navigation bar
+  - `<main>`
+    - Represents main content of the page.
+    - Every page can have only 1 main element.
+  - `<aside>`
+    - Represent contents not directly related to the main content.
+    - If we want to have a sidebar for advertising or other contents that is not directly related to the main content.
+  - `<article>`
+    - This element represents an article.
+  - `<section>`
+    - Group related contents.
+    - Every `<section>` should have a heading.
+  - `<figure>`
+    - This is just a container for figures.
+  - `<mark>`
+    - Highlights or mark contents.
+  - `<time>`
+
+### Structuring web pages
+
+- Most web pages have at least 3 building blocks. `<header>`, `<main>` and `<footer>`.
+- Structure:
+  - `<header>`
+    - `<nav>`
+  - `<main>`
+    - `<section>`
+      - `<h2>`
+      - `<article>`
+      - `<article>`
+    - `<section>`
+  - `<aside>`
+  - `<footer>`
+
 # Validating Web pages
 
 - Using validation services we can ensure that our HTML/CSS code is valid and follows the official rules. This helps us get better rankings in search engines.
 - Validate html at http://validator.w3.org/
 - Validate css at https://jigsaw.w3.org/css-validator/
+
+- In HTML5 we can generate text using lorem and then specifying how many characters we want. For example, if we want random text with 50 characters,
+
+      lorem50
