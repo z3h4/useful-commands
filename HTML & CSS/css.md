@@ -62,7 +62,7 @@
 
 - If let's say, inside the `products` class we have multiple paragraphs and we only want to apply the style to the paragraph that is direct child of `products` class
 
-      <section id="products">
+      <section class="products">
         <p>Lorem ipsum dolor sit amet.</p>
         <article>
           <p>Lorem ipsum dolor sit amet.</p>
@@ -75,7 +75,7 @@
 
 - If we want to style a paragraph element that is a direct sibling of `<section>`. This only works for immediate sibling. If we have multiple siblings, it'll only apply on the first sibling.
 
-      <section id="products">
+      <section class="products">
         <p>Lorem ipsum dolor sit amet.</p>
         <article>
           <p>Lorem ipsum dolor sit amet.</p>
@@ -197,3 +197,53 @@
         background-color: hsl(44, 98%, 50%);
         background-color: hsla(44, 98%, 50%, 1);
         background-color: hsl(44deg 98% 50%);
+
+### Gradients
+
+- With gradients we can create beautiful transitions between two or more colors.
+- Using the `linear-gradient()` and `radial-gradient()` functions we can create gradients in CSS.
+- Gradients are images so they cannot be used as the value of `background-color` property.
+- We can use them as the value of `background-image` or `background` properties.
+
+      background: linear-gradient(dodgerblue, yellow);
+
+- By default, the direction of the transition is top to bottom. To change it specify the direction as the first argument:
+
+      background: linear-gradient(to right, dodgerblue, yellow);
+      background: linear-gradient(to bottom right, dodgerblue, yellow);
+      background: linear-gradient(45deg, dodgerblue, yellow);
+      background: linear-gradient(45deg, dodgerblue, yellow 30%);
+      background: linear-gradient(45deg, dodgerblue, yellow, tomato);
+
+      background: radial-gradient(white, yellow);
+      background: radial-gradient(circle, white, yellow);
+      background: radial-gradient(circle at top left, white, yellow);
+
+### Border
+
+- The `border` property is a shorthand property for `border-top`, `border-right`, `border-bottom` and `border-left`.
+- It takes three values: the thickness of the border, its style and its color.
+
+      border: 1px solid royalblue;
+      border: 1px dotted royalblue;
+      border: 1px dashed royalblue;
+
+- We also have specific properties like `border-width`, `border-style` and `border-color`. These properties take four values for the top, right, bottom and left borders.
+
+      border-width: 1px 2px 1px 2px;    /* top, right, bottom, left */
+      border-radious: 10px;
+
+### Shadows
+
+- Using the `box-shadow` and `text-shadow` properties we can apply a shadow to elements and text.
+- These properties take a few values.
+
+  - The first two values determine the horizontal and vertical distance of the shadow from the element.
+  - The third value (called blur radius) determines the softness of the border.
+  - We can specify the color as the fourth value.
+
+        box-shadow: 10px 10px 30px grey;
+        box-shadow: 0 0 30px grey;
+
+        text-shadow: 3 px 3px 5px grey;
+        text-shadow: 3 px 3px 5px rgba(0, 0, 0, 0.2);
