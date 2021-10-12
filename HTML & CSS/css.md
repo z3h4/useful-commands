@@ -628,3 +628,178 @@
             flex-direction: row;
           }
         }
+
+---
+
+# Typography
+
+## Fonts
+
+- Fonts fall into three main categories: `Serif`, `sans-serif` and `Monospace`.
+- `Serif` fonts have a line/stroke at the edges of their characters. They’re more professional and serious.
+  - Example: `Georgia`, `Times New Roman` etc.
+- `sans-serif` fonts don’t have those edges. They’re more modern, warm and friendly.
+  - Example: `Avenir`, `Arial`, `Futura`, `Helvetica`, `Roboto` etc.
+- `Monospace` fonts have equal-width characters. They’re often used in displaying code.
+  - Example: `Consolas`, `Courier`, `Ubuntu` etc.
+
+## Styling Fonts
+
+### `font-family`
+
+- Use `font-family `property to set the font for an element.
+- We should set this property to a font stack which contains multiple fonts as fallbacks.
+  - A font stack consists of multiple fonts.
+
+### `font-weight`
+
+- Set the boldness of the font.
+  - Values can be
+    - Integer value in range 100 - 900, 100 = thin, 900 = thick
+    - `bold` (700), `bolder`, `lighter`, `normal` (400)
+
+### `font-style`
+
+- Values can be `normal` (default), `italic`,
+
+### `font-size`
+
+- It’s best to size fonts using the `rem` unit.
+  - This will set the font size relative to the font size of the root (html) element.
+  - Using media queries, we can resize the base font size, and as a result, the font size for all elements will be re-calculated with no extra code.
+- Use type-scale.com to find right font size for different headings.
+
+### `font-display`
+
+- The `font-display` property defines how font files are loaded and displayed by the browser.
+- It is applied to the `@font-face` rule which defines custom fonts in a stylesheet.
+- **Values**
+  - The font-display property accepts five values:
+    - `auto` (default): Allows the browser to use its default method for loading, which is most often similar to the `block` value.
+    - `block`: Instructs the browser to briefly hide the text until the font has fully downloaded. More accurately, the browser draws the text with an invisible placeholder then swaps it with the custom font face as soon as it loads. This is also known as a “flash of invisible text” or FOIT.
+    - `swap`: Instructs the browser to use the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+    - `fallback`: Acts as a compromise between the `auto` and `swap` values. The browser will hide the text for about 100ms and, if the font has not yet been downloaded, will use the fallback text. It will swap to the new font after it is downloaded, but only during a short swap period (probably 3 seconds).
+    - `optional`: Like `fallback`, this value tells the browser to initially hide the text, then transition to a `fallback` font until the custom font is available to use. However, this value also allows the browser to determine whether the custom font is even used at all, using the user’s connection speed as a determining factor where slower connections are less likely to receive the custom font.
+- https://css-tricks.com/almanac/properties/f/font-display
+
+### `color`
+
+### Embedding Web Fonts
+
+- In the past, we used web safe fonts because they’re available on almost all computers. Examples -
+  - `Arial`
+  - `Helvetica`
+  - `Georgia`
+  - `Times New Roman`
+- These days, however, we can easily embed custom fonts.
+  - The popular websites where we can find fonts
+    - fontsquirrel.com
+    - fonts.com
+    - myfonts.com
+- **Font Formats**
+  - Font files come in a variety of different formats: `TTF`, `OTF`, `EOT`, `WOFF` and `WOFF 2.0`.
+  - Out of these, `WOFF` and `WOFF 2.0` are recommended for the web because they’re more compressed and can be downloaded in less time.
+  - We can convert any font file to a `WOFF` file on fontsquirrel.com.
+  - To embed a custom font, we should first register it using the `@font-face` rule.
+
+### Font Services
+
+- Using font services we can get access to thousands of beautiful fonts with zero or minimal cost.
+- Google Web Fonts (fonts.google.com) is the most popular and free font service.
+- When using these services, fonts and `@font-face` rules are served from the provider’s servers.
+- Paid font services
+  - Adobe fonts (fonts.adobe.com)
+  - fonts.com
+  - fontdeck.com
+
+### System Font Stack
+
+- A common practice for content-heavy websites is to use the system font stack which represents the default font used by an operating system.
+- With the system font stack, we achieve a better performance because no fonts need to be downloaded and the FOUT/FOIT doesn’t happen either. Plus, the page looks more familiar to the user because they see the same default font used by their device.
+- On the flip side, the default font varies from one device to another.
+
+### Vertical Spacing
+
+- 2 properties that are used for vertical spacing.
+  1. `margin`
+  2. `line-height`
+     - Using the `line-height` property we can specify the height of lines. It’s best to set this property to a unitless value around 1.5. This value will be multiplied by the font size of the current element so we don’t need to remember to change the line height if we modify the font size.
+     - A general rule of thumb is to set this 1.5 times to the font size. (i.e. `line-height: 1.5`)
+
+**The law of proximity** describes how humans perceive the connection between objects.
+
+- Objects that are closer are perceived to be related.
+
+### Horizontal Spacing
+
+- The three properties used for horizontal spacing are:
+  1. `letter-spacing`
+     - Specify space between the letters.
+     - We should not use `rem` values
+  2. `word-spacing`
+     - Specify space between the words.
+  3. `width`
+     - The ideal line length is about 60-70 characters. We can achieve that by applying a `width` of `50ch`.
+     - The `ch` unit represents the width of the 0. 50 zeroes roughly represents 60-70 characters because some characters (like i and 1) are more narrow than 0.
+- It’s often better to apply a negative letter spacing to headings so they look more compact.
+
+### Formatting Text
+
+- `text-align`
+  - Controls horizontal alignment of our text.
+  - Default calue is `left`. Others are `right`, `center`, `justify`
+  - We should not use `justify` because it inserts whitespace between words.
+- `text-indent`
+  - Add indentation on the first line of our text. `text-indent: 1rem;`
+- `text-decoration`
+  - Values: `underline`, `line-through`
+- `text-transform`
+  - Values: `lowercase`, `uppercase`, `capitalize` (capitalize the first letter of every word, useful for headings)
+- `white-space`
+  - Used for controlling wrapping.
+  - Values: `nowrap`
+- `column-*`
+  - Create multicolumn text. `column-count: 2`
+  - Control the gaps between the columns. `column-gap: 2rem`
+  - Add a line between the columns. `column-rule: 3px dotted #999`
+- `direction`
+  - This is used in right-to-left languages.
+  - Default value is `ltr` (left to right)
+  - Other values: `rtl`
+- `text-overflow`
+  - `ellipsis` (show `...`)
+
+**How to truncate text**
+
+- We need to set 4 properties
+
+      width: 50ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+---
+
+# Forms
+
+- Every form should have an action which is used for submitting the form.
+- Inside the form we have one or more input fields (also called form controls).
+
+  - Each input element has a type, i.e. text, email
+  - Each button has a type.
+
+    - If we set the type `submit`, the button will be used for submitting the form.
+    - If we set the type `reset`, the button will be used to clear all the values in the form.
+
+          <form action=""></form>
+
+## Label
+
+- `label` elements are inline.
+- Every label element has a `for` attribute with which we can associate a label with the input field.
+
+      <label for="name">Name</label>
+      <input id="name" type="text" />
+
+- Label elements make our forms more accessible.
+  - When the user clicks on a label, the associated input field gets focus.
