@@ -74,7 +74,7 @@
 - We should use these headings to create a hierarchy. Otherwise it'll confuse the search engine.
 - Every web page should have one and only one `<h1>` element.
 - Headings should have a natural hierarchy and should not be skipped. We should not use `<h4>` after `<h1>`, we should use `<h2>`.
-- The better we can represent the structure of our dcument using HTML, the better search engines can read and understand our content.
+- The better we can represent the structure of our document using HTML, the better search engines can read and understand our content.
 
 ### Entities
 

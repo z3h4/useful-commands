@@ -11,6 +11,10 @@
 
 ## Mac
 
+### Moving a line
+
+    ALT + Up/Down
+
 ### Duplicating a line/selection
 
     Shift + Option + Down
