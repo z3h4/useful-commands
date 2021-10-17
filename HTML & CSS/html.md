@@ -1,3 +1,19 @@
+# How the Web Works
+
+## What happens when you type a URL into your browser?
+
+1. Our browser sends an HTTP request to the server and receives an HTTP response.
+2. This response includes an HTML document.
+3. The browser reads that HTML document to construct a Document Object Model (DOM) and render the page.
+4. As the browser reads the HTML document, it discovers references to other resources in this document, like images, fonts etc.
+5. Each of these resources has an address or an url.
+6. So for each resource, the browser sends a separate HTTP request to the server to fetch that resource.
+7. Many of these HTTP requests are sent in parallel, so we can see the page as quickly as possible.
+8. Once the browser has all the necessary resources, it will render the HTML document.
+   - Rendering an HTML document means displaying it.
+
+- [What happens when you type a URL into your browser?](https://aws.amazon.com/blogs/mobile/what-happens-when-you-type-a-url-into-your-browser/)
+
 # HTML
 
 - HTML (Hypertext Markup Language) is a markup language used to define the **structure** and **contents** of web pages.
@@ -6,12 +22,13 @@
 
 # HTTP
 
-- HTTP is not a programming language, it is a markup language (plain textual language) for communicating over the internet.
+- HTTP (Hypertext Transfer Protocol) is a set of rules that clients and servers use to communicate and exchange data over the internet.
 - HTTPS = HTTP + encryption
 
 # DOM
 
 - Document object model is a model that represents the objects or elements (i.e. paragraphs, images, links) in our HTML document.
+- It is an in-memory representation of the elements on the page
 
 `DOCTYPE` Declaration: `<!DOCTYPE html>` says the browser that this is a HTML5 document.
 

@@ -122,6 +122,12 @@
         color: deeppink;
       }
 
+- We have a few selectors to select an element in a particular class (state)
+
+  - `:hover`
+  - `:active`
+  - `:visited`
+
 - **Links.** we have few pseudo-class selectors for working with hyperlinks
 
       a:visited, a:link {
@@ -777,6 +783,136 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+---
+
+# Images
+
+- In HTML we have 2 types of images:
+
+  1.  Content Images
+      - We use the `img` element to display content images.
+      - Each `img` element should have 2 attributes: `src` and `alt`
+      - Content images can represent meaningful content or be used for decorative purposes.
+      - If used for decoration, we should set the `alt` attribute to an empty string; otherwise, screen readers will read out the name of the file which may be distracting to the user.
+  2.  Background Images
+
+      - Quite often we use background image for decorative purposes.
+
+            background: url('../images/bg-paper.jpg');
+            background-repeat: no-repeat;   /* other values: repeat-x, repeat-y */
+
+      - By default, the background image is placed on the top left corner of the screen.
+
+            background-position: 100px 100px;   /* Horizontal & vaetical adjustment values */
+
+      - Change the size of the background image
+
+            background-size: 200px 200px; /*  other values: cover */
+
+      - By default, if we scroll, the background image moves. If we don't want it, set
+
+            background-attachment: fixed;
+
+### CSS Sprites
+
+- Using CSS sprites we can combine multiple images into a single image (sprite) and reduce the number of HTTP requests.
+- The problem with CSS sprites is that every time we need to change one of the images in the sprite, we have to re-generate the sprite.
+  - So, use this technique for small images that don’t change often. You can generate a sprite using [https://cssspritestool.com](https://cssspritestool.com).
+
+### Data URLs
+
+- It is another optimization technique to reduce the number of HTTP requests.
+- Data URLs allow us to embed an image data directly in an HTML document or a stylesheet.
+- The embedded code is always greater than the size of the original resource and makes the document convoluted and hard to maintain. Use
+  this technique only if you know what you’re doing!
+
+### Clipping
+
+- We can clip or cut part of an image using the `clip-path` property in CSS. To generate a clip path from basic templates, visit [https://bennettfeely.com/clippy](https://bennettfeely.com/clippy)
+
+### Filters
+
+- Using the `filter` property in CSS, we can apply filters such as `grayscale`, `blur`, `saturate`, `brightness` and so on.
+
+      filter: grayscale(70%);
+      filter: grayscale(70%) blur(3px);
+
+### Supporting Highd-density Screens
+
+- High-density screens like Apple’s Retina displays contain more pixels than standard-density screens. The pixels on these screens are smaller than the pixels on standard-density screens. So when displaying an image, the screen uses a scale factor (1.5 or greater) to scale up the image. As a result, raster images may look a bit blurry when shown on these screens. To solve this problem, we can supply 2x or 3x versions of an image using the srcset attribute of the img element.
+- Our devices these days have few properties
+- Physical Resolution: Actual # of pixels on the device. For example, physical resolution of iPhone4 is 960 x 640
+- Logical Resolution: Which is basically how the device behave. For example, logical resolution of iPhone4 is 480 x 320
+- Device Pixel Ratio (DPR): Ratio of physical and logical pixels. For example, iPhone4 has a DPR of 2.
+- High Density Screen: DPR > 1
+- CSS is always based on the logical resolution.
+
+- To provide different high quality versions of the image for high density screen, we use `srcset` attribute.
+
+  - With this attribute we can provide a set of sources for different screens.
+
+        <img src="images/meal.jpg"
+             alt="A bowl of salmon and curry"
+             srcset="images/meal.jpg 1x,
+                     images/meal@2x.jpg 2x,
+                     images/meal@3x.jpg 3x" >
+
+  - This technique is for fixed size images.
+
+### Resolution Switching
+
+- For flexible-sized images, we need to supply the image in various sizes for different devices like mobiles, tablets and desktop computers.
+- If we supply a single image, the browser on each device has to resize the image which can be a costly operation. The larger the image, the more memory is needed and the more costly the resizing operation will be. Plus, the extra bytes used to download the image will be wasted. This is the resolution switching problem.
+- To address this, we should give the `img` element a few image sources and the size of the image for various viewports. The browser will take the screen resolution and pixel density into account and download the image that best fits the final size.
+
+- It's better to use the following syntax to tackle this problem
+
+      <img src="images/meal.jpg"
+             alt="A bowl of salmon and curry"
+             srcset="images/meal.jpg 400w,
+                     images/meal@2x.jpg 800w,
+                     images/meal@3x.jpg 1200w"
+              sizes="(max-width: 500px) 100vw
+                     (max-width: 700px) 50vw
+                     33vw"
+              >
+
+- The best way to decide on the sizes and generate image assets is to use the website [https://www.responsivebreakpoints.com](https://www.responsivebreakpoints.com)
+
+### Using Modern Image Format
+
+- `WebP` is a modern image format created by Google and is widely supported except in Internet Explorer.
+  - It produces smaller image than jpg or png.
+- To support modern image formats, we can use the picture element with multiple sources.
+- The picture element should always contain an img element otherwise the image is not shown.
+
+      <picture>
+        <source type="image/webp" srcset="images/meal.webp" />
+        <img src="images/meal.jpg" alt="A bowl of salmon and curry">
+      </picture>
+
+### Art Direction
+
+- Sometimes we need to show a zoomed in or a cropped version of an image for certain viewport sizes. This is the art direction problem.
+- To handle this, we use the `picture` element with multiple sources.
+- Each source should contain a media condition and a `srcset`. The browser will pick the first source whose media condition matches.
+
+      <picture>
+        <source media="(max-width: 500px)" srcset="images/meal-cropped.jpg" />
+        <source media="(min-width: 501px)" srcset="images/meal.jpg" />
+        <img src="images/meal.jpg" alt="A bowl of salmon and curry">
+      </picture>
+
+### Scalable Vector Graphics (SVG)
+
+- SVG files are great for logos, icons, simple graphics and backgrounds with patterns.
+- They are often very small and can scale without losing quality. You can get find plenty of beautiful SVG backgrounds on [https://svgbackgrounds.com](https://svgbackgrounds.com)
+
+### Font Icons
+
+- We can also use icon fonts for displaying icons.
+- The most popular icon fonts are Font Awesome, Ionicons and Material Design Icons.
 
 ---
 
