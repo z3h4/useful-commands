@@ -11,6 +11,26 @@
   - **Controller-level validations** can be tempting to use, but often become unwieldy and difficult to test and maintain. 
     - Whenever possible, it's a good idea to keep your controllers skinny, as it will make your application a pleasure to work with in the long run.
 
+# Common Validations
+## String
+### Validate presence of an attribute
+
+    validates :name, presence: true
+
+### Validate password confirmation
+
+    validates_confirmation_of :password, message: "doesn't match."
+
+### Validate checkbox checked
+
+    validates_acceptance_of :terms
+
+### Use condition in validation
+
+    validates_presence_of :affiliate_id, if: :accepted?
+
+
+
 ## Methods that trigger validations
 
 - The following methods trigger validations, and will save the object to the database only if the object is valid:

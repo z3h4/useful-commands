@@ -80,3 +80,35 @@ Returns a new `ActionController::Parameters` instance that includes only the giv
 
 
 - If the key we are trying to access in the `params` hash is absent, it'll raise an `ActionController::ParameterMissing` exception, which will get  caught by ActionController::Base and turned into a 400 Bad Request error.
+
+# Rendering and Redirection
+
+## `redirect_to`
+- `redirect_to` another action in the same controller
+
+      redirect_to action: :show
+
+- `redirect_to` another action in different controller
+
+      redirect_to controller: :user action: :show
+
+- `redirect_to` another action and pass params
+
+      redirect_to action: :show, search_term: params['search_term']
+
+- `redirect_to` back to the page that issues the request
+
+      redirect_to :back
+
+- Statements after `redirect_to` in our controller get executed. To terminate the execution of the function use
+
+      redirect_to post_url(@post) and return
+
+- It is also possible to assign a flash message as part of the redirection. 
+
+      redirect_to post_url(@post), alert: "Watch it, mister!"
+      redirect_to post_url(@post), status: :found, notice: "Pay attention to the road"
+      redirect_to post_url(@post), status: 301, flash: { updated_post_id: @post.id }
+      redirect_to({ action: 'atom' }, alert: "Something serious happened")
+
+- https://api.rubyonrails.org/classes/ActionController/Redirecting.html#method-i-redirect_to

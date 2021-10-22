@@ -1,6 +1,9 @@
 ### www.theodinproject.com
 
-### Installing Ruby
+
+<!------------------------------- Installing Ruby and Rails ------------------------------>
+
+## Installing Ruby
 
 To install Ruby use a tool called `rbenv`, which makes it easy to install and manage Ruby versions.
 
@@ -16,12 +19,18 @@ To install Ruby use a tool called `rbenv`, which makes it easy to install and ma
 
 ### Install Rails
 
-    rbenv local 2.4.2
+    rbenv install 2.4.2
     gem install rails -v x.x.x
 
 ### After that run
 
     rbenv rehash
+<!------------------------------- Installing Ruby and Rails ------------------------------>
+
+
+## `rbenv` Cheetsheet
+    https://devhints.io/rbenv
+
 
 ### Create a new rails project
 

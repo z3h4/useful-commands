@@ -32,3 +32,11 @@
 - Use `mv` command
 
       mv old-name.txt new-name.txt
+
+### See processes running on a port
+
+      lsof -wni tcp:3000
+
+- Kill a running process using it's PID
+
+      kill -9 PID
