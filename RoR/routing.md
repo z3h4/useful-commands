@@ -82,6 +82,100 @@ creates six different routes in your application:
   - `edit_geocoder_path` returns `/geocoder/edit`
   - `geocoder_path` returns `/geocoder`
 
+## Controller Namespaces and Routing
+
+### `namespace`
+
+- You may wish to organize groups of controllers under a namespace.
+
+  - For example, you might group a number of administrative controllers under an `Admin::` namespace, and place these controllers under the `app/controllers/admin` directory.
+  - You can route to such a group by using a namespace block:
+
+        namespace :admin do
+          resources :articles, :comments
+        end
+
+  - In this case, `admin_articles_path` helper will route to `/admin/articles` path and `admin/articles#index` action.
+
+- **Options**
+
+  - **Changing URLs only**
+
+    - When you want to namespace your controller classes but leave the corresponding routes unaffected, you can use the `namespace` method like follows::
+
+          namespace :admin, path: "sekret" do
+            resources :posts
+          end
+
+    - Accessible through `/sekret/posts` rather than `/admin/posts`
+    - URL: `/sekret/posts`
+    - Route helper: `admin_posts_path`
+    - Controller class: `Admin::PostsController`
+
+- maps to `Sekret::PostsController` rather than `Admin::PostsController`
+
+      namespace :admin, module: "sekret" do
+        resources :posts
+      end
+
+- generates `sekret_posts_path` rather than `admin_posts_path`
+
+      namespace :admin, as: "sekret" do
+        resources :posts
+      end
+
+### `scope`
+
+- If instead you want to route `/articles` (without the prefix `/admin`) to `Admin::ArticlesController`, you can specify the module with a scope block:
+
+      scope module: 'admin' do
+        resources :articles, :comments
+      end
+
+- This can also be done for a single route:
+
+      resources :articles, module: 'admin'
+
+- If instead you want to route `/admin/articles` to `ArticlesController` (without the `Admin::` module prefix), you can specify the path with a scope block:
+
+      scope '/admin' do
+        resources :articles, :comments
+      end
+
+- This can also be done for a single route:
+
+      resources :articles, path: '/admin/articles'
+
+- **Options**
+
+  - **Changing URLs only**
+
+    - When you want to namespace some paths but leave the corresponding controllers and url helpers unaffected, you can use the `scope` method like follows:
+
+          scope path: "/admin" do
+            resources :posts
+          end
+
+    - Prefix the posts resource's requests with `/admin`
+    - URL: `/admin/posts`
+    - Route helper: `posts_path`
+    - Controller class: `PostsController`
+    - A typical use case is the customer asking you to change some URLs.
+
+  - route `/posts` (without the prefix `/admin`) to `Admin::PostsController`
+
+        scope module: "admin" do
+          resources :posts
+        end
+
+  - prefix the routing helper name: `sekret_posts_path` instead of `posts_path`
+
+        scope as: "sekret" do
+          resources :posts
+        end
+
+- https://makandracards.com/makandra/38773-rails-route-namespacing-in-different-flavors
+
 ### `_path` vs `_url`
 
 - `_path` returns the url relative to your domain.
