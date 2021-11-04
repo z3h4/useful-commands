@@ -111,12 +111,16 @@ Depending on the use case, you might also need to create a unique index and/or a
 
 ## `has_many` association
 
-Depending on the use case, it's usually a good idea to create a non-unique index and optionally a foreign key constraint on the author column for the books table:
+- The name of the other model is pluralized when declaring a `has_many` association.
 
-    create_table :books do |t|
-      t.belongs_to :author, index: true, foreign_key: true
-      # ...
-    end
+      has_many :books
+
+- Depending on the use case, it's usually a good idea to create a non-unique index and optionally a foreign key constraint on the author column for the books table:
+
+      create_table :books do |t|
+        t.belongs_to :author, index: true, foreign_key: true
+        # ...
+      end
 
 ## `has_many :through` association
 
@@ -125,7 +129,7 @@ Depending on the use case, it's usually a good idea to create a non-unique index
 
 ## `has_and_belongs_to_many` Association
 
-- A has_and_belongs_to_many association creates a direct many-to-many connection with another model, with no intervening model.
+- A `has_and_belongs_to_many` association creates a direct many-to-many connection with another model, with no intervening model.
 - This association indicates that each instance of the declaring model refers to zero or more instances of another model.
 - This associates two classes via an intermediate join table.
   - Unless the join table is explicitly specified as an option, it is guessed using the lexical order of the class names.
@@ -154,7 +158,7 @@ When set to true, validates new objects added to association when saving the par
 ## Choosing Between `has_many :through` and `has_and_belongs_to_many`
 
 - Use `has_many :through` relationship if you need to work with the relationship model as an independent entity.
-- If you don't need to do anything with the relationship model, it may be simpler to set up a `has_and_belongs_to_many` relationship.
+  - If you don't need to do anything with the relationship model, it may be simpler to set up a `has_and_belongs_to_many` relationship.
 - You should use `has_many :through` if you need validations, callbacks, or extra attributes on the join model.
 
 ## Updating the Schema based on the association
@@ -231,7 +235,7 @@ If you wish to enforce referential integrity at the database level, add the fore
         end
       end
 
-  - We pass `id: false` to create_table because that table does not represent a model. That's required for the association to work properly.
+  - We pass `id: false` to `create_table` because that table does not represent a model. That's required for the association to work properly.
 
 - We can also use the method `create_join_table`
 
@@ -246,7 +250,7 @@ If you wish to enforce referential integrity at the database level, add the fore
 
 ## Polymorphic Associations
 
-- With polymorphic associations, a model can **belong to** more than one other model, on a single association.
+- With polymorphic associations, a model can **belong to more than one other model**, on a single association.
 - For example, you might have a picture model that belongs to either an employee model or a product model.
 
       class Picture < ApplicationRecord
