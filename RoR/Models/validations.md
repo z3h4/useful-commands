@@ -12,7 +12,9 @@
     - Whenever possible, it's a good idea to keep your controllers skinny, as it will make your application a pleasure to work with in the long run.
 
 # Common Validations
+
 ## String
+
 ### Validate presence of an attribute
 
     validates :name, presence: true
