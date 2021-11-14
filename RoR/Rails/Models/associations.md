@@ -21,6 +21,7 @@
       end
 
 - `belongs_to` associations must use the singular term.
+- Assigning an object to a `belongs_to` association does not automatically save the object. It does not save the associated object either.
 
 ### Methods Added by `belongs_to`
 
@@ -42,6 +43,23 @@
 
 - When initializing a new `has_one` or `belongs_to` association you must use the `build_` prefix to build the association.
 - To create one, use the `create_` prefix.
+- When initializing a new `has_many` or `has_and_belongs_to_many` association you must use the `association.build` prefix to build the association.
+
+**`build_association(attributes = {})`**
+
+- Instantiate object from the passed attributes, set the foreign key, but the associated object will not yet be saved.
+
+      @author = @book.build_author(author_number: 123,
+                             author_name: "John Doe")
+
+**`create_association(attributes = {})`**
+
+- Instantiate object from the passed attributes and set the foreign key.
+- Save the associated object if it passes the validations specified on the associated model.
+
+**`create_association!(attributes = {})`**
+
+- Raises `ActiveRecord::RecordInvalid` if the record is invalid.
 
 ### Options for `belongs_to`
 
@@ -49,19 +67,59 @@
 - The belongs_to association supports these options:
 
   1.  `:autosave`
-      - If you set the `:autosave` option to true, Rails will save any loaded association members and destroy members that are marked for destruction whenever you save the parent object.
+
+      - If true, always save the associated object or destroy it if marked for destruction, when saving the parent object.
+      - If false, never save or destroy the associated object.
+      - By default, only save the associated object if it's a new record.
       - Setting `:autosave` to false is not the same as not setting the `:autosave` option. If the `:autosave` option is not present, then new associated objects will be saved, but updated associated objects will not be saved.
-  2.  `class_name`
-      - If the name of the other model cannot be derived from the association name, you can use the `:class_name` option to supply the model name.
-  3.  `counter_cache`
+      - Note that `NestedAttributes::ClassMethods#accepts_nested_attributes_for` sets `:autosave` to `true`.
+
+  2.  `validate`
+
+      - When set to `true`, validates new objects added to association when saving the parent object.
+      - By default, this is `false`.
+      - If you want to ensure associated objects are revalidated on every update, use `validates_associated`.
+
+  3.  `polymorphic`
+
+      - Passing true to the `:polymorphic` option indicates that this is a polymorphic association.
+
+  4.  `inverse_of`
+
+      - The `:inverse_of` option specifies the name of the `has_many` or `has_one` association that is the inverse of this association.
+
+            class Author < ApplicationRecord
+              has_many :books, inverse_of: :author
+            end
+
+            class Book < ApplicationRecord
+              belongs_to :author, inverse_of: :books
+            end
+
+  5.  `class_name`
+
+      - Specify the class name of the association.
+      - Use it only if that model name can't be inferred from the association name. So `belongs_to :author` will by default be linked to the Author class, but if the real class name is Person, you'll have to specify it with this option.
+
+            class Book < ApplicationRecord
+              belongs_to :author, class_name: "Patron"
+            end
+
+  6.  `counter_cache`
+
       - The `:counter_cache` option can be used to make finding the number of belonging objects more efficient.
       - https://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-counter-cache
-  4.  `dependent`
+      - https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/Associations/ClassMethods.html#method-i-belongs_to
+
+  7.  `dependent`
+
       - If you set the `:dependent` option to:
         - `:destroy`, when the object is destroyed, destroy will be called on its associated objects.
         - `:delete`, when the object is destroyed, all its associated objects will be deleted directly from the database without calling their destroy method.
         - `:destroy_async` when the object is destroyed, an `ActiveRecord::DestroyAssociationAsyncJob` job is enqueued which will call destroy on its associated objects. Active Job must be set up for this to work.
-  5.  `foreign_key`
+        - You should not specify this option on a `belongs_to` association that is connected with a `has_many` association on the other class. Doing so can lead to orphaned records in your database.
+
+  8.  `foreign_key`
 
       - By convention, Rails assumes that the column used to hold the foreign key on this model is the name of the association with the suffix `_id` added.
       - The `:foreign_key` option lets you set the name of the foreign key directly:
@@ -71,9 +129,10 @@
                                   foreign_key: "patron_id"
             end
 
+      - If you are going to modify the association (rather than just read from it), then it is a good idea to set the `:inverse_of` option.
       - **In any case, Rails will not create foreign key columns for you. You need to explicitly define them as part of your migrations.**
 
-  6.  `primary_key`
+  9.  `primary_key`
 
       - By convention, Rails assumes that the `id` column is used to hold the primary key of its tables. The `:primary_key` option allows you to specify a different column.
       - For example, given we have a users table with guid as the primary key. If we want a separate todos table to hold the foreign key user_id in the guid column, then we can use `primary_key` to achieve this like so:
@@ -88,6 +147,30 @@
 
         - When we execute `@user.todos.create` then the `@todo` record will have its user_id value as the guid value of `@user`.
 
+  10. `touch`
+
+      - If you set the `:touch` option to true, then the `updated_at` or `updated_on` timestamp on the associated object will be set to the current time whenever this object is saved or destroyed:
+
+            class Book < ApplicationRecord
+              belongs_to :author, touch: true
+            end
+
+            class Author < ApplicationRecord
+              has_many :books
+            end
+
+      - In this case, saving or destroying a book will update the timestamp on the associated author. You can also specify a particular timestamp attribute to be updated with the current time in addition to the `updated_at/on` attribute.:
+
+            class Book < ApplicationRecord
+              belongs_to :author, touch: :books_updated_at
+            end
+
+      - With touching no validation is performed and only the `after_touch`, `after_commit` and `after_rollback` callbacks are executed.
+
+  11. `optional`
+
+      - If you set the `:optional` option to `true`, then the presence of the associated object won't be validated. By default, this option is set to `false`.
+
 ### Scopes
 
 - We can pass a second argument `scope` as a callable (i.e. proc or lambda) to retrieve a specific record or customize the generated query when you access the associated object.
@@ -96,16 +179,23 @@
       belongs_to :user, -> { joins(:friends) }
       belongs_to :level, ->(game) { where("game_level > ?", game.current_level) }
 
+- You can use any of the standard querying methods inside the scope block. i.e. `where`, `includes`, `readonly`, `select` etc.
+
 ---
 
 ## `has_one` association
 
-Depending on the use case, you might also need to create a unique index and/or a foreign key constraint on the `supplier` column for the `accounts` table. In this case, the column definition might look like this:
+- The has_one association creates a one-to-one match with another model.
+- Depending on the use case, you might also need to create a unique index and/or a foreign key constraint on the `supplier` column for the `accounts` table. In this case, the column definition might look like this:
 
-    create_table :accounts do |t|
-      t.belongs_to :supplier, index: { unique: true }, foreign_key: true
-      # ...
-    end
+      create_table :accounts do |t|
+        t.belongs_to :supplier, index: { unique: true }, foreign_key: true
+        # ...
+      end
+
+### Methods Added by has_one
+
+- Same as `belongs_to`
 
 ---
 
@@ -155,7 +245,12 @@ Depending on the use case, you might also need to create a unique index and/or a
 
 When set to true, validates new objects added to association when saving the parent object. true by default. If you want to ensure associated objects are revalidated on every update, use `validates_associated`.
 
-## Choosing Between `has_many :through` and `has_and_belongs_to_many`
+## Choosing between `belongs_to` and `has_one` association
+
+- Both express a 1-1 relationship.
+- The difference is mostly where to place the foreign key, which goes on the table for the class declaring the `belongs_to` relationship.
+
+## Choosing between `has_many :through` and `has_and_belongs_to_many`
 
 - Use `has_many :through` relationship if you need to work with the relationship model as an independent entity.
   - If you don't need to do anything with the relationship model, it may be simpler to set up a `has_and_belongs_to_many` relationship.
@@ -207,7 +302,7 @@ If you wish to enforce referential integrity at the database level, add the fore
         end
       end
 
-**Creating Join Tables for has_and_belongs_to_many Associations**
+2. **Creating Join Tables for has_and_belongs_to_many Associations**
 
 - If you create a has_and_belongs_to_many association, you need to explicitly create the joining table.
 - Unless the name of the join table is explicitly specified by using the `:join_table` option, Active Record creates the name by using the lexical order of the class names. So a join between author and book models will give the default join table name of "authors_books".
@@ -244,6 +339,26 @@ If you wish to enforce referential integrity at the database level, add the fore
           create_join_table :assemblies, :parts do |t|
             t.index :assembly_id
             t.index :part_id
+          end
+        end
+      end
+
+3. **Controlling Association Scope**
+
+- To associate a model with a model in a different namespace, you must specify the complete class name in your association declaration:
+
+      module MyApplication
+        module Business
+          class Supplier < ApplicationRecord
+            has_one :account,
+              class_name: "MyApplication::Billing::Account"
+          end
+        end
+
+        module Billing
+          class Account < ApplicationRecord
+            belongs_to :supplier,
+              class_name: "MyApplication::Business::Supplier"
           end
         end
       end
