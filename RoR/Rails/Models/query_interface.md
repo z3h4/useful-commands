@@ -275,3 +275,58 @@ Or ordering by multiple fields:
       # SELECT * FROM customers ORDER BY orders_count ASC, created_at DESC
 
 - In most database systems, on selecting fields with distinct from a result set using methods like `select`, `pluck` and `ids`; the order method will raise an `ActiveRecord::StatementInvalid` exception unless the field(s) used in order clause are included in the select list.
+
+# Eager Loading Associations
+
+- Eager loading is the mechanism for loading the associated records of the objects returned by `Model.find` using as few queries as possible.
+
+### N + 1 queries problem
+
+- Consider the following code, which finds 10 books and prints their authors' last_name:
+
+      books = Book.limit(10)
+
+      books.each do |book|
+        puts book.author.last_name
+      end
+
+- This code looks fine at the first sight. But the problem lies within the total number of queries executed. The above code executes 1 (to find 10 books) + 10 (one per each book to load the author) = 11 queries in total.
+
+### Solution to N + 1 queries problem
+
+- Active Record lets you specify in advance all the associations that are going to be loaded. This is possible by specifying the `includes` method of the `Model.find` call. With includes, Active Record ensures that all of the specified associations are loaded using the minimum possible number of queries.
+- Revisiting the above case, we could rewrite `Book.limit(10)` to eager load authors:
+
+      books = Book.includes(:author).limit(10)
+
+      books.each do |book|
+        puts book.author.last_name
+      end
+
+## Eager Loading Multiple Associations
+
+- Active Record lets you eager load any number of associations with a single `Model.find` call by using an array, hash, or a nested hash of array/hash with the includes method.
+- Array of Multiple Associations
+
+      Customer.includes(:orders, :reviews)
+
+- Nested Associations Hash
+
+      Customer.includes(orders: { books: [:supplier, :author] }).find(1)
+
+  - This will find the customer with id 1 and eager load all of the associated orders for it, the books for all of the orders, and the author and supplier for each of the books.
+
+## Specifying Conditions on Eager Loaded Associations
+
+- Even though Active Record lets you specify conditions on the eager loaded associations just like `joins`, the recommended way is to use `joins` instead.
+- However if you must do this, you may use `where` as you would normally.
+
+      Author.includes(:books).where(books: { out_of_print: true })
+
+- This would generate a query which contains a `LEFT OUTER JOIN` whereas the joins method would generate one using the `INNER JOIN` function instead.
+- Using `where` like this will only work when you pass it a Hash. For SQL-fragments you need to use `references` to force joined tables:
+
+      Author.includes(:books).where("books.out_of_print = true").references(:books)
+
+- If, in the case of this includes query, there were no books for any authors, all the authors would still be loaded. By using joins (an INNER JOIN), the join conditions must match, otherwise no records will be returned.
+- If an association is eager loaded as part of a join, any fields from a custom select clause will not be present on the loaded models. This is because it is ambiguous whether they should appear on the parent record, or the child.

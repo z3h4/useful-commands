@@ -14,3 +14,14 @@
          #=> [ "a", "b", "c" ]
       [ "a", "b", "c" ].compact!
          #=> nil
+
+## `join`
+
+- Returns a string created by converting each element of the array to a string, separated by the given separator.
+
+      [ "a", "b", "c" ].join        #=> "abc"
+      [ "a", "b", "c" ].join("-")   #=> "a-b-c"
+
+- For nested arrays, join is applied recursively:
+
+      [ "a", [1, 2, [:x, :y]], "b" ].join("-")   #=> "a-1-2-x-y-b"
