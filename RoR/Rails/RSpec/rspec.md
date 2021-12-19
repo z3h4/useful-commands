@@ -1,8 +1,33 @@
-# What is Rspec?
+# What is RSpec?
 
 - https://semaphoreci.com/community/tutorials/getting-started-with-rspec
 - RSpec is a testing tool for Ruby, created for behavior-driven development (BDD).
 - It is the most frequently used testing library for Ruby in production applications.
+
+# RSpec Installation
+
+- https://rspec.info/documentation/4.0/rspec-rails/
+
+- Add RSpec to the `Gemfile` and run `bundle install`
+
+- Generate boilerplate configuration files
+
+      rails genarate rspec:install
+
+  - `spec_helper.rb` is for specs which don't depend on Rails (such as specs for classes in the lib directory).
+  - `rails_helper.rb` is for specs which do depend on Rails.
+
+- To use the documentation format in the `.rspec` file add
+
+      --format doc
+
+  Or use `bundle exec rspec --format doc file_name.rb` command
+
+  - It outputs all the info from the `describe` and the examples.
+
+- To use default/progress format use
+
+        --format progress
 
 # TDD
 
@@ -66,3 +91,50 @@
       include_context "has many users to begin with"
 
 - https://stackoverflow.com/a/21121961
+
+## `subject`
+
+- RSpec's `subject` is a special variable that refers to the object being tested.
+- You can give the `subject` a name when you define it:
+
+      subject(:a) { A.new }
+
+- The `subject` is instantiated lazily. That is, the implicit instantiation of the described class or the execution of the block passed to `subject` doesn't happen until `subject` or the named `subject` is referred to in an example. If you want your explict `subject` to be instantiated eagerly (before an example in its group runs), say `subject!` instead of `subject`.
+- Expectations can be set on it implicitly (without writing `subject` or the name of a named `subject`):
+
+      describe A do
+        it { is_expected.to be_an(A) }
+      end
+
+## `let`
+
+- `let` is a way for you to create instance variables in your test that are available between tests.
+- It is lazy, meaning it's not actually assigned until it's called in a test.
+- Use `let` to reduce duplication among examples.
+- https://stackoverflow.com/a/38459039
+- https://github.com/rubocop/rspec-style-guide/issues/6
+
+# Testing boolean methods
+
+- Test true:
+
+      expect(order).to be_nil
+
+- Test false
+
+      expect(order).to_not be_nil
+
+# Request Specs
+
+- Create the files in `spec/requests` directory.
+
+# Testing Collections
+
+      example 'Collections' do
+        expect([1, 2, 3]).to include(1, 3)
+        expect([1, 2, 3]).to contain_exactly(3, 2, 1) # order not important
+        expect({ a: 1, b: 2 }).to include(b: 2)
+      end
+
+- Use `contain_exactly` to check if the array contains all the values. The orders are not important.
+- Use `include` to check if the array contains some of the values.
