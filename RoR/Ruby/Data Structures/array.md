@@ -25,3 +25,30 @@
 - For nested arrays, join is applied recursively:
 
       [ "a", [1, 2, [:x, :y]], "b" ].join("-")   #=> "a-1-2-x-y-b"
+
+## `map`
+
+- The main use for map is to transform data.
+- Invokes the given block once for each element of `self`.
+- Creates a new array containing the values returned by the block.
+- If no block is given, an `Enumerator` is returned instead.
+
+      a = [ "a", "b", "c", "d" ]
+      a.collect { |x| x + "!" }         #=> ["a!", "b!", "c!", "d!"]
+      a.map.with_index { |x, i| x * i } #=> ["", "b", "cc", "ddd"]
+      a                                 #=> ["a", "b", "c", "d"]
+
+## `map!`
+
+- Invokes the given block once for each element of `self`, replacing the element with the value returned by the block.
+- If no block is given, an `Enumerator` is returned instead.
+
+      a = [ "a", "b", "c", "d" ]
+      a.map! {|x| x + "!" }
+      a #=> [ "a!", "b!", "c!", "d!" ]
+      a.collect!.with_index {|x, i| x[0...i] }
+      a #=> ["", "b", "c!", "d!"]
+
+## `map` vs `collect`
+
+- They are the same.
