@@ -68,6 +68,6 @@
       - Set tab width to 2
       - https://www.digitalocean.com/community/tutorials/code-formatting-with-prettier-in-visual-studio-code
 
-## Live Server
+## Live Server (Ritwick Dey)
 
 - Launch our website inside a development web server
