@@ -400,6 +400,7 @@
 
 ## Flexbox (Flexible Box Layout) or Flex
 
+- It is a layout method.
 - Is used for laying out elements in one direction (in a row or column).
 - It's a lot easier and powerful than float.
 - A common application of Flex is in building navigation menus.
@@ -407,7 +408,6 @@
   - Use horizontal direction.
 
         .container {
-          border: 1px solid lightgrey;
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -443,6 +443,7 @@
 - Using these axes we can easily align items inside their container.
 - For aligning items we can use 2 properties:
   1. `justify-content`: align items along the main axes.
+     - Default value is `flex-start`.
      - possible values are: `flex-start`, `flex-end`, `center`, `space-evenly`, `space-between`, `space-around`
   2. `align-items`: align items along the cross axes.
      - possible values are: `flex-start`, `flex-end`, `center`,
@@ -457,15 +458,17 @@
 
       flex-wrap: wrap;    /* Default value is nowrap */
 
-- To change the alignment of only one content use `align-self` property.
+- To change the alignment of only one content use `align-self` or `justify-self` property.
 
   - We apply this property on flex items, not on the flex container.
   - With this we can override the value we have assigned on the container using `align-items` or `justify-content`.
 
         align-self: flex-start;
+        justify-self: flex-start;
 
 ### Sizing
 
+- Control the size of the flex items based on the available space.
 - There are few properties which should be applied on flex items (not on the flex container).
 
 1.  `flex-basis`: set the initial size of a flex item.
@@ -495,6 +498,7 @@
 - On the container we set
 
       display: grid;
+
       /* 3 x 2 */
       grid-template-rows: 100px 100px 100px;
       or
@@ -563,9 +567,11 @@
 
   - We have 2 properties for doing this.
 
-    1.  `grid-template-areas`: we define this in our container.
+    1.  `grid-template-areas`
 
-            grid-template-areas:
+        - We define this in our container.
+
+              grid-template-areas:
               "header  header"
               "sidebar main"
               "footer  footer";
@@ -578,8 +584,9 @@
                 "sidebar main"
                 ".       footer";
 
-    2.  `grid-area`: for each item we set this area
+    2.  `grid-area`
 
+        - For each individual item we set this area
         - We don't use quotes when specifying the areas.
 
               grid-area: header;
@@ -939,3 +946,75 @@
 
 - Label elements make our forms more accessible.
   - When the user clicks on a label, the associated input field gets focus.
+
+---
+
+# Transformations, Transitions, and Animations
+
+## Transformations
+
+- Using the `transform` property, we can apply one or more transformations to an element.
+
+  - `rotate()`
+
+    - Rotate elements
+
+          transform: rotate(15deg);
+
+  - `scale()`
+
+    - Make elements larger/smaller
+
+          transform: scale(1.5);
+
+  - `skew()`
+
+    - Tilt elements to left/right
+
+          transform: skew(15deg);
+
+  - `translate()`
+
+    - Position/move elements on the screen.
+
+          transform: translate(10px);   /* Move in the horizontal axis */
+          transform: translate(10px 10px);   /* Move in both horizontal and vertical axis */
+
+- We can also combine these transformation functions
+
+      .box:hover {
+        transform: rotate(15deg) translateX(50px);
+      }
+
+## 3D Transformations
+
+- `translate()`
+
+      .box:hover {
+        transform: perspective(200px) translateZ(50px);
+      }
+
+- `rotate()`
+
+      .box:hover {
+        transform: perspective(200px) rotateY(45deg);
+        transform-origin: 0 0;
+        // transform-origin: 0 50%;
+      }
+
+## Transitions
+
+- The `transition` property is used to animate one or more properties.
+
+## Animations
+
+- To create a custom animation, first, we need to define the keyframes.
+
+  - To define a keyframe rule, we use `@keyframes`
+
+        @keyframes keyframe-name {
+
+        }
+
+- Each keyframe includes the list of styles to be applied at a given moment in time.
+- Once we define the keyframes, we can use the animation property to animate an element.
