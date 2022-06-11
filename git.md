@@ -49,6 +49,10 @@ All these configurations are stored in a text file. To see/edit this file use
 - On Mac install `zsh`
 - On Windows install `posh-git`
 
+### Chrome extention
+
+- Better Pull Request for GitHub
+
 ## `.gitignore`
 
 - Use this to ignore files and directories in git.
