@@ -19,6 +19,7 @@
 - HTML (Hypertext Markup Language) is a markup language used to define the **structure** and **contents** of web pages.
 - We use HTML to define the building blocks of our webpages.
 - HTML is not a case sensitive language.
+  - Conventionally, we type everything in lowercase, except `DOCTYPE`.
 
 # HTTP
 
@@ -30,7 +31,7 @@
 - Document object model is a model that represents the objects or elements (i.e. paragraphs, images, links) in our HTML document.
 - It is an in-memory representation of the elements on the page
 
-`DOCTYPE` Declaration: `<!DOCTYPE html>` says the browser that this is a HTML5 document.
+**`DOCTYPE` Declaration:** `<!DOCTYPE html>` says the browser that this is a HTML5 document.
 
     <!DOCTYPE html>
     <html>
@@ -40,10 +41,22 @@
       <body></body>
     </html>
 
+## `<html>` element
+
+- Inside the `html` element, we define the structure of a web page.
+- As a best practice we add `lang` attribute with `html` element to tell the search engine that what is the language of the webpage.
+
+      <html lang="en">
+
 ## `<head>` element
 
 - We use the `<head>` element to give browsers and search engines information about a web page.
+- Inside the `<head>` element we can declare `<style>` element to define CSS styles.
 - We use `<meta>` elements for giving information about the web page.
+
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ### Character Set
 
