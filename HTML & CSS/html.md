@@ -102,11 +102,11 @@
 - In HTML we have 6 heading elements
 - Headings are represented using `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`.
 - We should use these headings to create a hierarchy. Otherwise it'll confuse the search engine.
-- Every web page should have one and only one `<h1>` element.
+- **Every web page should have one and only one `<h1>` element.**
 - Headings should have a natural hierarchy and should not be skipped. We should not use `<h4>` after `<h1>`, we should use `<h2>`.
 - The better we can represent the structure of our document using HTML, the better search engines can read and understand our content.
 
-### Entities
+### HTML Entities
 
 - Some characters are reserved in HTML.
 - Entities are used to display special characters such as angle brackets, copyright symbol, etc.
@@ -120,7 +120,7 @@
 ### Hyperlinks
 
 - The `<a>` (anchor) element, with its `href` attribute, is used to create a hyperlink to web pages, locations in the same page, files and email addresses.
-- `<a>` has an attribute `download`. If we want to let's say download an image on a link click, we can use this attribute.
+- `<a>` has an attribute `download`. If we want to download an image on a link click, we can use this attribute.
 
       <a href="images/my-image.jpg" download>My Photo</a>
 
@@ -146,7 +146,7 @@
 
       <a href="mailto:zahid@gmail.com">Email Me</a>
 
-- What is the difference between a link and a hyperlink
+- **What is the difference between a link and a hyperlink?**
 
   - A link is just an address, a url, the location of the target page.
   - A hyperlink is the element that the user can click on to navigate to the target page.
@@ -172,9 +172,7 @@
 
 - The `<video>` and `<audio>` elements are used to display video and audio. These elements have boolean attributes such as `controls`, `autoplay` and `loop`.
 
-      <video src="videos/ocean.mp4" controls>
-        Your browser doesn't support videos.
-      </video>
+      <video src="videos/ocean.mp4" controls autoplay loop></video>
 
 - **Attributes**
 
@@ -183,8 +181,11 @@
   - **`loop`** video will automatically loop.
 
 - For styling, set the width using css. We don't have to set the height, the browser will automatically calculate the height based on the aspect ratio of the video.
-- We should provide a fallback text if the browser doesn't support the `<video>` element.
-- In the website caniuse.com we can find out how different browsers supports various HTML and CSS features.
+- As a best practice, we should provide a fallback text if the browser doesn't support the `<video>` element.
+
+      <video src="videos/ocean.mp4" controls>
+        Your browser doesn't support videos.
+      </video>
 
 ### Lists
 
@@ -213,13 +214,16 @@
 - The `<table>` element should only be used to represent tabular data.
 - A table can have zero or more `<tr>` (table row) elements.
 - Each `<tr>` element can have zero or more cells.
-- Cells can be data cells (`<td>`) or header cells (`<th>`).
+  - Cells can be data cells (`<td>`) or header cells (`<th>`).
+- We can use `colspan` attribute to define how many columns the cell should expand to.
+
+      <th colspan="2">Expenses</th>
+
 - **CSS styles**:
 
   - `border-collapse: collapse` collapse the border in the neighboring cells.
-  - `colspan: 2` how many columns the cell should expand to.
 
-- Difference between header and data cells in terms of styling?
+- **Difference between header and data cells in terms of styling?**
   - By default, in the header (and footer) cells the text is bold and aligned in the center. In contrast, in the data cells texts are aligned to the left.
 
 ### Containers
@@ -227,15 +231,18 @@
 - Quite often we need to group a bunch of elements for styling purposes.
 - In HTML we have a few container elements. `<div>` and `<span>` are general purpose containers.
   - `<div>` (division)
-    - `<div>` is a block-level element. A block-level element always starts on a new line and fill up the entire available space.
+    - `<div>` is a block-level element.
+      - A block-level element always starts on a new line and fill up the entire available space.
   - `<span>`
-    - It is often used for styling texts.
     - `<span>` is an inline element. So, it does not take up the entire width of the page.
+    - It is often used for styling texts.
 
 ### Semantic Elements
 
+- `<div>` and `<span>` are general purpose containers. But. HTML5 introduced a few more container elements that are more descriptive or meaningful. We refer to these as **Semantic Elements**.
 - Semantic elements help us write markup that is more meaningful and descriptive to search engines, screen readers and other software.
-- So, use `<div>` and `<span>` elements when no other semantic element is appropriate.
+  - So, whereever possible we should use these new elements instead of `<div>` and `<span>` because these helps search engines better understand our pages and what they contain.
+  - Use `<div>` and `<span>` elements only when no other semantic element is appropriate.
 - The semantic elements in HTML5 are:
   - `<header>`
     - Represents introductory content.
@@ -252,9 +259,10 @@
     - If we want to have a sidebar for advertising or other contents that is not directly related to the main content.
   - `<article>`
     - This element represents an article.
+    - An article can be any indipendent self-contained piece of content.
   - `<section>`
     - Group related contents.
-    - Every `<section>` should have a heading.
+    - Every `<section>` should have a heading (generally `<h2>`).
   - `<figure>`
     - This is just a container for figures.
   - `<mark>`
@@ -275,6 +283,7 @@
     - `<section>`
   - `<aside>`
   - `<footer>`
+    - `<nav>`
 
 # Validating Web pages
 
@@ -282,6 +291,10 @@
 - Validate html at http://validator.w3.org/
 - Validate css at https://jigsaw.w3.org/css-validator/
 
-- In HTML5 we can generate text using lorem and then specifying how many characters we want. For example, if we want random text with 50 characters,
+# HTML Tips
+
+- In HTML5 we can generate text using lorem and then specifying how many characters we want. For example, if we want random text with 50 words,
 
       lorem50
+
+- In the website `caniuse.com` we can find out how different browsers supports various HTML and CSS features.
