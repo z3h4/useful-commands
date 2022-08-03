@@ -10,6 +10,11 @@
 - Inline styles overwrite embedded styles which in turn overwrite external styles.
 - External stylesheets provide the best separation of HTML and CSS code and result in more maintainable code. Plus, an external stylesheet can be used in many HTML documents.
 
+- Problems with embedding stylesheets in an HTML document:
+  - It is not scalable. If we want similar style for multiple components in separate files, we'll have code duplication.
+  - It violates separation of concerns principle.
+- Inline styles also violate separation of concerns principle.
+
 ### Normalizing CSS
 
 - Different browsers render some HTML elements differently.
@@ -30,7 +35,8 @@
 
 - **id/class**:
 
-      #products {} or .products {}
+      #products {}
+      .products {}
 
 - **attribute**
 
@@ -96,7 +102,8 @@
 
 ### Pseudo-class selector
 
-- We can take advantage of pseudo-classes to target elements without the need to give them a specific class.
+- In CSS we have a bunch of pseudo-classes that are automatically applied by the browser.
+- We can take advantage of these pseudo-classes to target elements without the need to give them a specific class.
 - The most common pseudo-classes are: `first-child`, `first-of-type`, `last-child`, `last-of-type`, `nth-of-type(n)` and `nth-child`.
 - Pseudo-classes start with a single colon.
 
@@ -157,6 +164,14 @@
       ::selection {
         background-color: pink;
       }
+
+      p::before {
+        content: "...";
+      }
+
+- **Difference between pseudo-element and pseudo-class selectors?**
+  - We use pseudo-elements to style a part of an element.
+  - In contrast, we use pseudo-classes to style an element in a particular state. Like, an anchor that is hovered.
 
 ### Selectors specificity
 
