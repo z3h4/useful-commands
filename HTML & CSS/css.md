@@ -6,10 +6,9 @@
 
 ### Embedding CSS into HTML
 
-- CSS styles can be embedded in an HTML document, written in a separate file (as an external stylesheet) or written inline in an HTML element using the style attribute.
+- CSS styles can be embedded in an HTML document, written in a separate file (as an external stylesheet) or written inline in an HTML element using the `style` attribute.
 - Inline styles overwrite embedded styles which in turn overwrite external styles.
 - External stylesheets provide the best separation of HTML and CSS code and result in more maintainable code. Plus, an external stylesheet can be used in many HTML documents.
-
 - Problems with embedding stylesheets in an HTML document:
   - It is not scalable. If we want similar style for multiple components in separate files, we'll have code duplication.
   - It violates separation of concerns principle.
@@ -57,7 +56,7 @@
         color: orange;
       }
 
-- **Advaltage**: Relational selectors help us write cleaner markup codes, without specifying id or class.
+- **Advaltage**: Relational selectors help us write cleaner markup codes. We can select elements without the need to assign them a specific ID or class.
 - **Disadvantage**: two problems
 
   1. Can be fragile. If we move elements around, our CSS rules may break.
@@ -175,10 +174,11 @@
 
 ### Selectors specificity
 
+- Each selector has a specifity or weight.
 - Selectors specificity determines the weight of a selector.
 - When multiple selectors target the same element, the browser applies the selector with the higher specificity (weight) i.e. the rule that is more specific.
 - If two selectors have the same specificity, the one that comes last is the winner.
-- ID selectors are the most specific selectors because we cannot have multiple elements with the same ID. Class and attribute selectors are less specific because we can have many elements with the same class and/or attributes. Element selectors are the least specific selectors.
+- ID selectors are the most specific selectors because we cannot have multiple elements with the same ID. Class and attribute selectors are less specific because we can have many elements with the same class and/or attributes. Element selectors are the least specific selectors, because we can have many elements of a given type.
 - In VSCode, we can see the specificity of a rule by hovering our mouse over it. The specificity is represented using three numbers (x, y, z) where x represents the number of ID selectors, y represents the number of class/attribute selectors and z represents the number of element selectors.
 
 ### Inheritance
@@ -213,11 +213,13 @@
         background-color: rgb(255, 255, 255);
         background-color: rgba(255, 255, 255, 1);
 
-  - HSL/HSLA value
+  - HSL/HSLA value (hue, saturation, and lightness)
 
         background-color: hsl(44, 98%, 50%);
         background-color: hsla(44, 98%, 50%, 1);
         background-color: hsl(44deg 98% 50%);
+
+- RGBA and HSLA values include an alpha channel used for transparency. The value for the alpha channel is a decimal point number between 0 (completely transparent) and 1 (completely opaque).
 
 ### Gradients
 
@@ -271,6 +273,14 @@
 
 # Layout
 
+### The Box Model
+
+- When rendering an HTML document, the browser puts each element inside a box. The box contains four areas: the content area, the padding area, the border area and the margin area.
+- Padding is the space between the border and the content area. Margin is the space outside of an element and should be used to separate elements from each other.
+- Margin collapsing happens when the top and bottom margins of elements are combined into a single margin. The size of the margin is equal to the largest of the two margins.
+  - This does not happen on left and right margins. Only top and bottom margins.
+  - The margins of floating and absolutely positioned elements never collapse.
+
 ### Sizing Elements
 
 - By default, the width and height properties are applied to the content box. So paddings and borders increase the size of the visible box.
@@ -313,16 +323,17 @@
 
 ### Absolute units
 
-- The values of absolute units does not change.
+- The values of absolute units are fixed, they does not change.
 - Examples of absolute units are `px`, `pt`, `in`, `cm`, `mm` etc.
 - `pt`, `in`, `cm`, `mm` are only used in printing, not in web.
 
 ### Relative units
 
 - With relative units we can create elements that adjust to the screen sizes. We can create more scalable layouts.
-- Examples of relative units are `%`, `vw`, `vh`, `em` and `rem`. -`%` : relative to the size of the container.
+- Examples of relative units are `%`, `vw`, `vh`, `em` and `rem`.
+  - `%` : relative to the size of the container.
   - `vh`/`vw` : relative to the size of the viewport.
-  - `em`/`rem` : relative to the size of the font size.
+  - `em`/`rem` : relative to the font size.
 
 \*\* `body`, `p'` etc. are block-level elements.
 
