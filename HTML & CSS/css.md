@@ -359,12 +359,12 @@
 ## Positioning
 
 - Using the position property we can precisely position an element.
-- The default value of this property is `static`.
+- The default value of this property is `static`. That means they are not positioned. They appear exactly in their normal position.
 - If we change the value of this property, the element is considered positioned.
 
-### Relavice Positioning
+### Relative Positioning
 
-- By setting the position to `relative`, we can position an element relative to its normal position.
+- By setting the position to `relative`, we can move an element relative to its normal position.
 - This does not impact other elements on the page.
 
       .box {
@@ -382,8 +382,8 @@
 
 ### Absolute Positioning
 
-- By setting the position to `absolute`, we can position it relative to its positioned parent/container.
-- That means, in the the parent we should set `position: relative;`.
+- By setting the position to `absolute`, we can position it relative to its container.
+- For this to happen, in the container we should set `position: relative;`.
 
   - Then in the child element
 
@@ -398,8 +398,14 @@
 
 ### Fixed Positioning
 
-- By setting the position to `fixed`, we can position the element relative to the viewport.
-  - For example, we want to have aour navigation bar that always stays on the top even if we scroll down.
+- Sometimes we want to position an element relative to it's viewport.
+
+      .navbar {
+        position: fixed;
+        top: 0;
+      }
+
+- For example, we want to have a navigation bar that always stays on the top even if we scroll down.
 
 **Setting the size of positioned elements**
 
@@ -472,7 +478,7 @@
      - Default value is `flex-start`.
      - possible values are: `flex-start`, `flex-end`, `center`, `space-evenly`, `space-between`, `space-around`
   2. `align-items`: align items along the cross axes.
-     - possible values are: `flex-start`, `flex-end`, `center`,
+     - possible values are: `flex-start`, `flex-end`, `center`, `space-evenly`, `space-between`, `space-around`
 - There is another property called `align-content`
 
   - This property only works if we have multiple lines in our flex container.
@@ -480,7 +486,7 @@
 
         align-content: center;
 
-- **`flex-wrap`**: If there is not enough space, flex will make the items smaller so that they can fit in one line. To chane this behaviour use
+- **`flex-wrap`**: If there is not enough space, flex will make the items smaller so that they can fit in one line. To change this behaviour use
 
       flex-wrap: wrap;    /* Default value is nowrap */
 
