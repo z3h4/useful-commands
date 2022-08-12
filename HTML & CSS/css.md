@@ -543,14 +543,14 @@
 - Using `grid-template-rows` and `grid-template-columns` we define the number and size of rows and columns.
 - Using `grid-template` we can set both rows and columns
 
-      grid-template: repeat(2, 100px) / repeat(2, 100px);
+      grid-template: repeat(3, 100px) / repeat(2, 100px);
 
       is equivalent to:
 
       grid-template-rows: repeat(3, 100px);
-      grid-template-rows: repeat(2, 100px);
+      grid-template-columns: repeat(2, 100px);
 
-### Aligning grid items
+### Aligning individual grid items
 
 - By default, items are aligned to top left.
 - We can change it using two properties:
@@ -559,12 +559,14 @@
   2. `align-items`: align along vertical axis. Values could be `start`, `end`, `center` etc.
 
 - The default value of these properties is `stretch`.
+- Set these property in the container.
 
-### Aligning the grid
+### Aligning the grid inside it's container
 
-- By default the grid is aligned to left.
-- We can use `justify-content` to align it horizontally.
-- We can use `align-content` to align it vertically.
+- By default the grid is aligned to the left side of it's container.
+- We have 2 properties to align the grid inside it's container.
+  - We can use `justify-content` to align it horizontally.
+  - We can use `align-content` to align it vertically.
 
 ### Apply gap between rows and columns
 
@@ -604,9 +606,9 @@
         - We define this in our container.
 
               grid-template-areas:
-              "header  header"
-              "sidebar main"
-              "footer  footer";
+                "header  header"
+                "sidebar main"
+                "footer  footer";
 
         - We have to use quotes
         - To represent an empty cell we can use `.`
@@ -637,9 +639,9 @@
         row-gap: 10px;
         column-gap: 10px;
         grid-template-areas:
-            "header  header"
-            "sidebar main"
-            "footer  footer";
+          "header  header"
+          "sidebar main"
+          "footer  footer";
       }
 
       .box-one {
@@ -659,7 +661,7 @@
 
 - With media queries we can provide different styles for different devices depending on their features such as screen size, orientation, etc.
 - The most common application of media queries is in providing different styles based on the viewport width.
-- By using media queries and relative measurement units we can build responsive web sites that adjust smoothly to various screen sizes.
+- By using **media queries** and **relative measurement** units we can build responsive web sites that adjust smoothly to various screen sizes.
 - Media queries start with `@media` rule. then we type our query.
 - A query can have multiple parts. With each part we are asking something about the target device.
 
@@ -673,6 +675,8 @@
             flex-direction: row;
           }
         }
+
+- So, with media queries we can query certain properties of a device, like it's type (`screen`/`print`), it's width etc. and then provide styles that would only apply if those properties are met.
 
 ---
 
