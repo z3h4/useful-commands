@@ -283,8 +283,10 @@
 
 ### Sizing Elements
 
-- By default, the width and height properties are applied to the content box. So paddings and borders increase the size of the visible box.
+- By default, the width and height properties are applied to the content box.
+  - So paddings and borders increase the size of the visible box.
   - This behavior can be changed by setting the `box-sizing` property to `border-box` (By default it is set to `content-box`).
+  - The margin property does not impact the size of the visible box. It'll just move the box away from other boxes.
 - The width and height properties are only applied to the block-level elements.
 
   - Inline elements don't respect the width and the height properties.
@@ -301,6 +303,12 @@
           background-color: gold;
           display: inline-block;
         }
+
+- We can use the universal selector to select all HTML elements. Most of the time we use this to set the `box-sizing` property to `border-box` for all HTML elements.
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
 
 ## Overflow
 
@@ -696,7 +704,7 @@
 
 ### `font-family`
 
-- Use `font-family `property to set the font for an element.
+- Use `font-family` property to set the font for an element.
 - We should set this property to a font stack which contains multiple fonts as fallbacks.
   - A font stack consists of multiple fonts.
 
@@ -709,57 +717,66 @@
 
 ### `font-style`
 
-- Values can be `normal` (default), `italic`,
+- Values can be `normal` (default), `italic` etc.
 
 ### `font-size`
 
 - It’s best to size fonts using the `rem` unit.
   - This will set the font size relative to the font size of the root (html) element.
+    - `font-size: 1rem` means 1 \* font size of the root element.
   - Using media queries, we can resize the base font size, and as a result, the font size for all elements will be re-calculated with no extra code.
-- Use type-scale.com to find right font size for different headings.
+- Use [type-scale.com](type-scale.com) to find right font size for different headings.
 
 ### `font-display`
 
 - The `font-display` property defines how font files are loaded and displayed by the browser.
 - It is applied to the `@font-face` rule which defines custom fonts in a stylesheet.
+- When using a custom font, the user may experience a flash of unstyled text (FOUT). Some browsers display text using a fallback font while downloading the custom font and swap it once the custom font is available. This may cause a layout shift depending on how the content is structured. Some browsers hide the text initially while downloading the custom font. This causes a flash of invisible text (FOIT). Using the font-display property we can tell the browser how to handle this situation.
 - **Values**
   - The font-display property accepts five values:
-    - `auto` (default): Allows the browser to use its default method for loading, which is most often similar to the `block` value.
-    - `block`: Instructs the browser to briefly hide the text until the font has fully downloaded. More accurately, the browser draws the text with an invisible placeholder then swaps it with the custom font face as soon as it loads. This is also known as a “flash of invisible text” or FOIT.
-    - `swap`: Instructs the browser to use the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+    - `auto` (default): This is most often similar to the `block` or `swap` value.
+    - `block`: Instructs the browser to briefly hide the text until the font has fully downloaded. More accurately, the browser draws the text with an invisible placeholder then swaps it with the custom font face as soon as it loads. This is also known as a **flash of invisible text** or FOIT.
+      - We should never use this value.
+    - `swap`: Instructs the browser to use the fallback font to display the text until the custom font has fully downloaded. After download swap the custom font. This is also known as a “flash of unstyled text” or FOUT.
     - `fallback`: Acts as a compromise between the `auto` and `swap` values. The browser will hide the text for about 100ms and, if the font has not yet been downloaded, will use the fallback text. It will swap to the new font after it is downloaded, but only during a short swap period (probably 3 seconds).
     - `optional`: Like `fallback`, this value tells the browser to initially hide the text, then transition to a `fallback` font until the custom font is available to use. However, this value also allows the browser to determine whether the custom font is even used at all, using the user’s connection speed as a determining factor where slower connections are less likely to receive the custom font.
+      - Even if the browser does not show the custom font, it will try to download the font and store it in the browser cache. In the subsequent page load, the browser will use the font from the cache.
 - https://css-tricks.com/almanac/properties/f/font-display
 
 ### `color`
 
+- By default the color is set to black.
+
 ### Embedding Web Fonts
 
-- In the past, we used web safe fonts because they’re available on almost all computers. Examples -
+- In the past, we used **web safe fonts** because they are available on almost all computers. Examples -
   - `Arial`
   - `Helvetica`
   - `Georgia`
   - `Times New Roman`
 - These days, however, we can easily embed custom fonts.
   - The popular websites where we can find fonts
-    - fontsquirrel.com
-    - fonts.com
-    - myfonts.com
+    - [fontsquirrel.com](fontsquirrel.com)
+    - [fonts.com](fonts.com)
+    - [myfonts.com](myfonts.com)
 - **Font Formats**
   - Font files come in a variety of different formats: `TTF`, `OTF`, `EOT`, `WOFF` and `WOFF 2.0`.
   - Out of these, `WOFF` and `WOFF 2.0` are recommended for the web because they’re more compressed and can be downloaded in less time.
-  - We can convert any font file to a `WOFF` file on fontsquirrel.com.
-  - To embed a custom font, we should first register it using the `@font-face` rule.
+  - We can convert any font file to a `WOFF` file on [fontsquirrel.com](fontsquirrel.com).
+  - To embed a custom font, we should first register it using the `@font-face` rule and tell the browser where to find the font files.
+    - We should put the `@font-face` rules at the top of our CSS file
+      - Because we have to register the fonts first before we can use them.
 
 ### Font Services
 
 - Using font services we can get access to thousands of beautiful fonts with zero or minimal cost.
-- Google Web Fonts (fonts.google.com) is the most popular and free font service.
+- [Google Web Fonts](fonts.google.com) is the most popular and free font service.
+  - All the fonts are free.
 - When using these services, fonts and `@font-face` rules are served from the provider’s servers.
 - Paid font services
-  - Adobe fonts (fonts.adobe.com)
-  - fonts.com
-  - fontdeck.com
+  - [Adobe fonts](fonts.adobe.com)
+  - [fonts.com](fonts.com)
+  - [fontdeck.com](fontdeck.com)
 
 ### System Font Stack
 
@@ -789,7 +806,7 @@
      - Specify space between the words.
   3. `width`
      - The ideal line length is about 60-70 characters. We can achieve that by applying a `width` of `50ch`.
-     - The `ch` unit represents the width of the 0. 50 zeroes roughly represents 60-70 characters because some characters (like i and 1) are more narrow than 0.
+     - The `ch` is an unit in CSS that represents the width of the character `0`. 50 zeroes roughly represents 60-70 characters because some characters (like i and 1) are more narrow than 0.
 - It’s often better to apply a negative letter spacing to headings so they look more compact.
 
 ### Formatting Text
