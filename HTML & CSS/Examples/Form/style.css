@@ -1,0 +1,39 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  padding: 1rem;
+}
+
+label {
+  display: block; /* This will put the input field under the label. Label is an inline element */
+}
+
+input[type='text'],
+input[type='email'] {
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input[type='text']:focus,
+input[type='email']:focus {
+  border-color: #7db0fb;
+  outline: 0; /* This will get rid of the default border applied by the browser.
+                 Without this the border color set by above border-color property will not work */
+  box-shadow: 0 0 0 4px rgba(24, 117, 255, 0.25);
+}
+
+button {
+  background: #0d6efd;
+  color: #fff; /* Button text color */
+  border: 0; /* Get rid of the border applied by the browser */
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  outline: 0; /* Get rid of the border when the button is clicked. Browsers apply this border by default. */
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}

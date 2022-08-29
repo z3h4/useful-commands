@@ -71,3 +71,15 @@
 ## Live Server
 
 - Launch our website inside a development web server
+
+## HTML CSS Support
+
+- Scans the project for CSS files and then it gives us autocompletion when typing CSS class names.
+
+## CSS Peek
+
+- Navigate to the CSS file by clicking on the class name.
+
+## Highlight Matching Tag
+
+## TODO Highlight

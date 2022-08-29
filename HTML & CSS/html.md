@@ -285,6 +285,99 @@
   - `<footer>`
     - `<nav>`
 
+---
+
+# Forms
+
+- Every form should have an action which is used for submitting the form.
+- Inside the form we have one or more input fields (also called form controls).
+
+  - Each input element has a type, i.e. text, email
+  - Each button has a type.
+
+    - If we set the type `submit`, the button will be used for submitting the form.
+    - If we set the type `reset`, the button will be used to clear all the values in the form.
+
+          <form action=""></form>
+
+## Label
+
+- `label` elements are inline.
+- Every label element has a `for` attribute with which we can associate a label with the input field.
+
+      <label for="name">Name</label>
+      <input id="name" type="text" />
+
+- Label elements make our forms more accessible.
+  - When the user clicks on a label, the associated input field gets focus.
+
+## Text Fields
+
+### `input`
+
+- **Types**
+  - `text`: Single line text field
+  - `number`: Only allows number values
+  - `password`: Masks what user types
+  - `date`: Pops up a calender.
+  - `email`: Provides basic email validation
+  - `radio`: Radio Button
+  - `checkbox`: Checkbox
+  - `range`: Slider
+  - `file`: Take a file input
+    - **Attributes:**
+      - `multiple`: Select multiple files
+      - `accept`: Specify the type of allowed input file
+
+### `textarea`
+
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+
+- `cols`: # of characters
+- `rows`: # of lines
+
+- If we don't want the `textarea` to be resizable set `resize: none`.
+
+### What is the difference between `readonly` and `disabled` attributes in an input field?
+
+- `readonly` input fields can be selected, but the `disabled` fields are not.
+- While submitting the form the value of the `disabled` field is not sent to the server.
+
+## Grouping Related Fields
+
+- The `fieldset` element (along with a legend) is used to group related input fields.
+
+      <fieldset>
+        <legend>Billing Address</legend>
+        <input type="text" id="name" />
+        <input type="text" id="address" />
+      </fieldset>
+
+      <fieldset>
+        <legend>Payment</legend>
+        <input type="text" id="name" />
+        <input type="text" id="card-number" />
+      </fieldset>
+
+- Alternatively, we can use the `section` element to group related fields.
+
+      <section>
+        <h2>Billing Address</h2>
+        <input type="text" id="name" />
+        <input type="text" id="address" />
+      </section>
+
+## Submitting the Form
+
+- To submit a form, you should set the `action` and the `method` of the form.
+  - The `action` attribute represents where data is sent.
+  - The `method` specifies how the data is sent and can be either GET or POST.
+
+## Difference between `POST` and `GET` method
+
+- With the `POST` method, form data is included in the body of the request. With the `GET` method, form data is included in the URL as query string parameters.
+- That’s why the `GET` method is often used when we need to enable **bookmarking** pages. In contrast, the `POST` method is used when we need to **update** the data.
+
 # Validating Web pages
 
 - Using validation services we can ensure that our HTML/CSS code is valid and follows the official rules. This helps us get better rankings in search engines.

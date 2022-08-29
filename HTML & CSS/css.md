@@ -268,8 +268,8 @@
         box-shadow: 10px 10px 30px grey;
         box-shadow: 0 0 30px grey;
 
-        text-shadow: 3 px 3px 5px grey;
-        text-shadow: 3 px 3px 5px rgba(0, 0, 0, 0.2);
+        text-shadow: 3px 3px 5px grey;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 
 # Layout
 
@@ -343,7 +343,7 @@
   - `vh`/`vw` : relative to the size of the viewport.
   - `em`/`rem` : relative to the font size.
 
-\*\* `body`, `p'` etc. are block-level elements.
+\*\* `body`, `p` etc. are block-level elements.
 
 \*\* By default, the width of the block-level elements is 100% and height is 0.
 
@@ -901,7 +901,7 @@
       filter: grayscale(70%);
       filter: grayscale(70%) blur(3px);
 
-### Supporting Highd-density Screens
+### Supporting High-density Screens
 
 - High-density screens like Apple’s Retina displays contain more pixels than standard-density screens. The pixels on these screens are smaller than the pixels on standard-density screens. So when displaying an image, the screen uses a scale factor (1.5 or greater) to scale up the image. As a result, raster images may look a bit blurry when shown on these screens. To solve this problem, we can supply 2x or 3x versions of an image using the srcset attribute of the img element.
 - Our devices these days have few properties
@@ -947,8 +947,8 @@
 
 - `WebP` is a modern image format created by Google and is widely supported except in Internet Explorer.
   - It produces smaller image than jpg or png.
-- To support modern image formats, we can use the picture element with multiple sources.
-- The picture element should always contain an `img` element otherwise the image is not shown.
+- To support modern image formats, we can use the `picture` element with multiple `source` elements.
+- The `picture` element should always contain an `img` element otherwise the image is not shown.
 
       <picture>
         <source type="image/webp" srcset="images/meal.webp" />
@@ -960,7 +960,7 @@
 
 - Sometimes we need to show a zoomed in or a cropped version of an image for certain viewport sizes. This is the art direction problem.
 - To handle this, we use the `picture` element with multiple `source` elements.
-- Each `source` should contain a media condition and a `srcset`. The browser will pick the first source whose media condition matches.
+- Each `source` should contain a media condition and a `srcset`. The browser will pick the first `source` element whose media condition matches.
 
       <picture>
         <source media="(max-width: 500px)" srcset="images/meal-cropped.jpg" />
@@ -976,33 +976,10 @@
 ### Font Icons
 
 - We can also use icon fonts for displaying icons.
-- The most popular icon fonts are Font Awesome, Ionicons and Material Design Icons.
-
----
-
-# Forms
-
-- Every form should have an action which is used for submitting the form.
-- Inside the form we have one or more input fields (also called form controls).
-
-  - Each input element has a type, i.e. text, email
-  - Each button has a type.
-
-    - If we set the type `submit`, the button will be used for submitting the form.
-    - If we set the type `reset`, the button will be used to clear all the values in the form.
-
-          <form action=""></form>
-
-## Label
-
-- `label` elements are inline.
-- Every label element has a `for` attribute with which we can associate a label with the input field.
-
-      <label for="name">Name</label>
-      <input id="name" type="text" />
-
-- Label elements make our forms more accessible.
-  - When the user clicks on a label, the associated input field gets focus.
+- The most popular icon fonts are
+  - Font Awesome
+  - Ionicons
+  - Material Design Icons
 
 ---
 
@@ -1075,3 +1052,44 @@
 
 - Each keyframe includes the list of styles to be applied at a given moment in time.
 - Once we define the keyframes, we can use the animation property to animate an element.
+
+### Reusable Animations
+
+- [animate.style](animate.style) website contains a bunch of beautiful and reusable animations.
+
+---
+
+# Writing Clean, Maintable CSS
+
+## CSS Best Practices
+
+- Sort CSS properties (i.e. ascending order). This makes it easier to read your code.
+- Extract Repeatitive Patterns (Object-Oriented CSS)
+  - Object-oriented CSS is a set of principles for creating reusable components.
+  - The two principles in object-oriented CSS are:
+    1. Separate container and content
+    2. Separate structure and skin.
+- Avoid repetitive values by using CSS variables
+
+  - CSS variables are also called custom properties.
+  - We often declare variables using the `:root` pseudo-class selector that targets the html element. We can then access these variables using the `var()` function.
+
+        :root {
+          --primary-color: grey;
+        }
+
+        .item {
+          background: var(--primary-color);
+        }
+
+## BBEM (Block Element Modifier)
+
+- This is a popular naming convention for CSS classes.
+
+      <header class="card-header"></header>
+
+- We use two hyphens to separate a block from a modifier.
+- We use two underscores to separate a block from an element.
+
+- The idea of BEM is to think of our webpage as a bunch of blocks or components or modules.
+  - These blocks can contain elements and can be modified.
