@@ -1063,16 +1063,22 @@
 
 ## CSS Best Practices
 
+- Follow consistent naming convention.
+- Create logical sections in the stylesheet.
+- Avoid over-specific selectors.
+- Avoid `!important` keyword.
 - Sort CSS properties (i.e. ascending order). This makes it easier to read your code.
+- Take advantage of style inheritance.
 - Extract Repeatitive Patterns (Object-Oriented CSS)
   - Object-oriented CSS is a set of principles for creating reusable components.
   - The two principles in object-oriented CSS are:
-    1. Separate container and content
+    1. Separate container and content.
     2. Separate structure and skin.
-- Avoid repetitive values by using CSS variables
+- Avoid repetitive values by using CSS variables (keep it DRY)
 
-  - CSS variables are also called custom properties.
-  - We often declare variables using the `:root` pseudo-class selector that targets the html element. We can then access these variables using the `var()` function.
+  - CSS variables are also called **custom properties**.
+  - We often declare variables using the `:root` pseudo-class selector that targets the `html` element.
+  - We can then access these variables using the `var()` function. These custom properties get inherited by all the elements in the DOM.
 
         :root {
           --primary-color: grey;
@@ -1082,14 +1088,20 @@
           background: var(--primary-color);
         }
 
-## BBEM (Block Element Modifier)
+## BEM (Block Element Modifier)
 
 - This is a popular naming convention for CSS classes.
 
-      <header class="card-header"></header>
+      <div class="card">
+        <header class="card__header"></header>
+      </div>
 
-- We use two hyphens to separate a block from a modifier.
-- We use two underscores to separate a block from an element.
+- We use two hyphens to separate a block from a modifier (i.e. `<button class="btn btn--primary">Log In</button>`).
+- We use two underscores to separate a block from an element (i.e. `<header class="card__header"></header>`).
 
 - The idea of BEM is to think of our webpage as a bunch of blocks or components or modules.
   - These blocks can contain elements and can be modified.
+
+## Modular/Component-based CSS
+
+- The idea is to break down a page into a bunch of reusable components, and then compose those components together to build a complex layout.
