@@ -262,11 +262,13 @@
 - These properties take a few values.
 
   - The first two values determine the horizontal and vertical distance of the shadow from the element.
-  - The third value (called blur radius) determines the softness of the border.
-  - We can specify the color as the fourth value.
+  - The third value (called blur radius) determines the softness of the border. It is used for bluring the shadow/
+  - The fourth value is used for spreading the shadow. The larger the value, the bigger the shadow will be.
+  - We can specify the color as the fifth value.
 
         box-shadow: 10px 10px 30px grey;
         box-shadow: 0 0 30px grey;
+        box-shadow: 0 0 20px 10px #f3f3f3;
 
         text-shadow: 3px 3px 5px grey;
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
