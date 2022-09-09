@@ -1107,3 +1107,15 @@
 ## Modular/Component-based CSS
 
 - The idea is to break down a page into a bunch of reusable components, and then compose those components together to build a complex layout.
+
+### Banner/Hero Component
+
+- A hero component contains elements like a heading, some text, a button and an image.
+
+### Media Obect/Component
+
+- A media component contains an image or an icon on the left side. On the right side it contains a heading and some text.
+
+### Callout Component
+
+- A callout component encourages to take people an action.

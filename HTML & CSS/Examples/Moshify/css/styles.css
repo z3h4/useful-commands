@@ -48,7 +48,7 @@ h3 {
 }
 
 p {
-  margin-top: 0;
+  margin-top: 0; /* Prevents margin collapsing while using `p` right after a heading. */
 }
 
 /* 1024px is a standard breakpoint that a lot of frameworks like Bootstrap, Tailwind etc. use. */
@@ -73,7 +73,7 @@ p {
 /* Links */
 
 a {
-  text-decoration: none; /* We don't want underline on our links */
+  text-decoration: none; /* We don't want underline in our links. Add this property to `a` element so that we don't have to define it again for the links in the navigation bar and the footer. */
 }
 
 .link-arrow {
@@ -86,7 +86,7 @@ a {
 .link-arrow::after {
   content: '-->'; /* We want an arrow after our link */
   margin-left: 5px;
-  transition: margin 0.15s;
+  transition: margin 0.15s; /* We have to apply this property on the original element, not the hover etc. state */
 }
 
 /* We are targeting the content added in .link-arrow::after on hover */
@@ -556,4 +556,37 @@ a {
     justify-self: start;
     margin: 0 2rem;
   }
+}
+
+/* Collapsibles */
+
+.collapsible__header {
+  display: flex;
+  justify-content: space-between; /* Push the items to the edges of the container */
+}
+
+.collapsible__heading {
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+.collapsible__chevron {
+  transform: rotate(-90deg);
+  transition: transform 0.3s;
+}
+
+.collapsible__content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.collapsible--expanded .collapsible__chevron {
+  transform: rotate(0);
+}
+
+.collapsible--expanded .collapsible__content {
+  max-height: 100vh;
+  opacity: 1;
 }
