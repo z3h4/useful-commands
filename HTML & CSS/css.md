@@ -511,14 +511,19 @@
 ### Sizing
 
 - Control the size of the flex items based on the available space.
-- There are few properties which should be applied on flex items (not on the flex container).
+- There are few properties **which should be applied on flex items (not on the flex container)**.
 
 1.  `flex-basis`: set the initial size of a flex item.
     - By default, it is set to `auto`.
-2.  `flex-grow`: set the growth factor.
+    - If the `flex-direction` is set to `row`, `flex-basis` translates to the `width` property. If we set the direction to column, `flex-basis` would translate to the `height` property.
+2.  `flex-grow`:
+    - It determines the growth factor of our flex items.
+    - With `flex-grow`, we can allow the items to grow and take up the available space.
     - By default, it is set to 0.
     - It takes only number, not any unit.
-3.  `flex-shrink`: set the shrink factor.
+3.  `flex-shrink`:
+    - It determines the shrink factor of our flex items.
+    - This property is the opposite of `flex-growth`. It tells the browser how these elements should shrink if there is not enough space to fit in the container.
     - By default, it is set to 0.
     - It takes only number, not any unit.
 4.  `flex`: it combines the above 3 properties.
@@ -878,7 +883,8 @@
 
 ### CSS Sprites
 
-- Using CSS sprites we can combine multiple images into a single image (sprite) and reduce the number of HTTP requests.
+- An image sprite is a single image that combines multiple images.
+- With this we can reduce the number of HTTP requests.
 - The problem with CSS sprites is that every time we need to change one of the images in the sprite, we have to re-generate the sprite.
   - So, use this technique for small images that don’t change often. You can generate a sprite using [https://cssspritestool.com](https://cssspritestool.com).
 
@@ -1119,3 +1125,7 @@
 ### Callout Component
 
 - A callout component encourages to take people an action.
+
+### Color Palette
+
+- A color palette includes a primary, a secondary and often includes an accent color.

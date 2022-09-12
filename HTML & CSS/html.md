@@ -194,8 +194,9 @@
   - The `<ul>` element is used to represent an unordered list, where the order of items doesn’t matter.
     - Common application of this element is in implementing navigation menus.
     - **Styles**
-      - `list-style-type: square;` use square box as bullet point.
-      - `list-style-type: none;` Don't use bullet point.
+      - `list-style-type: square;`: Use square box as bullet point.
+      - `list-style: none;`: Don't use bullet point.
+      - `list-style-image: url(../images/tick.svg);`: Use an image as bullet point.
   - The `<ol>` element is used to represent an ordered list of items.
   - The `<dl>` (description list) element is used to implement a glossary or to display metadata.
 

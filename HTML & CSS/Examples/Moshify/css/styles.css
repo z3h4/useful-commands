@@ -144,7 +144,7 @@ a {
 }
 
 .list--inline .list__item {
-  display: inline-block;
+  display: inline-block; /* If we set this to `inline`, we'll not be able to apply margin. */
   margin-right: 2rem;
 }
 
@@ -177,7 +177,9 @@ a {
 }
 
 .icon--primary {
-  fill: var(--color-primary); /* this property only applies to the svg images */
+  fill: var(
+    --color-primary
+  ); /* This `fill` property only applies to the svg images */
 }
 
 .icon--white {
@@ -294,8 +296,8 @@ a {
 /* Input Group */
 
 .input-group {
-  border: 1px solid var(--color-border);
   border-radius: var(--border-radious);
+  border: 1px solid var(--color-border);
   display: flex;
 }
 
