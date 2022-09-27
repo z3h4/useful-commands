@@ -1,6 +1,6 @@
 # CSS
 
-- CSS (Cascading Stylesheets) are used for styling web pages.
+- CSS (Cascading Style Sheets) are used for styling web pages.
 - CSS is all about aesthetics and visual effects.
 - With CSS we can also create beautiful animations.
 
@@ -262,7 +262,7 @@
 - These properties take a few values.
 
   - The first two values determine the horizontal and vertical distance of the shadow from the element.
-  - The third value (called blur radius) determines the softness of the border. It is used for bluring the shadow/
+  - The third value (called blur radius) determines the softness of the border. It is used for bluring the shadow.
   - The fourth value is used for spreading the shadow. The larger the value, the bigger the shadow will be.
   - We can specify the color as the fifth value.
 
@@ -535,7 +535,7 @@
 
 ## Grid
 
-- Using `flex`, we can lay our elements in a row or column.
+- Using `flex`, we can lay our elements either in a row or a column.
 - We use `grid` to lay out elements in both rows and columns.
 - The grid Layout is a two-dimensional grid system.
 - It’s often used to lay out major page areas, photo galleries, etc.
@@ -574,7 +574,7 @@
   2. `align-items`: align along vertical axis. Values could be `start`, `end`, `center` etc.
 
 - The default value of these properties is `stretch`.
-- Set these property in the container.
+- **Set these property in the container.**
 
 ### Aligning the grid inside it's container
 
@@ -636,7 +636,7 @@
     2.  `grid-area`
 
         - For each individual item we set this area
-        - We don't use quotes when specifying the areas.
+        - **We don't use quotes when specifying the areas.**
 
               grid-area: header;
 
