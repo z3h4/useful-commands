@@ -911,8 +911,8 @@
 
 ### Supporting High-density Screens
 
-- High-density screens like Apple’s Retina displays contain more pixels than standard-density screens. The pixels on these screens are smaller than the pixels on standard-density screens. So when displaying an image, the screen uses a scale factor (1.5 or greater) to scale up the image. As a result, raster images may look a bit blurry when shown on these screens. To solve this problem, we can supply 2x or 3x versions of an image using the srcset attribute of the img element.
-- Our devices these days have few properties
+- High-density screens like Apple’s Retina displays contain more pixels than standard-density screens. The pixels on these screens are smaller than the pixels on standard-density screens. So when displaying an image, the screen uses a scale factor (1.5 or greater) to scale up the image. As a result, raster images may look a bit blurry when shown on these screens. To solve this problem, we can supply 2x or 3x versions of an image using the srcset attribute of the `img` element.
+- Our devices these days have a few properties
 - **Physical Resolution**: Actual # of pixels on the device. For example, physical resolution of iPhone4 is 960 x 640
 - **Logical Resolution**: Which is basically how the device behave. For example, logical resolution of iPhone4 is 480 x 320
 - **Device Pixel Ratio (DPR)**: Ratio of physical and logical pixels. For example, iPhone4 has a DPR of 2.
@@ -956,13 +956,18 @@
 - `WebP` is a modern image format created by Google and is widely supported except in Internet Explorer.
   - It produces smaller image than jpg or png.
 - To support modern image formats, we can use the `picture` element with multiple `source` elements.
-- The `picture` element should always contain an `img` element otherwise the image is not shown.
+- The `picture` element should always contain an `img` element otherwise the image is not shown. Also,
+
+  - In the `img` element we define the `alt` text.
+  - It will support the browsers which do not support `picture` or `source` elements.
 
       <picture>
         <source type="image/webp" srcset="images/meal.webp" />
         <source type="image/jpeg" srcset="images/meal.jpg" />
         <img src="images/meal.jpg" alt="A bowl of salmon and curry">
       </picture>
+
+- Use [cloudconvert.com](cloudconvert.com) to convert an image to `webP`.
 
 ### Art Direction
 
