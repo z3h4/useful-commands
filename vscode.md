@@ -7,9 +7,15 @@
 - Open the **Command Palette** via `Command+Shift+P` and type `shell command`
 - Select `Install 'code' command in PATH`
 
+---
+
 # Shortcuts
 
 ## Mac
+
+### Open File Explorer
+
+    Command + B
 
 ### Moving a line
 
@@ -40,6 +46,8 @@
 ### Open the explorer panel
 
       Command + B
+
+---
 
 # Extentions
 

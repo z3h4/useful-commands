@@ -1,3 +1,10 @@
+# Naming Conventions
+
+- Pascal Case: `BookClub`
+- Camel Case: `bookClub` (Pascal case requires the first letter to be uppercase, while camel case does not.)
+- Snake Case: `book_club` (where an underscore separates words)
+- Kebab Case: `book-club` (where a dash separates words)
+
 # MIME type
 
 - A MIME type is a label used to identify a type of data. It is used so software can know how to handle the data.
