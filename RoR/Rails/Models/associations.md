@@ -382,8 +382,18 @@ If you wish to enforce referential integrity at the database level, add the fore
 
 - You can think of a polymorphic `belongs_to` declaration as setting up an interface that any other model can use.
 - From an instance of the `Employee` model, you can retrieve a collection of pictures: `@employee.pictures`.
-- Similarly, you can retrieve `@product.pictures`.
 - If you have an instance of the `Picture` model, you can get to its parent via `@picture.imageable`.
+- Example of migration for polymorphic association:
+
+      rails generate migration AddImageableToPicture imageable:references{polymorphic}
+
+- Running this will generate the following migration:
+
+      class AddImageableToPicture < ActiveRecord::Migration
+        def change
+          add_reference :pictures, :imageable, polymorphic: true, index: true
+        end
+      end
 
 ### Delete child record when parent record is deleted
 

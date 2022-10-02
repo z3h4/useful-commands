@@ -138,3 +138,13 @@
 
 - Use `contain_exactly` to check if the array contains all the values. The orders are not important.
 - Use `include` to check if the array contains some of the values.
+
+# VCR
+
+- VCR is a gem that you can use to intercept network requests in your specs/tests and records them as yml file and replays them back when you run your tests.
+- So, everytime you run your test suite it does not make actual network requests to a live API because that API could have rate limiting. Also, making actual network requests make your test slow considerably.
+
+## Installation
+
+- https://relishapp.com/vcr/vcr/v/6-0-0/docs/getting-started
+- https://relishapp.com/vcr/vcr/v/6-0-0/docs/test-frameworks/usage-with-rspec-metadata

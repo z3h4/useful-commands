@@ -1,7 +1,7 @@
 # The Purpose of the Rails Router
 
-- The Rails router recognizes URLs and dispatches them to a controller's action, or to a Rack application.
-- It can also generate paths and URLs, avoiding the need to hardcode strings in your views.
+- Recognize URLs and dispatche them to a controller's action, or to a Rack application.
+- Generate paths and URLs, so that you don't have to hardcode strings in your views.
 
 ### Routing example
 
@@ -35,9 +35,9 @@ creates seven different routes in your application, all mapping to the Photos co
 | PATCH/PUT |   /photos/:id    |   photos#update   |
 |  DELETE   |   /photos/:id    |  photos#destroy   |
 
+- Because the router uses the HTTP verb and URL to match inbound requests, four URLs map to seven different actions.
+- Rails routes are matched in the order they are specified, so if you have a `resources :photos` above a `get 'photos/poll'`, the show action's route for the resources line will be matched before the get line. To fix this, move the get line above the resources line so that it is matched first.
 - https://guides.rubyonrails.org/routing.html#crud-verbs-and-actions
-
-- Rails routes are matched in the order they are specified, so if you have a resources `:photos` above a get `'photos/poll'` the show action's route for the resources line will be matched before the get line. To fix this, move the get line above the resources line so that it is matched first.
 
 ## Path and URL Helpers
 
@@ -101,7 +101,7 @@ creates six different routes in your application:
 
   - **Changing URLs only**
 
-    - When you want to namespace your controller classes but leave the corresponding routes unaffected, you can use the `namespace` method like follows::
+    - When you want to namespace your controller classes but leave the corresponding routes unaffected
 
           namespace :admin, path: "sekret" do
             resources :posts
@@ -146,6 +146,19 @@ creates six different routes in your application:
 
       resources :articles, path: '/admin/articles'
 
+- In both of these cases, the named route helpers remain the same as if you did not use `scope`.
+- In the last case, the following paths map to `ArticlesController`:
+
+| HTTP Verb |           Path           | Controller#Action |   Named Route Helper   |
+| :-------: | :----------------------: | :---------------: | :--------------------: |
+|    GET    |     /admin/articles      |  articles#index   |     articles_path      |
+|   POST    |     /admin/articles      |  articles#create  |     articles_path      |
+|    GET    |   /admin/articles/new    |   articles#new    |    new_article_path    |
+|    GET    | /admin/articles/:id/edit |   articles#edit   | edit_article_path(:id) |
+|    GET    |   /admin/articles/:id    |   articles#show   |   article_path(:id)    |
+| PATCH/PUT |   /admin/articles/:id    |  articles#update  |   article_path(:id)    |
+|  DELETE   |   /admin/articles/:id    | articles#destroy  |   article_path(:id)    |
+
 - **Options**
 
   - **Changing URLs only**
@@ -178,7 +191,7 @@ creates six different routes in your application:
 
 ## Nested Resources
 
-- Best Practice: resources should never be nested more than 1 level deep.
+- **Best Practice:** resources should never be nested more than 1 level deep.
 
 ### Shallow Nesting
 
@@ -208,6 +221,12 @@ creates six different routes in your application:
       end
 
 - There exist two options for `scope` to customize shallow routes. `:shallow_path` prefixes member paths with the specified parameter:
+
+      scope shallow_path: "sekret" do
+        resources :articles do
+          resources :comments, shallow: true
+        end
+      end
 
 | HTTP Verb |                Path                |    Named Route Helper    |
 | :-------: | :--------------------------------: | :----------------------: |
@@ -252,7 +271,7 @@ creates six different routes in your application:
         resources :images, only: :index
       end
 
-- These concerns can be used in resources to avoid code duplication and share behavior across routes:
+- These concerns can be used in resources to **avoid code duplication** and **share behavior across routes**:
 
       resources :messages, concerns: :commentable
 
@@ -290,7 +309,7 @@ https://guides.rubyonrails.org/routing.html#creating-paths-and-urls-from-objects
           end
         end
 
-  - This will recognize `/photos/1/preview` with GET, and route to the preview action of `PhotosController`, with the resource id value passed in `params[:id]`. It will also create the `preview_photo_url` and `preview_photo_path` helpers.
+  - This will recognize `/photos/1/preview` with `GET`, and route to the `preview` action of `PhotosController`, with the resource id value passed in `params[:id]`. It will also create the `preview_photo_url` and `preview_photo_path` helpers.
   - If you don't have multiple `member` routes, you can also pass `:on` to a route, eliminating the block:
 
         resources :photos do
@@ -308,14 +327,14 @@ https://guides.rubyonrails.org/routing.html#creating-paths-and-urls-from-objects
           end
         end
 
-  - This will enable Rails to recognize paths such as `/photos/search` with GET, and route to the search action of `PhotosController`. It will also create the `search_photos_url` and `search_photos_path` route helpers.
+  - This will enable Rails to recognize paths such as `/photos/search` with `GET`, and route to the `search` action of `PhotosController`. It will also create the `search_photos_url` and `search_photos_path` route helpers.
   - Just as with member routes, you can pass `:on` to a route:
 
         resources :photos do
           get 'search', on: :collection
         end
 
-  - Note: \_If you're defining additional resource routes with a symbol as the first positional argument, be mindful that it is not equivalent to using a string. Symbols infer controller actions while strings infer paths.
+  - Note: If you're defining additional resource routes with a symbol as the first positional argument, be mindful that it is not equivalent to using a string. **Symbols infer controller actions while strings infer paths.**
 
 ## Non-Resourceful Routes
 
@@ -461,3 +480,28 @@ https://guides.rubyonrails.org/routing.html#creating-paths-and-urls-from-objects
 - `resources` generates one extra route for the `index` action.
 - Singular routes don’t have ID of resource being worked on.
 - Both singular and plural resource routes route request to pluralized controller.
+
+### `patch` vs `put`
+
+- **_`put`_**
+
+  - In `PUT` method the resource is first identified from the URL and if it exists then it is updated otherwise a new resource is created.
+  - For example, if you upload a file to Amazon S3 at some URL, you want either to create the file at that URL or replace an existing file if there’s one. That is PUT.
+  - So, when the target resource exists it overwrites that resource with a complete new body. So, PUT method is used to CREATE or UPDATE a resource.
+  - Example: Use `PUT` method to update existing order.
+
+- **_`patch`_**
+
+  - A `PATCH` method is used for partial modifications to a resource.
+  - `PATCH` method is like a `UPDATE` query in SQL which sets or updates selected columns only and not the whole row.
+  - Example: Use PATCH method to update the order_status column.
+  - In Ruby on Rails it corresponds naturally to the way we use `update_attributes` for updating records.
+
+- https://stackoverflow.com/a/55790266
+- https://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates/
+
+- **primary method for updates in Rails**
+
+  - `PATCH` is the the primary method for updates in Rails since v4.0.
+  - Because, let’s think about ordinary edit forms in typical Ruby on Rails applications. How many times are we sending a complete representation for replacement? Not always, perhaps we could say that it is even rare in practice that you do so. For example, the conventional `created_at` and `updated_at` timestamps normally can’t be set by end-users, though they are often considered to belong to the representation of resources that map to records.
+  - https://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates/

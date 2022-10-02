@@ -1,3 +1,31 @@
+# What is Active Record?
+
+- Active Record is the interface that Rails gives you between the database and your application.
+- It is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic.
+
+# What is Object Relational Mapping (ORM)?
+
+- It is a technique that connects the rich objects of an application to tables in a relational database management system.
+- Using ORM, the properties and relationships of the objects in an application can be easily stored and retrieved from a database without writing SQL statements directly and with less overall database access code.
+
+## [Active Record as an ORM Framework](https://guides.rubyonrails.org/active_record_basics.html#active-record-as-an-orm-framework)
+
+Active Record gives us several mechanisms, the most important being the ability to:
+
+- Represent models and their data.
+- Represent associations between these models.
+- Represent inheritance hierarchies through related models.
+- Validate models before they get persisted to the database.
+- Perform database operations in an object-oriented fashion.
+
+## [Naming Conventions](https://guides.rubyonrails.org/active_record_basics.html#naming-conventions)
+
+- Rails will pluralize your class names to find the respective database table. So, for a class `Book`, you should have a database table called `books`.
+- **Model Class** - Singular with the first letter of each word capitalized (e.g., `BookClub`).
+- **Database Table** - Plural with underscores separating words (e.g., `book_clubs`).
+- **Foreign keys** - `singularized_table_name_id` (e.g., `item_id`, `order_id`).
+- **Primary keys** - By default, `id`.
+
 # ActiveRecord::Persistence
 
 ## Class Methods

@@ -49,14 +49,22 @@
 
   will append `ENGINE=BLACKHOLE` to the SQL statement used to create the table.
 
+- Create an index on the columns created within the `create_table` block in either of the following ways:
+
+      create_table :users do |t|
+        t.string :name, index: true
+        t.string :email, index: { unique: true, name: 'unique_emails' }
+      end
+
 - Also you can pass the `:comment` option with any description for the table that will be stored in database itself and can be viewed with database administration tools, such as MySQL Workbench or PgAdmin III.
+
   - It's highly recommended to specify comments in migrations for applications with large databases as it helps people to understand data model and generate documentation.
 
 ## Create a join table
 
 - Use `JoinTable` as part of the name of the migration
 
-      rails generate migration CreateJoinTableCustomerProduct customer product
+      rails generate migration CreateJoinTableCustomerProduct product categories
 
   generates
 
@@ -96,6 +104,7 @@
         t.remove_index :company_id                               # Remove an index
       end
 
+- `change_table` method is reversible, as long as the block does not call `change`, `change_default` or `remove`.
 - [`change_table` method](https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-change_table)
 
 ## Add a column to a table
@@ -134,6 +143,12 @@
       def change
         remove_column :products, :part_number, :string
       end
+
+- `remove_column` is reversible if you supply the column type as the third argument.
+
+  - Provide the original column options too, otherwise Rails can't recreate the column exactly when rolling back:
+
+        remove_column :posts, :slug, :string, null: false, default: ''
 
 ## Change a Column
 
@@ -198,6 +213,48 @@
 - Add a polymorphc association if we pass `polymorphic: true` option
 
       add_reference :products, :supplier, polymorphic: true
+
+## Foreign Keys
+
+- We can add foreign key constraints to guarantee referential integrity.
+
+      add_foreign_key :articles, :authors
+
+- If the column names cannot be derived from the table names, you can use the `:column` and `:primary_key` options.
+- Rails will generate a name for every foreign key starting with `fk_rails_` followed by 10 characters which are deterministically generated from the `from_table` and `column`. There is a `:name` option to specify a different name if needed.
+- Active Record only supports single column foreign keys. `execute` and `structure.sql` are required to use composite foreign keys.
+
+      # let Active Record figure out the column name
+      remove_foreign_key :accounts, :branches
+
+      # remove foreign key for a specific column
+      remove_foreign_key :accounts, column: :owner_id
+
+      # remove foreign key by name
+      remove_foreign_key :accounts, name: :special_fk_name
+
+### What is Referential Integrity?
+
+- Referential integrity requires that, whenever a foreign key value is used it must reference a valid, existing primary key in the parent table.
+- https://database.guide/what-is-referential-integrity/
+
+### Active Record and Referential Integrity
+
+- The Active Record way claims that intelligence belongs in your models, not in the database. As such, features such as triggers or constraints, which push some of that intelligence back into the database, are not heavily used.
+- Validations such as `validates :foreign_key, uniqueness: true` are one way in which models can enforce data integrity.
+- The `:dependent` option on associations allows models to automatically destroy child objects when the parent is destroyed.
+
+## Execute SQL Commands
+
+- If the helpers provided by Active Record aren't enough you can use the execute method to execute arbitrary SQL:
+
+      Product.connection.execute("UPDATE products SET price = 'free' WHERE 1=1")
+
+## The `change` Method
+
+- The `change` method is the primary way of writing migrations.
+- It works for the majority of cases, where Active Record knows how to reverse the migration automatically.
+- https://guides.rubyonrails.org/active_record_migrations.html#using-the-change-method
 
 ---
 
