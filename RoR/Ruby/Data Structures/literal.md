@@ -108,11 +108,14 @@
 - Double-quote strings allow escaped characters such as `\n` for newline, `\t` for tab, `\\` for single backslash etc.
 - Double-quote strings allow interpolation of other values using #{...}.
   - Any expression may be placed inside the interpolated section, but it's best to keep the expression small for readability.
+- Interpolation may be disabled by escaping the “#” character or using single-quote strings:
+
+      '#{1 + 1}' #=> "\#{1 + 1}"
 
 ### Percent Strings
 
 - Besides `%(...)` which creates a String, The `%` may create other types of object.
-- **As with strings, an uppercase letter allows interpolation and escaped characters while a lowercase letter disables them.**
+- **As with strings, an uppercase letter allows interpolation and character escaping while a lowercase letter disables them.**
 - These are the types of percent strings in ruby:
 
 -**`%i`: Array of Symbols**
@@ -126,9 +129,13 @@
 
 - **`%q`**: String
 
-      x = "hi"
-      %Q[#{x} Bob!] #= > "hi Bob!"
-      %q[#{x} Bob!] #= > "\#{x} Bob!"
+  - `%q(...)` behaves like a single-quote string (no interpolation or character escaping) while `%Q` behaves as a double-quote string.
+
+        x = "hi"
+        %Q[#{x} Bob!]           #=> "hi Bob!"
+        %q[#{x} Bob!]           #=> "\#{x} Bob!"
+        %Q(1 + 1 is #{1 + 1})   #=> "1 + 1 is 2"
+        %q(1 + 1 is #{1 + 1})   #=> "1 + 1 is \#{1 + 1}"
 
 - **`%r`**: Regular Expression
 
@@ -174,7 +181,7 @@
     - `%i`: `()`
   - https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/PercentLiteralDelimiters
 
-- \*\*`%[]`, `%q[]` and `%Q[]` all creates string. What are the differences?
+- **`%[]`, `%q[]` and `%Q[]` all creates string. What are the differences?**
 
   - `%q`(no interpolation)
   - `%Q`(interpolation and backslashes)

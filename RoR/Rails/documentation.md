@@ -6,6 +6,10 @@
 - [Unraveling Classes, Instances and Metaclasses in Ruby](https://blog.appsignal.com/2019/02/05/ruby-magic-classes-instances-and-metaclasses.html)
 - [Syntactic sugar methods in Ruby](https://blog.appsignal.com/2018/02/20/ruby-magic-syntactic-sugar-methods.html)
 
+## Misc
+
+- [Ruby Literals](https://docs.ruby-lang.org/en/2.0.0/syntax/literals_rdoc.html)
+
 ---
 
 # Rails
@@ -58,3 +62,12 @@
 # Rails Concerns
 
 - [Rails Concerns: To Concern Or Not To Concern](https://blog.appsignal.com/2020/09/16/rails-concers-to-concern-or-not-to-concern.html)
+
+# Misc
+
+## Security
+
+- [Rails security guide](https://guides.rubyonrails.org/security.html)
+- [Security Best Practices for Your Rails Application](https://blog.appsignal.com/2022/10/05/security-best-practices-for-your-rails-application)
+- [Extensive set of examples of what not to do when it comes to SQL injection](https://rails-sqli.org/)
+- [OWASP Rails Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html)
