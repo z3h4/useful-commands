@@ -18,11 +18,17 @@
 
 ## Association
 
+### Loading Association Data
+
+- [Preload, Eagerload, Includes and Joins](https://www.bigbinary.com/blog/preload-vs-eager-load-vs-joins-vs-includes)
+- [Making sense of ActiveRecord joins, includes, preload, and eager_load](https://scoutapm.com/blog/activerecord-includes-vs-joins-vs-preload-vs-eager_load-when-and-where)
+- [Eager Loading Associations](https://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations)
+- [Joins vs Preload vs Includes vs Eager load in Rails](https://tadhao.medium.com/joins-vs-preload-vs-includes-vs-eager-load-in-rails-5f721c44b3a9)
+
 ### N + 1 Query
 
 - [ActiveRecord performance: the N+1 queries antipattern](https://blog.appsignal.com/2018/04/24/active-record-performance-the-n-1-queries-antipattern.html)
 - [Faster Rails: Eliminating N+1 queries](https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html)
-- [Eager Loading Associations](https://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations)
 - [4 Non-standard Ways to Fix N+1 SQL Queries in Rails](https://pawelurbanek.com/rails-n-1-queries)
 
 ### Polymorphic Association
@@ -71,3 +77,11 @@
 - [Security Best Practices for Your Rails Application](https://blog.appsignal.com/2022/10/05/security-best-practices-for-your-rails-application)
 - [Extensive set of examples of what not to do when it comes to SQL injection](https://rails-sqli.org/)
 - [OWASP Rails Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html)
+
+# Blogs
+
+- [AppSignal](https://blog.appsignal.com/category/ruby.html)
+- [Semaphore](https://semaphoreci.com/search?s=rails)
+- [Scout APM](https://scoutapm.com/blog/search/rails)
+- [BigBinary](https://www.bigbinary.com/blog/categories)
+- [Saeloun](https://blog.saeloun.com/)
