@@ -24,6 +24,7 @@
 - [Making sense of ActiveRecord joins, includes, preload, and eager_load](https://scoutapm.com/blog/activerecord-includes-vs-joins-vs-preload-vs-eager_load-when-and-where)
 - [Eager Loading Associations](https://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations)
 - [Joins vs Preload vs Includes vs Eager load in Rails](https://tadhao.medium.com/joins-vs-preload-vs-includes-vs-eager-load-in-rails-5f721c44b3a9)
+- [Improving Database performance and overcoming common N+1 issues in Active Record using includes, preload, eager_load, pluck, select, exists?](https://blog.saeloun.com/2020/01/08/activerecord-database-performance-n-1-includes-preload-eager-load-pluck.html)
 
 ### N + 1 Query
 
@@ -51,19 +52,30 @@
 ### Optimistic Locking
 
 - [What is Optimistic Locking](https://api.rubyonrails.org/v7.0.4/classes/ActiveRecord/Locking/Optimistic.html)
-- [Preventing Conflicts with Optimistic Locking](https://gorails.com/episodes/optimistic-locking-with-rails)
+- [Preventing Conflicts with Optimistic Locking](https://gorails.com/episodes/optimistic-locking-with-rails) \*\*\*
 
 ### Pessimistic Locking
 
 - [ActiveRecord::Locking::Pessimistic](https://api.rubyonrails.org/v7.0.4/classes/ActiveRecord/Locking/Pessimistic.html)
 - [Rails: Pessimistic Locking](https://dev.to/nodefiend/rails-pessimistic-locking-45ak)
+- [Handle Race Conditions with Pessimistic Locking](https://gorails.com/episodes/handle-race-conditions-with-pessimistic-locking)
+- [Pessimistic Locking in Rails by Example](https://www.peterdebelak.com/blog/pessimistic-locking-in-rails-by-example/)
 
 ### Optimistic vs. Pessimistic Locking
 
+- [Rails 7 adds optional transaction arguments to with_lock](https://blog.saeloun.com/2022/03/23/rails-7-adds-lock_with.html)
+  - This is a good article for nested transaction.
 - [Optimistic Locking vs Pessimistic Locking in Ruby on Rails](https://www.mintbit.com/blog/optimistic-locking-vs-pessimistic-locking-in-ruby-on-rails)
 - [Optimistic Locking in Rails REST APIs](https://blog.appsignal.com/2021/10/20/optimistic-locking-in-rails-rest-apis.html)
 - [Optimistic vs. Pessimistic locking - When to use](https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
-- [Rails 7 adds optional transaction arguments to with_lock](https://blog.saeloun.com/2022/03/23/rails-7-adds-lock_with.html)
+
+## ActiveRecord::Enum
+
+- [How to Use Enums in Rails](https://blog.saeloun.com/2022/01/05/how-to-use-enums-in-rails.html)
+- [ActiveRecord::Enum](https://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html)
+- [Rails 7 introduces new syntax for enum](https://blog.saeloun.com/2021/02/26/rails-introduces-new-syntax-for-enum)
+- [Ruby on Rails - How to Create Perfect Enum in 5 Steps](https://naturaily.com/blog/ruby-on-rails-enum)
+- [Enum dropdown with readable values in rails](https://dev.to/masroorhussainv/enum-dropdown-with-capitalized-values-in-rails-144j)
 
 # Rails Concerns
 
