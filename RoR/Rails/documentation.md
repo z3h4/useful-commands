@@ -32,6 +32,13 @@
 - [Faster Rails: Eliminating N+1 queries](https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html)
 - [4 Non-standard Ways to Fix N+1 SQL Queries in Rails](https://pawelurbanek.com/rails-n-1-queries)
 
+### Database Constraints
+
+- [How and when to add foreign key constraints](https://dev.to/kevincolemaninc/how-and-when-to-add-foreign-key-constraints-1aji)
+- [Add a foreign key constraint to an existing column](https://docs.gitlab.com/ee/development/database/add_foreign_key_to_existing_column.html)
+- [The Perils of Uniqueness Validations](https://thoughtbot.com/blog/the-perils-of-uniqueness-validations)
+- [Validation, Database Constraint, or Both?](https://thoughtbot.com/blog/validation-database-constraint-or-both)
+
 ### Polymorphic Association
 
 - [Polymorphic Association](https://guides.rubyonrails.org/association_basics.html#polymorphic-associations)
@@ -81,6 +88,16 @@
 
 - [Rails Concerns: To Concern Or Not To Concern](https://blog.appsignal.com/2020/09/16/rails-concers-to-concern-or-not-to-concern.html)
 
+# Design Patterns
+
+- [Rails Patterns: Builders and Models](https://www.kcoleman.me/rails,/ruby/2015/06/03/rails-patterns-builders-and-models.html)
+
+# System Design
+
+- [System Design Interview Format - 6 Steps to passing](https://www.kcoleman.me/2020/06/14/system-design-interview-format.html)
+- [SSO / SAML to JWT: A system design problem](https://www.kcoleman.me/2020/05/02/sso-to-jwt.html)
+- [Designing a distributed web crawler](https://www.kcoleman.me/2020/06/14/designing-a-distrubute-web-crawler.html)
+
 # Misc
 
 ## Security
@@ -89,6 +106,15 @@
 - [Security Best Practices for Your Rails Application](https://blog.appsignal.com/2022/10/05/security-best-practices-for-your-rails-application)
 - [Extensive set of examples of what not to do when it comes to SQL injection](https://rails-sqli.org/)
 - [OWASP Rails Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html)
+
+# Useful Gems
+
+- Find indexes that are missing
+  - [lol_dba](https://github.com/plentz/lol_dba)
+- Find missing foreign key constraints
+  - [yeet_dba](https://github.com/kevincolemaninc/yeet_dba)
+- Detect missing unique indexes
+  - [consistency_fail](https://github.com/trptcolin/consistency_fail)
 
 # Blogs
 
