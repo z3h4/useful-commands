@@ -1,10 +1,26 @@
 # Ruby
 
+## Ruby language Tutorial
+
+- [The Odin Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby)
+- [LaunchSchool](https://launchschool.com/books/ruby/read/basics)
+
 ## Class
 
 - [How to Use `attr_accessor`, `attr_writer` & `attr_reader`](https://www.rubyguides.com/2018/11/attr_accessor/)
+- [How to Use Mixins and Modules in Your Ruby on Rails Application](https://blog.appsignal.com/2021/01/13/using-mixins-and-modules-in-your-ruby-on-rails-application.html)
 - [Unraveling Classes, Instances and Metaclasses in Ruby](https://blog.appsignal.com/2019/02/05/ruby-magic-classes-instances-and-metaclasses.html)
 - [Syntactic sugar methods in Ruby](https://blog.appsignal.com/2018/02/20/ruby-magic-syntactic-sugar-methods.html)
+
+## OOP
+
+- [Building Reusable Object-Oriented Systems: Inheritance](https://thoughtbot.com/blog/reusable-oo-inheritance)
+- [Building Reusable Object-Oriented Systems: Modules](https://thoughtbot.com/blog/reusable-oo-modules)
+- [Building Reusable Object-Oriented Systems: Composition](https://thoughtbot.com/blog/reusable-oo-composition)
+- [Composition vs Inheritance](https://thoughtbot.com/blog/reusable-oo-composition-vs-inheritance)
+- [Understanding Inheritance and Composition in Ruby](https://engineering.entelo.com/understanding-inheritance-and-composition-in-ruby-edc46c0f96c7)
+- [Inheritance vs. Composition](https://github.com/pruett/ruby-patterns/blob/master/concepts/inheritance-vs-composition.md)
+- [Refactoring From Inheritance To Composition To Data](https://www.rubypigeon.com/posts/refactoring-inheritance-composition-data/)
 
 ## Misc
 
@@ -123,3 +139,4 @@
 - [Scout APM](https://scoutapm.com/blog/search/rails)
 - [BigBinary](https://www.bigbinary.com/blog/categories)
 - [Saeloun](https://blog.saeloun.com/)
+- [OmbuLabs Blog](https://www.ombulabs.com/blog/authors/cleiviane)
