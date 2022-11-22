@@ -10,6 +10,30 @@
 
       irb
 
+# Data Types
+
+## Integers and Floats
+
+- When doing arithmetic with two integers in Ruby, the result will always be an integer.
+
+      17 / 5    #=> 3, not 3.4
+
+- To obtain an accurate answer, just replace one of the integers in the expression with a float.
+
+      17 / 5.0  #=> 3.4
+
+- When Ruby converts a float to an integer, the decimal places are simply cut off. Ruby doesn’t do any rounding in this conversion.
+
+      13.0.to_i #=> 13
+      13.9.to_i #=> 13
+
+## Ranges
+
+A range represents an interval of values. The range may include or exclude its ending value.
+
+      (1..2)  # includes its ending value
+      (1...2) # excludes its ending value
+
 ## `require` vs `require_relative`
 
 - Use `require` for installed gems or external files.
@@ -20,19 +44,3 @@
          require_relative '../../../filename'
 
 - `require` uses your `$LOAD_PATH` to find the files. `require_relative` uses the current location of the file using the statement.
-
-## `==` vs `eq` vs `eql` vs `equal`
-
-- `a.equal?(b)`
-  - object identity - `a` and `b` refer to the same object.
-- `a.eql?(b)`
-  - object equivalence - `a` and `b` have the same value.
-- `a == b`
-
-  - object equivalence - `a` and `b` have the same value with type conversions.
-
-          2 == 2.0 # Output: => true
-
-- `eq` uses the `==` operator for comparison, and `eql` ignores type conversions.
-- https://medium.com/@khalidh64/difference-between-eql-equal-in-ruby-2ffa7f073532
-- https://stackoverflow.com/a/32926980
