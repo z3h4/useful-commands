@@ -7,7 +7,9 @@
 
 - Consider a listing of clients where the list can show either active or inactive clients. We can add a route which captures the `:status` parameter in a "pretty" URL:
 
-      get '/clients/:status', to: 'clients#index', foo: 'bar'
+  ```Ruby
+  get '/clients/:status', to: 'clients#index', foo: 'bar'
+  ```
 
 - When a user opens the URL `/clients/active`
 
@@ -21,7 +23,9 @@
 - A single call to `resources` can declare all of the necessary routes for your `index`, `show`, `new`, `edit`, `create`, `update`, and `destroy` actions.
 - A single entry in the routing file, such as:
 
-      resources :photos
+  ```Ruby
+  resources :photos
+  ```
 
 creates seven different routes in your application, all mapping to the Photos controller.
 
@@ -35,67 +39,65 @@ creates seven different routes in your application, all mapping to the Photos co
 | PATCH/PUT |   /photos/:id    |   photos#update   |
 |  DELETE   |   /photos/:id    |  photos#destroy   |
 
-- Because the router uses the HTTP verb and URL to match inbound requests, four URLs map to seven different actions.
 - Rails routes are matched in the order they are specified, so if you have a `resources :photos` above a `get 'photos/poll'`, the show action's route for the resources line will be matched before the get line. To fix this, move the get line above the resources line so that it is matched first.
-- https://guides.rubyonrails.org/routing.html#crud-verbs-and-actions
+- [CRUD, Verbs, and Actions](https://guides.rubyonrails.org/routing.html#crud-verbs-and-actions)
 
 ## Path and URL Helpers
 
-- If we reate a resourceful route i.e. `resources :photos`, we can use a number of path and URL helpers
+If we create a resourceful route i.e. `resources :photos`, we can use a number of path and URL helpers
 
 - `photos_path` returns `/photos`
 - `new_photo_path` returns `/photos/new`
 - `edit_photo_path(:id)` returns `/photos/:id/edit`
 - `photo_path(:id)` returns `/photos/:id`
 
+Each of these helpers has a corresponding `_url` helper (such as `photos_url`) which returns the same path prefixed with the current host, port, and path prefix.
+
 ## Defining Multiple Resources at the Same Time
 
-    resources :photos, :books, :videos
+```Ruby
+resources :photos, :books, :videos
+```
 
 ## Singular Resources
 
 - Sometimes, you have a resource that clients always look up without referencing an ID. For example, you would like `/profile` to always show the profile of the currently logged in user. In this case, you can use a singular resource to map `/profile` (rather than `/profile/:id`) to the show action:
 
-      get 'profile', to: 'users#show'
+  ```Ruby
+  get 'profile', to: 'users#show'
+  ```
 
-We can also use the following, which is the same
+- We can also use the following, which is the same
 
-      get 'profile', action: :show, controller: 'users'
+  ```Ruby
+  get 'profile', action: :show, controller: 'users'
+  ```
 
 - This resourceful route:
 
-      resource :geocoder
+  ```Ruby
+  resource :geocoder
+  ```
 
-creates six different routes in your application:
+  creates six different routes in your application without the `index` action.
 
-| HTTP Verb |      Path      | Controller#Action |
-| :-------: | :------------: | :---------------: |
-|    GET    | /geocoder/new  |   geocoders#new   |
-|   POST    |   /geocoder    | geocoders#create  |
-|    GET    |   /geocoder    |  geocoders#show   |
-|    GET    | /geocoder/edit |  geocoders#edit   |
-| PATCH/PUT |   /geocoder    | geocoders#update  |
-|  DELETE   |   /geocoder    | geocoders#destroy |
-
-- A singular resourceful route generates these helpers:
-  - `new_geocoder_path` returns `/geocoder/new`
-  - `edit_geocoder_path` returns `/geocoder/edit`
-  - `geocoder_path` returns `/geocoder`
+- Because you might want to use the same controller for a singular route (`/account`) and a plural route (`/accounts/45`), singular resources map to plural controllers. So that, for example, **`resource :photo`** and **`resources :photos`** creates both singular and plural routes that map to the same controller (`PhotosController`).
 
 ## Controller Namespaces and Routing
 
 ### `namespace`
 
 - You may wish to organize groups of controllers under a namespace.
+- For example, you might group a number of administrative controllers under an `Admin::` namespace, and place these controllers under the `app/controllers/admin` directory.
+- You can route to such a group by using a `namespace` block:
 
-  - For example, you might group a number of administrative controllers under an `Admin::` namespace, and place these controllers under the `app/controllers/admin` directory.
-  - You can route to such a group by using a namespace block:
+  ```Ruby
+  namespace :admin do
+    resources :articles, :comments
+  end
+  ```
 
-        namespace :admin do
-          resources :articles, :comments
-        end
-
-  - In this case, `admin_articles_path` helper will route to `/admin/articles` path and `admin/articles#index` action.
+- In this case, `admin_articles_path` helper will route to `/admin/articles` path and `admin/articles#index` action.
 
 - **Options**
 
@@ -505,3 +507,7 @@ https://guides.rubyonrails.org/routing.html#creating-paths-and-urls-from-objects
   - `PATCH` is the the primary method for updates in Rails since v4.0.
   - Because, let’s think about ordinary edit forms in typical Ruby on Rails applications. How many times are we sending a complete representation for replacement? Not always, perhaps we could say that it is even rare in practice that you do so. For example, the conventional `created_at` and `updated_at` timestamps normally can’t be set by end-users, though they are often considered to belong to the representation of resources that map to records.
   - https://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates/
+
+```
+
+```
