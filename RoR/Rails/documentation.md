@@ -30,6 +30,10 @@
 
 # Rails
 
+# Controller
+
+- [Ordering of Filters in Rails Controllers](https://reganchan.ca/blog/ordering-of-filters-in-rails-controllers/)
+
 # Model
 
 ## Association
@@ -60,6 +64,7 @@
 - [Polymorphic Association](https://guides.rubyonrails.org/association_basics.html#polymorphic-associations)
 - [Rails Techniques: Using Polymorphic Associations](https://semaphoreci.com/blog/2017/08/16/polymorphic-associations-in-rails.html)
 - [Polymorphic Associations in Rails](https://betterprogramming.pub/polymorphic-associations-in-rails-72a91ae1a9dd)
+- [Comments With Polymorphic Associations](https://gorails.com/episodes/comments-with-polymorphic-associations?autoplay=1)
 
 ### Single-Table Inheritance (STI)
 
