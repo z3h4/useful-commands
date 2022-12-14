@@ -89,47 +89,6 @@
 - [Single-Table Inheritance vs. Polymorphism in Rails](https://www.netguru.com/blog/single-table-inheritance-rails)
 - [Single-table inheritance vs. polymorphic associations in Rails: find what works for you](https://www.freecodecamp.org/news/single-table-inheritance-vs-polymorphic-associations-in-rails-af3a07a204f2/)
 
-## Migration
-
-- [Dissecting Rails Migrations](https://blog.appsignal.com/2020/04/14/dissecting-rails-migrationsl.html)
-
-## Database Querying
-
-- [Grouping and Aggregating](https://backend.turing.edu/module2/lessons/grouping_and_aggregating)
-- [Querying with Aggregations](https://thoughtbot.com/upcase/videos/advanced-querying-aggregations)
-
-## Database Indexing
-
-- [Effective Queries with Rails and PostgreSQL](https://www.honeybadger.io/blog/rails-postgresql-queries/)
-
-## Rails Transactions
-
-- [5 Tips to Design Ruby on Rails Transactions the Right Way](https://blog.appsignal.com/2022/03/30/5-tips-to-design-ruby-on-rails-transactions-the-right-way.html)
-- [ActiveRecord Transactions in depth](https://www.bigbinary.com/books/learn-rubyonrails-book/activerecord-transactions-in-depth)
-- [Understanding Database Transactions in Rails](https://www.honeybadger.io/blog/database-transactions-rails-activerecord/)
-
-## Performance
-
-- [**Faster Rails: How to Check if a Record Exists**](https://semaphoreci.com/blog/2017/03/14/faster-rails-how-to-check-if-a-record-exists.html)
-- [**Differences Between #nil?, #empty?, #blank?, and #present?**](https://blog.appsignal.com/2018/09/11/differences-between-nil-empty-blank-and-present.html)
-- [ActiveRecord `exists?` and `blank?` under the hood](https://marouenbousnina.com/tutorials/2018-08-26-activerecord-exists-and-blank-under-the-hood/)
-- [How to Improve ActiveRecord Query Performance with Subquery Caching](https://pawelurbanek.com/rails-query-caching)
-- [Caching counters with ActiveRecord's counter caches](https://blog.appsignal.com/2018/06/19/activerecords-counter-cache.html)
-- [Track Down and Fix Slow ActiveRecord SQL Query Performance in Rails](https://pawelurbanek.com/slow-rails-queries)
-
-## Rails Scopes
-
-- [Should You Use Scopes or Class Methods?](https://www.justinweiss.com/articles/should-you-use-scopes-or-class-methods/)
-- [How to Preload Rails Scopes](https://www.justinweiss.com/articles/how-to-preload-rails-scopes/)
-
-## Misc
-
-- [Sharing Query Logic Within ActiveRecord Models](https://thoughtbot.com/blog/sharing-query-logic-within-activerecord-mdoels)
-- [ActiveRecord Store](https://www.honeybadger.io/blog/rails-activerecord-store/)
-- [State Machines in Ruby: An Introduction](https://blog.appsignal.com/2022/06/22/state-machines-in-ruby-an-introduction)
-
-## Concurrency
-
 ## Locking
 
 - [Locking Records for Update](https://guides.rubyonrails.org/active_record_querying.html#locking-records-for-update)
@@ -150,7 +109,6 @@
 ### Optimistic vs. Pessimistic Locking
 
 - [Rails 7 adds optional transaction arguments to with_lock](https://blog.saeloun.com/2022/03/23/rails-7-adds-lock_with.html)
-- [Optimistic Locking vs Pessimistic Locking in Ruby on Rails](https://www.mintbit.com/blog/optimistic-locking-vs-pessimistic-locking-in-ruby-on-rails)
 - [**Optimistic vs. Pessimistic locking - When to use**](https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
 
 ## ActiveRecord::Enum
@@ -162,6 +120,55 @@
 - [Ruby on Rails - How to Create Perfect Enum in 5 Steps](https://naturaily.com/blog/ruby-on-rails-enum)
 - [Enum dropdown with readable values in rails](https://dev.to/masroorhussainv/enum-dropdown-with-capitalized-values-in-rails-144j)
 
+## Migration
+
+- [Dissecting Rails Migrations](https://blog.appsignal.com/2020/04/14/dissecting-rails-migrationsl.html)
+
+## Database Querying
+
+- [Querying with Aggregations](https://thoughtbot.com/upcase/videos/advanced-querying-aggregations)
+
+## Database Indexing
+
+- [Effective Queries with Rails and PostgreSQL](https://www.honeybadger.io/blog/rails-postgresql-queries/)
+
+## Rails Scopes
+
+- [Should You Use Scopes or Class Methods?](https://www.justinweiss.com/articles/should-you-use-scopes-or-class-methods/)
+- [**How to Preload Rails Scopes**](https://www.justinweiss.com/articles/how-to-preload-rails-scopes/)
+
+## Rails Transactions
+
+- [5 Tips to Design Ruby on Rails Transactions the Right Way](https://blog.appsignal.com/2022/03/30/5-tips-to-design-ruby-on-rails-transactions-the-right-way.html)
+- [ActiveRecord Transactions in depth](https://www.bigbinary.com/books/learn-rubyonrails-book/activerecord-transactions-in-depth)
+- [Understanding Database Transactions in Rails](https://www.honeybadger.io/blog/database-transactions-rails-activerecord/)
+
+## Performance
+
+- [**Differences Between #nil?, #empty?, #blank?, and #present?**](https://blog.appsignal.com/2018/09/11/differences-between-nil-empty-blank-and-present.html)
+- [**Faster Rails: How to Check if a Record Exists**](https://semaphoreci.com/blog/2017/03/14/faster-rails-how-to-check-if-a-record-exists.html)
+- [ActiveRecord `exists?` and `blank?` under the hood](https://marouenbousnina.com/tutorials/2018-08-26-activerecord-exists-and-blank-under-the-hood/)
+- [How to Improve ActiveRecord Query Performance with Subquery Caching](https://pawelurbanek.com/rails-query-caching)
+- [Caching counters with ActiveRecord's counter caches](https://blog.appsignal.com/2018/06/19/activerecords-counter-cache.html)
+- [Track Down and Fix Slow ActiveRecord SQL Query Performance in Rails](https://pawelurbanek.com/slow-rails-queries)
+
+## Best Practices
+
+### Null Object Pattern
+
+- [The Null Object pattern](https://mitrev.net/ruby/2015/06/07/the-null-object-pattern/)
+- [Simplifying Ruby on Rails with the Null Object pattern](https://medium.com/@kelseydh/using-the-null-object-pattern-with-ruby-on-rails-b645ebf79785)
+- [Null Object pattern in practice](https://blog.arkency.com/2015/08/null-pattern-in-practice-ruby/)
+- [Rails Refactoring Example: Introduce Null Object](https://thoughtbot.com/blog/rails-refactoring-example-introduce-null-object)
+- [Null Object in Factory Bot](https://thoughtbot.com/blog/design-patterns-in-the-wild-null-object)
+- [Handling deletes with Null Object Pattern in Ruby](https://reinteractive.com/articles/Handling-deletes-with-Null-Object-Pattern-in-Ruby)
+
+## Misc
+
+- [Sharing Query Logic Within ActiveRecord Models](https://thoughtbot.com/blog/sharing-query-logic-within-activerecord-mdoels)
+- [ActiveRecord Store](https://www.honeybadger.io/blog/rails-activerecord-store/)
+- [State Machines in Ruby: An Introduction](https://blog.appsignal.com/2022/06/22/state-machines-in-ruby-an-introduction)
+
 # View
 
 - [**Rails is Fast: Optimize Your View Performance**](https://blog.appsignal.com/2020/01/22/rails-is-fast-optimize-your-view-performance.html)
@@ -172,6 +179,8 @@
 - [General Ruby on Rails Problems and Takeaways](https://blog.appsignal.com/2021/07/07/general-ruby-on-rails-problems-and-takeaways.html)
 - [Facade Pattern in Rails for Performance and Maintainability](https://blog.appsignal.com/2020/03/18/facade-pattern-in-rails-for-performance-and-maintainability.html)
 - [Configurable Ruby Modules: The Module Builder Pattern](https://blog.appsignal.com/2019/11/29/configurable-ruby-modules-the-module-builder-pattern.html)
+- [Small Rails design patterns that make a big difference](https://www.paweldabrowski.com/articles/small-rails-design-patterns)
+- [A Decorator vs. a Subclass](https://www.justinweiss.com/articles/a-decorator-vs-a-subclass/)
 
 ## Controller
 
