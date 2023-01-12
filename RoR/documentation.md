@@ -8,10 +8,26 @@
 ## Class
 
 - [How to Use `attr_accessor`, `attr_writer` & `attr_reader`](https://www.rubyguides.com/2018/11/attr_accessor/)
-- [How to Use Mixins and Modules in Your Ruby on Rails Application](https://blog.appsignal.com/2021/01/13/using-mixins-and-modules-in-your-ruby-on-rails-application.html)
 - [Unraveling Classes, Instances and Metaclasses in Ruby](https://blog.appsignal.com/2019/02/05/ruby-magic-classes-instances-and-metaclasses.html)
 - [Syntactic sugar methods in Ruby](https://blog.appsignal.com/2018/02/20/ruby-magic-syntactic-sugar-methods.html)
 - [The Magic of Class-level Instance Variables](https://blog.appsignal.com/2018/10/02/ruby-magic-class-level-instance-variables.html)
+
+### Singleton Class
+
+- [Diving into Ruby Singleton Classes](https://medium.com/@leo_hetsch/demystifying-singleton-classes-in-ruby-caf3fa4c9d91)
+- [Understanding Ruby Singleton Classes](https://devalot.com/articles/2008/09/ruby-singleton)
+
+## Modules
+
+- [How to Use Mixins and Modules in Your Ruby on Rails Application](https://blog.appsignal.com/2021/01/13/using-mixins-and-modules-in-your-ruby-on-rails-application.html)
+- [Ruby modules: Include vs Prepend vs Extend](https://medium.com/@leo_hetsch/ruby-modules-include-vs-prepend-vs-extend-f09837a5b073)
+
+## Access control in Ruby
+
+- [Protected Methods and Ruby 2.0](http://tenderlovemaking.com/2012/09/07/protected-methods-and-ruby-2-0.html)
+- [Ruby Private & Protected Methods: Understanding Method Visibility](https://www.rubyguides.com/2018/10/method-visibility/)
+- [Private & Protected in Ruby](https://medium.com/rubycademy/private-protected-a-matter-of-message-1a88b10acbf2)
+- [When to Use Protected Methods in Ruby](https://nithinbekal.com/posts/ruby-protected-methods/)
 
 ## OOP
 
@@ -37,6 +53,12 @@
 # Controller
 
 - [Ordering of Filters in Rails Controllers](https://reganchan.ca/blog/ordering-of-filters-in-rails-controllers/)
+
+## Sessions
+
+- [How Rails Sessions Work](https://www.justinweiss.com/articles/how-rails-sessions-work/)
+- [RailsConf 2017: A Deep Dive Into Sessions by Justin Weiss](https://www.youtube.com/watch?v=mqUbnZIY3OQ)
+  - [RailsConf 2017 by Justin Weiss](https://www.justinweiss.com/railsconf-2017/)
 
 ## Misc
 
@@ -172,6 +194,7 @@
 # View
 
 - [**Rails is Fast: Optimize Your View Performance**](https://blog.appsignal.com/2020/01/22/rails-is-fast-optimize-your-view-performance.html)
+- [How to Use Rails Helpers](https://www.rubyguides.com/2020/01/rails-helpers/)
 
 # Design Patterns
 
@@ -204,6 +227,10 @@
 - [Design Patterns with Ruby on Rails part 1: Introduction and Policy Object](https://dev.to/renatamarques97/design-patterns-with-ruby-on-rails-part-1-introduction-and-policy-object-1c37)
 - [Complete Guide To Managing User Permissions In Rails Apps](https://www.honeybadger.io/blog/complete-guide-to-managing-user-permissions-in-rails-apps/)
 - [Rails: Policy Objects Implementation](https://dev.to/kputra/rails-policy-objects-implementation-50ni)
+
+## View
+
+- [Simple View Presenter Pattern in Rails without using Gems](https://pawelurbanek.com/rails-presenter-pattern)
 
 # System Design
 
@@ -238,6 +265,12 @@
 - [Security Best Practices for Your Rails Application](https://blog.appsignal.com/2022/10/05/security-best-practices-for-your-rails-application)
 - [Extensive set of examples of what not to do when it comes to SQL injection](https://rails-sqli.org/)
 - [OWASP Rails Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html)
+- [Protecting from XSS with Sanitize](https://gorails.com/episodes/protecting-from-xss-with-sanitize?autoplay=1)
+
+## Configuration
+
+- [Rails 5.2 - Encrypted Credentials](https://gorails.com/episodes/rails-5-2-encrypted-credentials?autoplay=1)
+- [Environment Variables](https://gorails.com/episodes/environment-variables?autoplay=1)
 
 ## Linting and Code Formatting
 
@@ -248,6 +281,19 @@
 
 - [Test and Optimize Your Ruby on Rails Database Performance](https://blog.appsignal.com/2022/01/26/test-and-optimize-your-ruby-on-rails-database-performance.html)
 - [How to Keep Database Table Sizes Down and Prevent Data Bloat](https://blog.appsignal.com/2022/02/03/how-to-keep-database-table-sizes-down-and-prevent-data-bloat.html)
+
+## Sidekiq
+
+- [Three Ways To Avoid Duplicate Sidekiq Jobs](https://blog.appsignal.com/2021/05/12/three-ways-to-avoid-duplicate-sidekiq-jobs.html)
+
+# Style Guides
+
+- [Always Use Double-quoted Strings in Ruby](https://anti-pattern.com/always-use-double-quoted-strings-in-ruby)
+
+# Code Organization
+
+- [Organizing Ruby on Rails Models](https://zmwolski.com/ruby/2016/06/01/organizing-ruby-on-rails-models.html)
+- [rails_model_template.rb](https://gist.github.com/metalelf0/dea5f296f8afcd15dbe395e1401e7261)
 
 # Useful Gems
 
@@ -265,6 +311,7 @@
 # Blogs
 
 - [AppSignal](https://blog.appsignal.com/category/ruby.html)
+- [Pragmatic Pineapple](https://pragmaticpineapple.com/)
 - [Semaphore](https://semaphoreci.com/search?s=rails)
 - [The Ruby and Rails community linklog](https://rubyflow.com/)
 - [Honeybadger](https://www.honeybadger.io/blog/tags/ruby/)
@@ -274,3 +321,9 @@
 - [OmbuLabs Blog](https://www.ombulabs.com/blog/authors/cleiviane)
 - [Pawel Urbanek](https://pawelurbanek.com/blog)
 - [Marouen Bousnina](https://marouenbousnina.com/)
+
+# Books
+
+## Ruby
+
+- The Well-Grounded Rubyist
