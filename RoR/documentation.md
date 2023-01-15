@@ -5,6 +5,13 @@
 - [The Odin Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby)
 - [LaunchSchool](https://launchschool.com/books/ruby/read/basics)
 
+## Operators in Ruby
+
+- [Exploring Ruby Splat Operators](https://betterprogramming.pub/single-and-double-splat-operators-in-ruby-55dbe771ace6)
+- [An introduction to Ruby’s \*Splat and double \*\*Splat operators](https://www.freecodecamp.org/news/rubys-splat-and-double-splat-operators-ceb753329a78/)
+- [Ruby double splat (\*\*) operator cheatsheet](https://jetrockets.com/blog/ruby-double-splat-operator-cheatsheet)
+- [Parameter with double splat operator (\*\*) in Ruby](https://medium.com/@sologoubalex/parameter-with-double-splat-operator-in-ruby-d944d234de34)
+
 ## Class
 
 - [How to Use `attr_accessor`, `attr_writer` & `attr_reader`](https://www.rubyguides.com/2018/11/attr_accessor/)
@@ -38,17 +45,56 @@
 - [Understanding Inheritance and Composition in Ruby](https://engineering.entelo.com/understanding-inheritance-and-composition-in-ruby-edc46c0f96c7)
 - [Inheritance vs. Composition](https://github.com/pruett/ruby-patterns/blob/master/concepts/inheritance-vs-composition.md)
 - [Refactoring From Inheritance To Composition To Data](https://www.rubypigeon.com/posts/refactoring-inheritance-composition-data/)
+- [An Introduction to Ractors in Ruby](https://blog.appsignal.com/2022/08/24/an-introduction-to-ractors-in-ruby.html)
+
+## Performance
+
+- [**A Guide to Memoization in Ruby**](https://blog.appsignal.com/2022/12/20/a-guide-to-memoization-in-ruby.html)
+
+## Hash
+
+- [Ruby Quick Tip - Use Deep Fetch for Nested Hash Values](https://pawelurbanek.com/ruby-hash-fetch)
+
+## Under the Hood
+
+- [Inside Enumeration in Ruby](https://blog.appsignal.com/2019/05/28/ruby-magic-enumeration.html)
+- [Ruby's magical Enumerable module](https://blog.appsignal.com/2018/05/29/ruby-magic-enumerable-and-enumerator.html)
+- [Building a 30 line HTTP server in Ruby](https://blog.appsignal.com/2016/11/23/ruby-magic-building-a-30-line-http-server-in-ruby.html)
+- [Running Rack: How Ruby HTTP servers run Rails apps](https://blog.appsignal.com/2017/01/24/ruby-magic-building-a-ruby-http-server-part-2-running-a-rails-app.html)
+- [Under the Hood: “Slurping” and Streaming Files in Ruby](https://blog.appsignal.com/2018/07/10/ruby-magic-slurping-and-streaming-files.html)
+
+## Blocks, Procs and Lambdas
+
+- [Closures in Ruby: Blocks, Procs and Lambdas](https://blog.appsignal.com/2018/09/04/ruby-magic-closures-in-ruby-blocks-procs-and-lambdas.html)
+- [The Ultimate Guide to Blocks, Procs & Lambdas](https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/)
+- [Ruby block, procs and lambda](https://www.bootrails.com/blog/ruby-block-procs-and-lambda/)
+- [Blocks, Procs, and Lambdas](https://www.codecademy.com/learn/learn-ruby/modules/learn-ruby-blocks-procs-and-lambdas-u/cheatsheet)
+
+## Metaprogramming
+
+- [Metaprogramming With Ruby: Send and Public Send Methods](https://betterprogramming.pub/metaprogramming-with-ruby-send-and-public-send-methods-f85aa8f91366)
+- [The send Method in Ruby](https://www.delftstack.com/howto/ruby/ruby-send-method/)
+- [Ruby Metaprogramming - Method Missing](https://www.leighhalliday.com/ruby-metaprogramming-method-missing)
+- [3 Practical Uses of Ruby's `method_missing` Worth Knowing.](https://manny.codes/3-practical-uses-of-ruby-method-missing/)
 
 ## Misc
 
 - [Ruby Literals](https://docs.ruby-lang.org/en/2.0.0/syntax/literals_rdoc.html)
 - [Regexp](https://docs.ruby-lang.org/en/2.0.0/Regexp.html)
+- [The autoload Method in Ruby](https://www.geeksforgeeks.org/the-autoload-method-in-ruby/)
 - [A Deep Dive into Memory Leaks in Ruby](https://blog.appsignal.com/2022/08/10/a-deep-dive-into-memory-leaks-in-ruby)
-- [Closures in Ruby: Blocks, Procs and Lambdas](https://blog.appsignal.com/2018/09/04/ruby-magic-closures-in-ruby-blocks-procs-and-lambdas.html)
+- [Benchmarking Ruby Code](https://blog.appsignal.com/2018/02/27/benchmarking-ruby-code.html)
+- [Inspecting data in Ruby](https://blog.appsignal.com/2018/02/21/inspecting-data-in-ruby.html)
+- [Method chaining and lazy evaluation in Ruby](https://jeffkreeftmeijer.com/ruby-method-chaining/)
+- [An Introduction to Pattern Matching in Ruby](https://blog.appsignal.com/2021/07/28/introduction-to-pattern-matching-in-ruby.html)
+- [The family of anonymous functions](https://www.paweldabrowski.com/articles/the-family-of-anonymous-functions)
+- [Difference Between require and require_relative in Ruby](https://www.delftstack.com/howto/ruby/difference-between-require-and-require_relative-in-ruby/)
 
 ---
 
 # Rails
+
+- [**What's New in Rails 7**](https://blog.appsignal.com/2021/12/15/whats-new-in-rails7.html)
 
 # Controller
 
@@ -59,10 +105,6 @@
 - [How Rails Sessions Work](https://www.justinweiss.com/articles/how-rails-sessions-work/)
 - [RailsConf 2017: A Deep Dive Into Sessions by Justin Weiss](https://www.youtube.com/watch?v=mqUbnZIY3OQ)
   - [RailsConf 2017 by Justin Weiss](https://www.justinweiss.com/railsconf-2017/)
-
-## Misc
-
-- [Client-side caching in Rails: conditional GET requests](https://blog.appsignal.com/2018/05/01/client-side-caching-in-rails-conditional-get-requests.html)
 
 # Model
 
@@ -173,28 +215,43 @@
 - [How to Improve ActiveRecord Query Performance with Subquery Caching](https://pawelurbanek.com/rails-query-caching)
 - [Caching counters with ActiveRecord's counter caches](https://blog.appsignal.com/2018/06/19/activerecords-counter-cache.html)
 - [Track Down and Fix Slow ActiveRecord SQL Query Performance in Rails](https://pawelurbanek.com/slow-rails-queries)
+- [**How to Scale Ruby on Rails Applications**](https://blog.appsignal.com/2022/11/09/how-to-scale-ruby-on-rails-applications.html)
+- [Faster Rails: Is Your Database Properly Indexed?](https://semaphoreci.com/blog/2017/05/09/faster-rails-is-your-database-properly-indexed.html)
+- [Faster Rails: Indexing Large Database Tables Without Downtime](https://semaphoreci.com/blog/2017/06/21/faster-rails-indexing-large-database-tables.html)
+- [Database Performance Optimization and Scaling in Rails](https://blog.appsignal.com/2022/12/07/database-performance-optimization-and-scaling-in-rails.html)
 
 ## Best Practices
-
-### Null Object Pattern
-
-- [The Null Object pattern](https://mitrev.net/ruby/2015/06/07/the-null-object-pattern/)
-- [Simplifying Ruby on Rails with the Null Object pattern](https://medium.com/@kelseydh/using-the-null-object-pattern-with-ruby-on-rails-b645ebf79785)
-- [Null Object pattern in practice](https://blog.arkency.com/2015/08/null-pattern-in-practice-ruby/)
-- [Rails Refactoring Example: Introduce Null Object](https://thoughtbot.com/blog/rails-refactoring-example-introduce-null-object)
-- [Null Object in Factory Bot](https://thoughtbot.com/blog/design-patterns-in-the-wild-null-object)
-- [Handling deletes with Null Object Pattern in Ruby](https://reinteractive.com/articles/Handling-deletes-with-Null-Object-Pattern-in-Ruby)
-
-## Misc
 
 - [Sharing Query Logic Within ActiveRecord Models](https://thoughtbot.com/blog/sharing-query-logic-within-activerecord-mdoels)
 - [ActiveRecord Store](https://www.honeybadger.io/blog/rails-activerecord-store/)
 - [State Machines in Ruby: An Introduction](https://blog.appsignal.com/2022/06/22/state-machines-in-ruby-an-introduction)
+- [Refactoring Fat Models](https://www.peterdebelak.com/blog/refactoring-fat-models/)
+
+## Misc
+
+- [Advanced SQL in Rails - Part 1](http://brewhouse.io/2016/08/04/sql-in-rails.html)
+- [Advanced SQL in Rails - Part 2](http://brewhouse.io/2016/08/12/sql-in-rails-part2.html)
 
 # View
 
 - [**Rails is Fast: Optimize Your View Performance**](https://blog.appsignal.com/2020/01/22/rails-is-fast-optimize-your-view-performance.html)
 - [How to Use Rails Helpers](https://www.rubyguides.com/2020/01/rails-helpers/)
+
+## Caching
+
+- [Client-side caching in Rails: conditional GET requests](https://blog.appsignal.com/2018/05/01/client-side-caching-in-rails-conditional-get-requests.html)
+- [Fragment caching in Rails](https://blog.appsignal.com/2018/03/20/fragment-caching-in-rails.html)
+- [Russian doll caching in Rails](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html)
+- [Rails' built-in cache stores: an overview](https://blog.appsignal.com/2018/04/17/rails-built-in-cache-stores.html)
+- [Introduction to fragment caching in Rails](https://blog.ragnarson.com/2016-11-02-introduction-to-fragment-caching-in-rails/)
+- [What Are The Cons To Adding A Lot Of Fragment Caching To My Rails Apps?](https://www.cognitiveclouds.com/insights/what-are-the-cons-to-adding-a-lot-of-fragment-caching-to-my-rails-apps-2)
+- [Everything You Ever Wanted To Know About View Caching In Rails](https://www.honeybadger.io/blog/ruby-rails-view-caching/)
+
+## Hotwire
+
+- [Get Started with Hotwire in Your Ruby on Rails App](https://blog.appsignal.com/2022/07/06/get-started-with-hotwire-in-your-ruby-on-rails-app.html)
+- [Build a Table Editor with Trix and Turbo Frames in Rails](https://blog.appsignal.com/2022/10/26/build-a-table-editor-with-trix-and-turbo-frames-in-rails.html)
+- [Tutorials](https://onrails.blog/)
 
 # Design Patterns
 
@@ -204,14 +261,45 @@
 - [Configurable Ruby Modules: The Module Builder Pattern](https://blog.appsignal.com/2019/11/29/configurable-ruby-modules-the-module-builder-pattern.html)
 - [Small Rails design patterns that make a big difference](https://www.paweldabrowski.com/articles/small-rails-design-patterns)
 - [A Decorator vs. a Subclass](https://www.justinweiss.com/articles/a-decorator-vs-a-subclass/)
+- [Design Pattern: Simple Factory and Cheesecake Factory](https://www.sihui.io/design-pattern-factory/)
+- [Bring Clarity To Your Monolith with Bounded Contexts](https://blog.carbonfive.com/bring-clarity-to-your-monolith-with-bounded-contexts/)
+
+## Null Object Pattern
+
+- [The Null Object pattern](https://mitrev.net/ruby/2015/06/07/the-null-object-pattern/)
+- [Null Object pattern in practice](https://blog.arkency.com/2015/08/null-pattern-in-practice-ruby/)
+- [Rails Refactoring Example: Introduce Null Object](https://thoughtbot.com/blog/rails-refactoring-example-introduce-null-object)
+- [Null Object in Factory Bot](https://thoughtbot.com/blog/design-patterns-in-the-wild-null-object)
+- [Handling deletes with Null Object Pattern in Ruby](https://reinteractive.com/articles/Handling-deletes-with-Null-Object-Pattern-in-Ruby)
+- [Two ways to eradicate Ruby nil values](https://www.rubytapas.com/2017/01/31/two-screencasts-two-ways-eradicate-ruby-nil-values/)
+- [Handling Associations on Null Objects](https://thoughtbot.com/blog/handling-associations-on-null-objects)
+- [Proper location for null objects](https://gorails.com/forum/proper-location-for-null-objects)
+- [Sandy Metz - RailsConf 2015](https://www.youtube.com/watch?v=OMPfEXIlTVE&t=16s)
+
+## Form Object
+
+- [ActiveModel Form Objects](https://thoughtbot.com/blog/activemodel-form-objects)
+
+## Value Object
+
+- [Value Objects in Ruby on Rails](https://revs.runtime-revolution.com/value-objects-in-ruby-on-rails-9df64bc8db34)
+
+## Model
+
+- [7 Patterns to Refactor Fat ActiveRecord Models](https://codeclimate.com/blog/7-ways-to-decompose-fat-activerecord-models/)
+- [Avoiding Fat Models by Preferring Composition Over Inheritance](https://jasonfleetwoodboldt.com/courses/stepping-up-rails/fat-models-and-preferring-composition-over-inheritance/)
+- [Top Tips for Refactoring Fat Models in Rails](https://blog.airbrake.io/blog/rails/top-tips-for-refactoring-rails-models)
 
 ## Controller
 
 - [Ruby on Rails Controller Patterns and Anti-patterns](https://blog.appsignal.com/2021/04/14/ruby-on-rails-controller-patterns-and-anti-patterns.html)
 - [How to Reduce Controller Bloat with Interactors in Ruby](https://semaphoreci.com/community/tutorials/how-to-reduce-controller-bloat-with-interactors-in-ruby)
+- [Ensuring maintainability in large Rails apps. Fat controllers done right.](https://oozou.com/blog/ensuring-maintainability-in-large-rails-apps-fat-controllers-done-right-34)
+- [Water Your Controllers, They Are Too DRY](https://anti-pattern.com/water-your-controllers-they-are-too-dry)
 
 ### Query Object
 
+- [Query Object in Ruby on Rails](https://medium.flatstack.com/query-object-in-ruby-on-rails-56ea434365f0)
 - [A Case for Query Objects in Rails](https://thoughtbot.com/blog/a-case-for-query-objects-in-rails)
 - [Design Patterns with Ruby on Rails part 2: Query Object](https://dev.to/renatamarques97/design-patterns-with-ruby-on-rails-part-2-query-object-1h65)
 
@@ -221,6 +309,7 @@
 - [Rails Service Objects: A Comprehensive Guide](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial)
 - [Services - what are they and why we need them?](https://blog.arkency.com/2013/09/services-what-they-are-and-why-we-need-them/)
 - [Service Objects: beyond fat models and skinny controllers](https://www.ombulabs.com/blog/rails/service-objects.html)
+- [Gourmet Service Objects](http://brewhouse.io/blog/2014/04/30/gourmet-service-objects.html)
 
 ### Policy Object
 
@@ -232,6 +321,11 @@
 
 - [Simple View Presenter Pattern in Rails without using Gems](https://pawelurbanek.com/rails-presenter-pattern)
 
+## Antipatterns
+
+- [10 Rails Antipatterns to avoid - Writing well reasoned code](https://acuments.com/10-rails-antipatterns-to-avoid-writing-well-reasoned-code.html)
+- [Antipatterns: Model](https://gist.github.com/dcuadraq/f63476b3048c5b76318abd28831a00d6)
+
 # System Design
 
 - [System Design Interview Format - 6 Steps to passing](https://www.kcoleman.me/2020/06/14/system-design-interview-format.html)
@@ -240,22 +334,32 @@
 
 # Performance
 
-- [**How to Scale Ruby on Rails Applications**](https://blog.appsignal.com/2022/11/09/how-to-scale-ruby-on-rails-applications.html)
-- [Faster Rails: Is Your Database Properly Indexed?](https://semaphoreci.com/blog/2017/05/09/faster-rails-is-your-database-properly-indexed.html)
-- [Faster Rails: Indexing Large Database Tables Without Downtime](https://semaphoreci.com/blog/2017/06/21/faster-rails-indexing-large-database-tables.html)
+- [Speeding up your app’s navigation with Turbolinks](https://blog.appsignal.com/2018/05/23/speeding-up-your-apps-navigation-with-turbolinks.html)
+- [My Recipe for Optimizing Performance of Rails Applications](https://pawelurbanek.com/optimize-rails-performance)
+- [4 Ruby on Rails Mistakes that could Kill Your Production Servers](https://pawelurbanek.com/rails-mistakes-downtime)
 
 # Exception Handling
 
 - [Exceptions in Ruby](https://blog.appsignal.com/2018/03/13/exceptions-in-ruby.html)
 - [Rescuing exceptions in Ruby](https://blog.appsignal.com/2018/04/10/rescuing-exceptions-in-ruby.html)
+- [Reading and understanding Ruby stack traces](https://blog.appsignal.com/2018/02/06/reading-and-understanding-ruby-stack-traces.html)
+- [Debugging exceptions in Rails](https://blog.appsignal.com/2018/02/13/debugging-exceptions-in-rails.html)
 - [Ensuring execution, retrying failures and reraising exceptions in Ruby](https://blog.appsignal.com/2018/05/16/ensure-retry-and-reraise-exceptions-in-ruby.html)
+- [Raising Exceptions in Ruby](https://rollbar.com/guides/ruby/how-to-raise-exceptions-in-ruby/#)
+- [Don’t confuse Ruby’s ‘throw’ statement with ‘raise’](https://coderwall.com/p/lhkkug/don-t-confuse-ruby-s-throw-statement-with-raise)
 
 # Testing
 
+- [Better Specs](https://www.betterspecs.org/)
+- [Getting Started with RSpec](https://semaphoreci.com/community/tutorials/getting-started-with-rspec)
 - [Performance, Stress, and Load Tests in Rails](https://blog.appsignal.com/2021/06/09/performance-stress-and-load-tests-in-rails.html)
 - [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
 - [Rails Testing Antipatterns: Models](https://semaphoreci.com/blog/2014/01/21/rails-testing-antipatterns-models.html)
 - [The Perils of Parallel Testing in Ruby on Rails](https://blog.appsignal.com/2022/03/16/the-perils-of-parallel-testing-in-ruby-on-rails.html)
+- [Check whether an ActiveRecord model instance was destroyed](https://jeffkreeftmeijer.com/activerecord-destroyed/)
+- [Testing ActiveRecord Transactions the Right Way](https://anti-pattern.com/testing-activerecord-transactions-the-right-way)
+- [Mocking with RSpec: Doubles and Expectations](https://semaphoreci.com/community/tutorials/mocking-with-rspec-doubles-and-expectations)
+- [How to Use RSpec Mocks (Step-By-Step Tutorial)](https://www.rubyguides.com/2018/10/rspec-mocks/)
 
 # Misc
 
@@ -266,6 +370,9 @@
 - [Extensive set of examples of what not to do when it comes to SQL injection](https://rails-sqli.org/)
 - [OWASP Rails Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html)
 - [Protecting from XSS with Sanitize](https://gorails.com/episodes/protecting-from-xss-with-sanitize?autoplay=1)
+- [Securing your Ruby and Rails Codebase](https://medium.com/@andreas.tiefenthaler/securing-your-ruby-and-rails-codebase-86e649b00850)
+- [Using Brakeman to secure your Rails app](https://medium.com/@andreas.tiefenthaler/using-brakeman-to-secure-your-rails-app-b59f1eecc807)
+- [Keeping vulnerable dependencies out of your Rails App](https://medium.com/@andreas.tiefenthaler/keeping-vulnerable-dependencies-out-of-your-rails-app-e2194d0f4101)
 
 ## Configuration
 
@@ -276,6 +383,10 @@
 
 - [Linting Ruby Code](https://blog.appsignal.com/2021/04/28/ruby-linting.html)
 - [Linting and Auto-formatting Ruby Code With RuboCop](https://www.honeybadger.io/blog/linting-formatting-ruby/)
+- [How to Use Rubocop for Your Team’s Rails Apps](https://semaphoreci.com/blog/rubocop)
+- [Beginner's Guide to RuboCop in Rails](https://prabinpoudel.com.np/articles/beginners-guide-to-rubocop-in-rails/)
+- [Rubocop Configuration Files for Rails](https://prabinpoudel.com.np/articles/rubocop-configuration-files-for-rails/)
+- [Securing your Ruby and Rails Applications with RuboCop](https://medium.com/@andreas.tiefenthaler/securing-your-ruby-and-rails-applications-with-rubocop-4606641db02b)
 
 ## Database Management
 
@@ -285,6 +396,10 @@
 ## Sidekiq
 
 - [Three Ways To Avoid Duplicate Sidekiq Jobs](https://blog.appsignal.com/2021/05/12/three-ways-to-avoid-duplicate-sidekiq-jobs.html)
+
+## CableReady
+
+- [System Notifications with Noticed and CableReady in Rails](https://blog.appsignal.com/2022/11/23/system-notifications-with-noticed-and-cableready-in-rails.html)
 
 # Style Guides
 
@@ -311,6 +426,7 @@
 # Blogs
 
 - [AppSignal](https://blog.appsignal.com/category/ruby.html)
+- [Rails Handbook](https://infinum.com/handbook/rails)
 - [Pragmatic Pineapple](https://pragmaticpineapple.com/)
 - [Semaphore](https://semaphoreci.com/search?s=rails)
 - [The Ruby and Rails community linklog](https://rubyflow.com/)
@@ -320,10 +436,14 @@
 - [Saeloun](https://blog.saeloun.com/)
 - [OmbuLabs Blog](https://www.ombulabs.com/blog/authors/cleiviane)
 - [Pawel Urbanek](https://pawelurbanek.com/blog)
+- [https://jeffkreeftmeijer.com/](https://jeffkreeftmeijer.com/)
 - [Marouen Bousnina](https://marouenbousnina.com/)
+- [Rubytapas](https://www.rubytapas.com/category/freebies/)
+- [Graceful.Dev](https://graceful.dev/courses/the-freebies/)
 
 # Books
 
 ## Ruby
 
 - The Well-Grounded Rubyist
+- Metaprogramming Ruby 2
