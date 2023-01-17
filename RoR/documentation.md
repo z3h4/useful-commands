@@ -8,12 +8,18 @@
 ## Operators in Ruby
 
 - [Exploring Ruby Splat Operators](https://betterprogramming.pub/single-and-double-splat-operators-in-ruby-55dbe771ace6)
-- [An introduction to Ruby’s \*Splat and double \*\*Splat operators](https://www.freecodecamp.org/news/rubys-splat-and-double-splat-operators-ceb753329a78/)
-- [Ruby double splat (\*\*) operator cheatsheet](https://jetrockets.com/blog/ruby-double-splat-operator-cheatsheet)
+- [Ruby Splat Operator](https://thoughtbot.com/blog/ruby-splat-operator)
+- [Using splats to build up and tear apart arrays in Ruby](https://www.honeybadger.io/blog/ruby-splat-array-manipulation-destructuring/)
 - [Parameter with double splat operator (\*\*) in Ruby](https://medium.com/@sologoubalex/parameter-with-double-splat-operator-in-ruby-d944d234de34)
+- [Everything you should know about Ruby Splats](https://alexcastano.com/everything-about-ruby-splats/)
+- [Fun With Keyword Arguments, Hashes, and Splats](https://www.justinweiss.com/articles/fun-with-keyword-arguments/)
+- [Ruby double splat (\*\*) operator cheatsheet](https://jetrockets.com/blog/ruby-double-splat-operator-cheatsheet)
+- [Naked asterisk parameters in Ruby](https://andrewberls.com/blog/post/naked-asterisk-parameters-in-ruby)
+- [Anonymous splat parameter in Ruby](https://medium.com/@sologoubalex/anonymous-splat-parameter-in-ruby-b3040bc907c8)
 
 ## Class
 
+- [Understanding `self` in Ruby](https://www.honeybadger.io/blog/ruby-self-cheat-sheet/)
 - [How to Use `attr_accessor`, `attr_writer` & `attr_reader`](https://www.rubyguides.com/2018/11/attr_accessor/)
 - [Unraveling Classes, Instances and Metaclasses in Ruby](https://blog.appsignal.com/2019/02/05/ruby-magic-classes-instances-and-metaclasses.html)
 - [Syntactic sugar methods in Ruby](https://blog.appsignal.com/2018/02/20/ruby-magic-syntactic-sugar-methods.html)
@@ -69,6 +75,7 @@
 - [The Ultimate Guide to Blocks, Procs & Lambdas](https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/)
 - [Ruby block, procs and lambda](https://www.bootrails.com/blog/ruby-block-procs-and-lambda/)
 - [Blocks, Procs, and Lambdas](https://www.codecademy.com/learn/learn-ruby/modules/learn-ruby-blocks-procs-and-lambdas-u/cheatsheet)
+- [Parameter with ampersand operator (&) in Ruby](https://medium.com/@sologoubalex/parameter-with-ampersand-operator-in-ruby-6a6a7fd666d5)
 
 ## Metaprogramming
 
@@ -219,6 +226,7 @@
 - [Faster Rails: Is Your Database Properly Indexed?](https://semaphoreci.com/blog/2017/05/09/faster-rails-is-your-database-properly-indexed.html)
 - [Faster Rails: Indexing Large Database Tables Without Downtime](https://semaphoreci.com/blog/2017/06/21/faster-rails-indexing-large-database-tables.html)
 - [Database Performance Optimization and Scaling in Rails](https://blog.appsignal.com/2022/12/07/database-performance-optimization-and-scaling-in-rails.html)
+- [The hidden cost of the invisible queries in Rails](https://alexcastano.com/the-hidden-cost-of-the-invisible-queries-in-rails/)
 
 ## Best Practices
 
@@ -268,9 +276,6 @@
 
 - [The Null Object pattern](https://mitrev.net/ruby/2015/06/07/the-null-object-pattern/)
 - [Null Object pattern in practice](https://blog.arkency.com/2015/08/null-pattern-in-practice-ruby/)
-- [Rails Refactoring Example: Introduce Null Object](https://thoughtbot.com/blog/rails-refactoring-example-introduce-null-object)
-- [Null Object in Factory Bot](https://thoughtbot.com/blog/design-patterns-in-the-wild-null-object)
-- [Handling deletes with Null Object Pattern in Ruby](https://reinteractive.com/articles/Handling-deletes-with-Null-Object-Pattern-in-Ruby)
 - [Two ways to eradicate Ruby nil values](https://www.rubytapas.com/2017/01/31/two-screencasts-two-ways-eradicate-ruby-nil-values/)
 - [Handling Associations on Null Objects](https://thoughtbot.com/blog/handling-associations-on-null-objects)
 - [Proper location for null objects](https://gorails.com/forum/proper-location-for-null-objects)
@@ -282,6 +287,8 @@
 
 ## Value Object
 
+- [Value Object Semantics in Ruby](https://thoughtbot.com/blog/value-object-semantics-in-ruby#semantics)
+- [Little Thing — Value Objects](https://medium.com/@dannysmith/little-thing-value-objects-in-ruby-c4745aeb9c07)
 - [Value Objects in Ruby on Rails](https://revs.runtime-revolution.com/value-objects-in-ruby-on-rails-9df64bc8db34)
 
 ## Model
@@ -360,6 +367,10 @@
 - [Testing ActiveRecord Transactions the Right Way](https://anti-pattern.com/testing-activerecord-transactions-the-right-way)
 - [Mocking with RSpec: Doubles and Expectations](https://semaphoreci.com/community/tutorials/mocking-with-rspec-doubles-and-expectations)
 - [How to Use RSpec Mocks (Step-By-Step Tutorial)](https://www.rubyguides.com/2018/10/rspec-mocks/)
+
+## FactoryBot
+
+- [Null Object in Factory Bot](https://thoughtbot.com/blog/design-patterns-in-the-wild-null-object)
 
 # Misc
 
