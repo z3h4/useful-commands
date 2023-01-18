@@ -14,8 +14,17 @@
 - [Everything you should know about Ruby Splats](https://alexcastano.com/everything-about-ruby-splats/)
 - [Fun With Keyword Arguments, Hashes, and Splats](https://www.justinweiss.com/articles/fun-with-keyword-arguments/)
 - [Ruby double splat (\*\*) operator cheatsheet](https://jetrockets.com/blog/ruby-double-splat-operator-cheatsheet)
+- [Ruby Method Parameters And Arguments](https://www.alchemists.io/articles/ruby_method_parameters_and_arguments/)
+
+### Anonymous splat parameter
+
 - [Naked asterisk parameters in Ruby](https://andrewberls.com/blog/post/naked-asterisk-parameters-in-ruby)
 - [Anonymous splat parameter in Ruby](https://medium.com/@sologoubalex/anonymous-splat-parameter-in-ruby-b3040bc907c8)
+
+### Arguments Forwarding
+
+- [The Arguments Forwarding shorthand in Ruby 2.7](https://medium.com/rubycademy/the-arguments-forwarding-shorthand-in-ruby-2-7-af32d58c223b)
+- [Using Ruby 2.7's new triple-dot syntax to clean up service objects](https://ryanbigg.com/2021/07/ruby-27s-new-triple-dot-syntax)
 
 ## Class
 
@@ -41,6 +50,7 @@
 - [Ruby Private & Protected Methods: Understanding Method Visibility](https://www.rubyguides.com/2018/10/method-visibility/)
 - [Private & Protected in Ruby](https://medium.com/rubycademy/private-protected-a-matter-of-message-1a88b10acbf2)
 - [When to Use Protected Methods in Ruby](https://nithinbekal.com/posts/ruby-protected-methods/)
+- [The mysterious life of public, private, and protected in Ruby](https://www.paweldabrowski.com/articles/public-private-and-protected-in-ruby)
 
 ## OOP
 
@@ -186,6 +196,7 @@
 
 - [Enums](https://guides.rubyonrails.org/active_record_querying.html#enums)
 - [How to Use Enums in Rails](https://blog.saeloun.com/2022/01/05/how-to-use-enums-in-rails.html)
+- [Enum in Rails explained](https://www.paweldabrowski.com/articles/enum-in-rails-explained)
 - [ActiveRecord::Enum](https://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html)
 - [Rails 7 introduces new syntax for enum](https://blog.saeloun.com/2021/02/26/rails-introduces-new-syntax-for-enum)
 - [Ruby on Rails - How to Create Perfect Enum in 5 Steps](https://naturaily.com/blog/ruby-on-rails-enum)
@@ -289,7 +300,10 @@
 
 - [Value Object Semantics in Ruby](https://thoughtbot.com/blog/value-object-semantics-in-ruby#semantics)
 - [Little Thing — Value Objects](https://medium.com/@dannysmith/little-thing-value-objects-in-ruby-c4745aeb9c07)
+- [Value Object - DDD in Ruby on Rails](https://www.visuality.pl/posts/value-objects-ddd-in-ruby-on-rails)
+- [Rails value object design pattern](https://www.paweldabrowski.com/articles/rails-value-object-design-pattern)
 - [Value Objects in Ruby on Rails](https://revs.runtime-revolution.com/value-objects-in-ruby-on-rails-9df64bc8db34)
+- [Handle API response with value objects](https://www.paweldabrowski.com/articles/handle-api-response-with-value-objects)
 
 ## Model
 
@@ -440,6 +454,7 @@
 - [Rails Handbook](https://infinum.com/handbook/rails)
 - [Pragmatic Pineapple](https://pragmaticpineapple.com/)
 - [Semaphore](https://semaphoreci.com/search?s=rails)
+- [Paweł Dąbrowski](https://www.paweldabrowski.com/articles)
 - [The Ruby and Rails community linklog](https://rubyflow.com/)
 - [Honeybadger](https://www.honeybadger.io/blog/tags/ruby/)
 - [Scout APM](https://scoutapm.com/blog/search/rails)
@@ -451,6 +466,7 @@
 - [Marouen Bousnina](https://marouenbousnina.com/)
 - [Rubytapas](https://www.rubytapas.com/category/freebies/)
 - [Graceful.Dev](https://graceful.dev/courses/the-freebies/)
+- [Ignacio Chiazzo Cardarello](https://ignaciochiazzo.com/)
 
 # Books
 
