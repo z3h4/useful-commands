@@ -156,6 +156,28 @@ puts a
 - [Difference Between ==, eql?, equal? in ruby](https://medium.com/@khalidh64/difference-between-eql-equal-in-ruby-2ffa7f073532)
 - https://stackoverflow.com/a/32926980
 
+## Case equality operator: ===
+
+- It returns true if the object on the right “belongs to” or “is a member of” the object on the left.
+- For instance, it can be used to test if an object is an instance of a class
+
+  ```Ruby
+  String === "zen"    # Output: => true
+  Range === (1..2)    # Output: => true
+  Array === [1,2,3]   # Output: => true
+  Integer === 2       # Output: => true
+  ```
+
+- When the `===` operator is called on a range object, it returns true if the value on the right falls within the range on the left.
+
+  ```Ruby
+  (1..4) === 3        # Output: => true
+  (1..4) === 2.345    # Output: => true
+  (1..4) === 6        # Output: => false
+  ("a".."d") === "c"  # Output: => true
+  ("a".."d") === "e"  # Output: => false
+  ```
+
 ## [What is the Ruby <=> (spaceship) operator?](https://stackoverflow.com/questions/827649/what-is-the-ruby-spaceship-operator)
 
 Basically instead of returning 1 (true) or 0 (false) depending on whether the arguments are equal or unequal, the spaceship operator will return 1, 0, or −1 depending on the value of the left argument relative to the right argument.
@@ -187,6 +209,17 @@ It's useful for sorting an array.
   ```
 
 - [TheOdinProject](https://www.theodinproject.com/lessons/ruby-conditional-logic#boolean-logic)
+
+# Parameters and Arguments
+
+- [Parameters and Arguments](https://www.theodinproject.com/lessons/ruby-methods#parameters-and-arguments)
+- [Naked asterisk parameters in Ruby](https://andrewberls.com/blog/post/naked-asterisk-parameters-in-ruby)
+
+## Anonymous splat parameter
+
+- In ruby, we can define a parameter without a name using the anonymous splat parameter.
+- With this we can ignore the arguments with which a method was called.
+- Anonymous splat parameter actually comes into play when you’re not referring to the arguments inside the function, and instead calling super.
 
 # Loop
 
@@ -312,11 +345,15 @@ You can use these methods to iterate from a starting number either up to or down
 
 # Methods
 
-## [Parameters and Arguments](https://www.theodinproject.com/lessons/ruby-methods#parameters-and-arguments)
-
 ## [The `reduce` method](https://www.theodinproject.com/lessons/ruby-basic-enumerable-methods#the-reduce-method)
 
 # Class
+
+- A class is a blueprint or template for creating objects.
+- When defining a class, we typically focus on two things: state and behaviors.
+  - State refers to the data associated to an individual object (which are tracked by instance variables).
+  - Behaviors are what objects are capable of doing. We define these behaviors as instance methods in a class.
+- [LaunchSchool](https://launchschool.com/books/oo_ruby/read/classes_and_objects_part1)
 
 ## Mixin
 
