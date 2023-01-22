@@ -84,7 +84,6 @@
 - [Closures in Ruby: Blocks, Procs and Lambdas](https://blog.appsignal.com/2018/09/04/ruby-magic-closures-in-ruby-blocks-procs-and-lambdas.html)
 - [The Ultimate Guide to Blocks, Procs & Lambdas](https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/)
 - [Ruby block, procs and lambda](https://www.bootrails.com/blog/ruby-block-procs-and-lambda/)
-- [Blocks, Procs, and Lambdas](https://www.codecademy.com/learn/learn-ruby/modules/learn-ruby-blocks-procs-and-lambdas-u/cheatsheet)
 - [Parameter with ampersand operator (&) in Ruby](https://medium.com/@sologoubalex/parameter-with-ampersand-operator-in-ruby-6a6a7fd666d5)
 
 ## Metaprogramming
@@ -177,7 +176,7 @@
 ### Optimistic Locking
 
 - [What is Optimistic Locking](https://api.rubyonrails.org/v7.0.4/classes/ActiveRecord/Locking/Optimistic.html)
-- [**Preventing Conflicts with Optimistic Lockin**g](https://gorails.com/episodes/optimistic-locking-with-rails)
+- [**Preventing Conflicts with Optimistic Locking**](https://gorails.com/episodes/optimistic-locking-with-rails)
 - [**Optimistic Locking in Rails REST APIs**](https://blog.appsignal.com/2021/10/20/optimistic-locking-in-rails-rest-apis.html)
 
 ### Pessimistic Locking
@@ -253,18 +252,30 @@
 
 # View
 
-- [**Rails is Fast: Optimize Your View Performance**](https://blog.appsignal.com/2020/01/22/rails-is-fast-optimize-your-view-performance.html)
 - [How to Use Rails Helpers](https://www.rubyguides.com/2020/01/rails-helpers/)
 
-## Caching
+## Performance
 
-- [Client-side caching in Rails: conditional GET requests](https://blog.appsignal.com/2018/05/01/client-side-caching-in-rails-conditional-get-requests.html)
+- [**Rails is Fast: Optimize Your View Performance**](https://blog.appsignal.com/2020/01/22/rails-is-fast-optimize-your-view-performance.html)
+
+### Fragment Caching
+
+- [Fragment Caching](https://guides.rubyonrails.org/caching_with_rails.html#fragment-caching)
 - [Fragment caching in Rails](https://blog.appsignal.com/2018/03/20/fragment-caching-in-rails.html)
-- [Russian doll caching in Rails](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html)
-- [Rails' built-in cache stores: an overview](https://blog.appsignal.com/2018/04/17/rails-built-in-cache-stores.html)
 - [Introduction to fragment caching in Rails](https://blog.ragnarson.com/2016-11-02-introduction-to-fragment-caching-in-rails/)
 - [What Are The Cons To Adding A Lot Of Fragment Caching To My Rails Apps?](https://www.cognitiveclouds.com/insights/what-are-the-cons-to-adding-a-lot-of-fragment-caching-to-my-rails-apps-2)
+
+### Russian Doll Caching
+
+- [Russian Doll Caching](https://guides.rubyonrails.org/caching_with_rails.html#russian-doll-caching)
+- [Russian doll caching in Rails](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html)
+
+### Others
+
+- [Client-side caching in Rails: conditional GET requests](https://blog.appsignal.com/2018/05/01/client-side-caching-in-rails-conditional-get-requests.html)
+- [Rails' built-in cache stores: an overview](https://blog.appsignal.com/2018/04/17/rails-built-in-cache-stores.html)
 - [Everything You Ever Wanted To Know About View Caching In Rails](https://www.honeybadger.io/blog/ruby-rails-view-caching/)
+- [Rails Collection Caching](https://blog.appsignal.com/2018/08/14/rails-collection-caching.html)
 
 ## Hotwire
 
@@ -304,6 +315,8 @@
 - [Rails value object design pattern](https://www.paweldabrowski.com/articles/rails-value-object-design-pattern)
 - [Value Objects in Ruby on Rails](https://revs.runtime-revolution.com/value-objects-in-ruby-on-rails-9df64bc8db34)
 - [Handle API response with value objects](https://www.paweldabrowski.com/articles/handle-api-response-with-value-objects)
+- [Value Objects Explained with Ruby](https://www.sitepoint.com/value-objects-explained-with-ruby/)
+- [Rails Architect MasterClass: Value Object](https://medium.com/@mariuszkapcia/rails-architect-masterclass-value-object-fb5c53b8e600)
 
 ## Model
 
@@ -326,11 +339,12 @@
 
 ### Service Object
 
+- [**Rails Service Objects: A Comprehensive Guide**](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial)
 - [Using Service Objects in Ruby on Rails](https://blog.appsignal.com/2020/06/17/using-service-objects-in-ruby-on-rails.html)
-- [Rails Service Objects: A Comprehensive Guide](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial)
 - [Services - what are they and why we need them?](https://blog.arkency.com/2013/09/services-what-they-are-and-why-we-need-them/)
-- [Service Objects: beyond fat models and skinny controllers](https://www.ombulabs.com/blog/rails/service-objects.html)
+  - Just see the example code. The description part is not good.
 - [Gourmet Service Objects](http://brewhouse.io/blog/2014/04/30/gourmet-service-objects.html)
+- [Ruby on Rails Simple Service Objects and Testing in Isolation](https://pawelurbanek.com/2018/02/12/ruby-on-rails-service-objects-and-testing-in-isolation/)
 
 ### Policy Object
 
@@ -356,8 +370,9 @@
 # Performance
 
 - [Speeding up your app’s navigation with Turbolinks](https://blog.appsignal.com/2018/05/23/speeding-up-your-apps-navigation-with-turbolinks.html)
-- [My Recipe for Optimizing Performance of Rails Applications](https://pawelurbanek.com/optimize-rails-performance)
+- [**My Recipe for Optimizing Performance of Rails Applications**](https://pawelurbanek.com/optimize-rails-performance)
 - [4 Ruby on Rails Mistakes that could Kill Your Production Servers](https://pawelurbanek.com/rails-mistakes-downtime)
+- [Low Hanging Fruits in Frontend Performance Optimization](https://pawelurbanek.com/frontend-performance-optimization)
 
 # Exception Handling
 
@@ -387,6 +402,8 @@
 - [Null Object in Factory Bot](https://thoughtbot.com/blog/design-patterns-in-the-wild-null-object)
 
 # Misc
+
+- [Safe navigation operator '&.' vs '.try' in Rails](https://www.visuality.pl/posts/safe-navigation-operator-vs-try-in-rails)
 
 ## Security
 
