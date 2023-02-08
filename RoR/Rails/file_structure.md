@@ -10,8 +10,14 @@ class Song < ApplicationRecord
   GENDERS = [['Male', 'm'], ['Female', 'F']].freeze
 
   # == Attributes ===========================================================
+  attr_accessible :username, ...
+  attr_protected :...
+  attr_accessor :...
+  store :preferences, accessors: [ :dont_send_email ]
 
-  # == Extensions ===========================================================
+  # == Extensions/Gems ===========================================================
+  acts_as_paranoid
+
   has_attached_file :avatar, styles: {
     square_100: '100x100#'
     square_300: '300x300#'
