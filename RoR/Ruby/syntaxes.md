@@ -7,3 +7,5 @@
 
 - [And/Or](https://graceful.dev/courses/the-freebies/modules/ruby-language/topic/episode-125-and-or/)
 - [Using “and” and “or” in Ruby](https://avdi.codes/using-and-and-or-in-ruby/)
+
+## [Understanding Ruby - Triple Equals](https://dev.to/baweaver/understanding-ruby-triple-equals-2p9c)

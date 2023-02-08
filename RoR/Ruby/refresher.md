@@ -308,18 +308,160 @@ You can use these methods to iterate from a starting number either up to or down
   string[7]   #=> nil
   ```
 
-- [The Odin Project](https://www.theodinproject.com/lessons/ruby-arrays)
-- [LaunchSchool](https://launchschool.com/books/ruby/read/arrays)
-  - Mutating the Caller and Arguments
-  - Comparing Arrays
-  - `each` vs `map`
-- [How to Use Ruby’s Array Class](https://www.rubyguides.com/2015/05/ruby-arrays/)
-- [Ruby Sets](https://www.rubyguides.com/2018/08/ruby-set-class/)
+## Initialize an Array
+
+```Ruby
+a = [1, 2, 3]                 # => [1, 2, 3]
+a = %w[foo bar baz]           # => ["foo", "bar", "baz"]
+a = Array.new(3)              # => [nil, nil, nil]
+a = Array.new(3, 7)           # => [7, 7, 7]
+Array(["a", "b"])             # => ["a", "b"]
+Array(1..5)                   # => [1, 2, 3, 4, 5]
+```
+
+## Add/Remove items
+
+- To add elements at the end of an array, use `push` or shovel (`<<`) operator.
+- To remove elements from the end of an array, use `pop`.
+- To add elements at the beginning of an array, use `unshift`
+- To remove elements from the beginning of an array, use `shift`
+- `pop` and `shift` returns the element that was removed.
+- `pop` and `shift` can take arguments.
+
+  ```Ruby
+  num_array = [1, 2]
+  num_array.push(3, 4)      #=> [1, 2, 3, 4]
+  num_array << 5            #=> [1, 2, 3, 4, 5]
+  num_array.pop             #=> 5
+  num_array.unshift(0)      #=> [0, 1, 2, 3, 4]
+  num_array.shift           #=> 0
+  num_array.pop(2)          #=> [3, 4]
+  num_array.shift(2)        #=> [1, 2]
+  ```
+
+- Use `insert` to add a new element at any position.
+
+  ```Ruby
+  arr.insert(3, 'apple')
+  ```
+
+## Delete an item
+
+- Use `delete_at` method to remove an element at a specific index.
+- Use `delete` method to remove an element by value.
+- **Both methods are destructive. They change the array permanently.**
+
+  ```Ruby
+  a = [1, 2, 2, 3, 4]
+  a.delete_at(0)             #=> 1
+  a.delete(2)                #=> 2
+  a                          #=> [3, 4]
+  ```
+
+## Check for the Existence of an Item
+
+- Use the `include?` method.
+
+## Check If Two Arrays Are Equal
+
+- Use the `==` operator
+
+  ```Ruby
+  a = [1, 2, 3]
+  b = [1, 2, 3]
+  a == b             #=> true
+  ```
+
+## Convert An Array into a String
+
+- Use `join` method.
+
+  ```Ruby
+  letters = %w(a b c d)
+  letters.join             #=> "abcd"
+  ```
+
+## Convert a String into An Array
+
+- Use `split` method.
+
+  ```Ruby
+  "a b c".split             #=> ["a", "b", "c"]
+  ```
+
+## Convert a Multi-dimensional Array Into a Regular Array
+
+- Use the `flatten` method.
+
+## Remove `nil` values From an Array
+
+- Use the `compact` method.
+
+## Remove duplicate values From an Array
+
+- Use the `uniq` method.
+
+## Iterate an Array From the End
+
+- Use the ` reverse_each` method.
+
+## Operations With Multiple Arrays
+
+### Join/Merge Two Arrays
+
+- Use the `concat` method, or `+` operator.
+
+  ```Ruby
+  # Faster, because this changes the users array
+  users.concat(new_users)
+
+  # Slower, because this creates a new array
+  users += new_users
+  ```
+
+### Remove elements from one array
+
+- Use the `-` operator. It will remove all elements that appear in the second array.
+
+  ```Ruby
+  users = users - users_to_delete
+  ```
+
+### Find intersection of Two Arrays
+
+```Ruby
+users & new_users
+```
 
 ## Nested Arrays
 
 - [The Odin Project](https://www.theodinproject.com/lessons/ruby-nested-collections#nested-arrays)
   - Use `dig` method to access elements.
+
+## Misc
+
+- The methods that have a question mark at the end are called **predicates**.
+
+### `take` vs `first`
+
+- `take` requires an argument; it returns an empty array if the array is empty.
+- `first` can be called without an argument.
+
+  - It returns `nil` if the array is empty and the argument is absent.
+  - It returns empty array if the array is empty and we provide an argument.
+
+## `reject!` vs `delete_if`
+
+- `reject` - create a new array without elements that match and return the new array
+- `delete_if` - delete elements that match from current array and return the array
+- `reject!` - delete elements that match from current array. Return the array if something was rejected, or `nil` when none.
+
+## Reading Resources
+
+- [The Odin Project](https://www.theodinproject.com/lessons/ruby-arrays)
+- [LaunchSchool](https://launchschool.com/books/ruby/read/arrays)
+- [How to Use Ruby’s Array Class](https://www.rubyguides.com/2015/05/ruby-arrays/)
+- [Ruby Sets](https://www.rubyguides.com/2018/08/ruby-set-class/)
 
 # Hash
 
