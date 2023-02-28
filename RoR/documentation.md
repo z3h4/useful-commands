@@ -62,6 +62,7 @@
 - [Inheritance vs. Composition](https://github.com/pruett/ruby-patterns/blob/master/concepts/inheritance-vs-composition.md)
 - [Refactoring From Inheritance To Composition To Data](https://www.rubypigeon.com/posts/refactoring-inheritance-composition-data/)
 - [An Introduction to Ractors in Ruby](https://blog.appsignal.com/2022/08/24/an-introduction-to-ractors-in-ruby.html)
+- [Decoupling Ruby: Delegation vs Dependency Injection](https://www.honeybadger.io/blog/decoupling-ruby-delegation-dependency-injection/)
 
 ## Performance
 
@@ -105,6 +106,8 @@
 - [An Introduction to Pattern Matching in Ruby](https://blog.appsignal.com/2021/07/28/introduction-to-pattern-matching-in-ruby.html)
 - [The family of anonymous functions](https://www.paweldabrowski.com/articles/the-family-of-anonymous-functions)
 - [Difference Between require and require_relative in Ruby](https://www.delftstack.com/howto/ruby/difference-between-require-and-require_relative-in-ruby/)
+- [12 ways to call a method in Ruby](https://www.notonlycode.org/12-ways-to-call-a-method-in-ruby/)
+- [The clever hack that makes `items.map(&:name)` work](https://www.honeybadger.io/blog/how-ruby-ampersand-colon-works/)
 
 ---
 
@@ -127,6 +130,7 @@
 ## Class and OOP
 
 - [Rails Concerns: To Concern Or Not To Concern](https://blog.appsignal.com/2020/09/16/rails-concers-to-concern-or-not-to-concern.html)
+  - [`included` method](https://api.rubyonrails.org/v7.0.4.2/classes/ActiveSupport/Concern.html#method-i-included)
 - [An Introduction to Polymorphism in Ruby on Rails](https://blog.appsignal.com/2022/05/25/an-introduction-to-polymorphism-in-ruby-on-rails.html)
 
 ## Association
@@ -232,7 +236,7 @@
 - [How to Improve ActiveRecord Query Performance with Subquery Caching](https://pawelurbanek.com/rails-query-caching)
 - [Caching counters with ActiveRecord's counter caches](https://blog.appsignal.com/2018/06/19/activerecords-counter-cache.html)
 - [Track Down and Fix Slow ActiveRecord SQL Query Performance in Rails](https://pawelurbanek.com/slow-rails-queries)
-- [**How to Scale Ruby on Rails Applications**](https://blog.appsignal.com/2022/11/09/how-to-scale-ruby-on-rails-applications.html)
+- [**_How to Scale Ruby on Rails Applications_**](https://blog.appsignal.com/2022/11/09/how-to-scale-ruby-on-rails-applications.html)
 - [Faster Rails: Is Your Database Properly Indexed?](https://semaphoreci.com/blog/2017/05/09/faster-rails-is-your-database-properly-indexed.html)
 - [Faster Rails: Indexing Large Database Tables Without Downtime](https://semaphoreci.com/blog/2017/06/21/faster-rails-indexing-large-database-tables.html)
 - [Database Performance Optimization and Scaling in Rails](https://blog.appsignal.com/2022/12/07/database-performance-optimization-and-scaling-in-rails.html)
@@ -270,12 +274,22 @@
 - [Russian Doll Caching](https://guides.rubyonrails.org/caching_with_rails.html#russian-doll-caching)
 - [Russian doll caching in Rails](https://blog.appsignal.com/2018/04/03/russian-doll-caching-in-rails.html)
 
-### Others
+### HTTP Caching
 
 - [Client-side caching in Rails: conditional GET requests](https://blog.appsignal.com/2018/05/01/client-side-caching-in-rails-conditional-get-requests.html)
+- [Introduction to Conditional HTTP Caching with Rails](https://thoughtbot.com/blog/introduction-to-conditional-http-caching-with-rails)
+- [HTTP Caching in Ruby on Rails Applications](https://www.honeybadger.io/blog/http-caching-ruby-rails/)
+- [How we improved our Rails app’s performance with Conditional Get Requests](https://sourcediving.com/how-we-improved-our-rails-apps-performance-with-conditional-get-requests-35a7a472a0b9)
+
+### Others
+
 - [Rails' built-in cache stores: an overview](https://blog.appsignal.com/2018/04/17/rails-built-in-cache-stores.html)
 - [Everything You Ever Wanted To Know About View Caching In Rails](https://www.honeybadger.io/blog/ruby-rails-view-caching/)
 - [Rails Collection Caching](https://blog.appsignal.com/2018/08/14/rails-collection-caching.html)
+- [Rails Performance: When is Caching the Right Choice?](https://www.honeybadger.io/blog/rails-caching-alternatives/)
+- [How ActiveRecord Uses Caching To Avoid Unnecessary Trips To The Database](https://www.honeybadger.io/blog/rails-activerecord-caching/)
+- [Mastering Low Level Caching in Rails](https://www.honeybadger.io/blog/rails-low-level-caching/)
+- [A Complete Guide to Rails Caching](https://scoutapm.com/blog/a-complete-guide-to-rails-caching)
 
 ## Hotwire
 
@@ -373,6 +387,7 @@
 - [**My Recipe for Optimizing Performance of Rails Applications**](https://pawelurbanek.com/optimize-rails-performance)
 - [4 Ruby on Rails Mistakes that could Kill Your Production Servers](https://pawelurbanek.com/rails-mistakes-downtime)
 - [Low Hanging Fruits in Frontend Performance Optimization](https://pawelurbanek.com/frontend-performance-optimization)
+- [Speeding up Rails with Memoization](https://www.honeybadger.io/blog/ruby-rails-memoization/)
 
 # Exception Handling
 
@@ -416,6 +431,17 @@
 - [Using Brakeman to secure your Rails app](https://medium.com/@andreas.tiefenthaler/using-brakeman-to-secure-your-rails-app-b59f1eecc807)
 - [Keeping vulnerable dependencies out of your Rails App](https://medium.com/@andreas.tiefenthaler/keeping-vulnerable-dependencies-out-of-your-rails-app-e2194d0f4101)
 
+## Serialization
+
+Serialization is the process of translating a data structure or object state into a format that can be stored (e.g. files) or transmitted and reconstructed later.
+
+- [Everything You Need to know about Serialization in Ruby on Rails - Part I](https://blog.kiprosh.com/serialization_in_ruby_on_rails_part_one/)
+- [Everything you need to know about Serialization in Ruby on Rails: Part II](https://blog.kiprosh.com/serialization_in_ruby_on_rails_part_two/)
+- [Everything You Need to know about Serialization in Ruby on Rails - Part III](https://blog.kiprosh.com/serialization_in_ruby_on_rails_part_three/)
+- [Serializing (And Deserializing) Objects With Ruby](https://skorks.com/2010/04/serializing-and-deserializing-objects-with-ruby/)
+- [Which JSON Serializer To Use For A New Rails API?](http://www.carlosramireziii.com/which-json-serializer-to-use-for-a-new-rails-api.html)
+- [Adventures in Rails Fast JSON Serialization](https://medium.com/@normanrs/adventures-in-rails-fast-json-serialization-90aa096f5e4a)
+
 ## Configuration
 
 - [Rails 5.2 - Encrypted Credentials](https://gorails.com/episodes/rails-5-2-encrypted-credentials?autoplay=1)
@@ -437,6 +463,7 @@
 
 ## Sidekiq
 
+- [Delayed Job vs. Sidekiq: Which Is Better?](https://blog.appsignal.com/2022/02/15/delayed-job-vs-sidekiq-which-is-better.html)
 - [Three Ways To Avoid Duplicate Sidekiq Jobs](https://blog.appsignal.com/2021/05/12/three-ways-to-avoid-duplicate-sidekiq-jobs.html)
 
 ## CableReady
