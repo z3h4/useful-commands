@@ -6,34 +6,74 @@
 
 - [insert](https://apidock.com/ruby/v2_5_5/String/insert)
 
-### String vs Symbols
+## String vs Symbols
 
 - Strings can be changed, so every time a string is used, Ruby has to store it in memory even if an existing string with the same value already exists. Symbols, on the other hand, are stored in memory only once, making them faster in certain situations.
 - One common application where symbols are preferred over strings are the keys in hashes.
 - Basically, a symbol is used when you want to reference something like a string but don't ever intend to print it to the screen or change it. It is often referred to as an immutable (i.e. unchangeable) string. While not 100% technically correct, it is a useful mnemonic device for now.
 - [Symbols vs Strings](https://www.youtube.com/watch?v=5XaqGZq5r2M)
 
-### Substrings
+## Substrings
 
 ```Ruby
 "hello"[0]      #=> "h"
 
 "hello"[0..1]   #=> "he"
 
+# Starting from index 0 take 4 characters
 "hello"[0, 4]   #=> "hell"
 
 "hello"[-1]     #=> "o"
 ```
 
-### Why `puts` method returns `nil`?
+## Common Ruby Methods
+
+### Convert to Uppercase/Lowercase
+
+```Ruby
+"hello".upcase  #=> "HELLO"
+"Hello".downcase  #=> "hello"
+```
+
+### Check if a String is Empty
+
+```Ruby
+!var.nil? && var.empty?
+```
+
+### Split a string
+
+```Ruby
+"hello world".split  #=> ["hello", "world"]
+"hello".split("")    #=> ["h", "e", "l", "l", "o"]
+```
+
+### Remove Leading/Trailing Spaces from a String
+
+```Ruby
+" hello, world   ".strip  #=> "hello, world"
+```
+
+## Why `puts` method returns `nil`?
 
 - Everything in Ruby has a return value. When a piece of code doesn’t have anything to return, it will return `nil`.
 - The `puts` method prints out a string and returns nothing, so we see `nil` being returned after the string is displayed.
 
-### What is an expression?
+## What is an expression?
 
 - **An expression is anything that can be evaluated**, and pretty much everything you write in Ruby is an expression.
 - An expression in Ruby always returns something, even if that's an error message or `nil`.
+
+# Numbers
+
+## Common Ruby Methods
+
+### Find the Maximum/Minimum of Two Numbers
+
+```Ruby
+[5, 10].min     #=> 5
+[5, 10].max     #=> 10
+```
 
 # Ruby outputs
 
@@ -71,10 +111,8 @@ irb :001 > 'one' + 1
 
 ```Ruby
 a = puts "stuff"
-puts a
+puts a   #=> nil
 ```
-
-`a` is assigned to the value returned by `puts "stuff"`, which is `nil`. Therefore, `puts a` results in `nil` being printed out.
 
 # Variables
 
@@ -500,6 +538,7 @@ users & new_users
 ## Mixin
 
 - A mixin is a set of code that can be added to other classes.
+  - In Ruby, mixins are modules that we include in classes where they are needed.
 - mixin is a design pattern
 - Ruby implements the single inheritance mechanism, which means that a class can only inherit from one other class. We may often need to inherit from more classes. In Ruby, we can cover that need by using the composition over inheritance pattern.
 - This is doable by using the mixins. When we mix in a piece of code in another Ruby class we are adding to this class more behavior without using inheritance.
