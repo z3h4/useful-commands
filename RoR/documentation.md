@@ -49,7 +49,6 @@
 - [Protected Methods and Ruby 2.0](http://tenderlovemaking.com/2012/09/07/protected-methods-and-ruby-2-0.html)
 - [Ruby Private & Protected Methods: Understanding Method Visibility](https://www.rubyguides.com/2018/10/method-visibility/)
 - [Private & Protected in Ruby](https://medium.com/rubycademy/private-protected-a-matter-of-message-1a88b10acbf2)
-- [When to Use Protected Methods in Ruby](https://nithinbekal.com/posts/ruby-protected-methods/)
 - [The mysterious life of public, private, and protected in Ruby](https://www.paweldabrowski.com/articles/public-private-and-protected-in-ruby)
 
 ## OOP
@@ -189,6 +188,8 @@
 - [Rails: Pessimistic Locking](https://dev.to/nodefiend/rails-pessimistic-locking-45ak)
 - [Handle Race Conditions with Pessimistic Locking](https://gorails.com/episodes/handle-race-conditions-with-pessimistic-locking)
 - [**Pessimistic Locking in Rails by Example**](https://www.peterdebelak.com/blog/pessimistic-locking-in-rails-by-example/)
+- [How to Avoid Race Conditions in Rails](https://www.honeybadger.io/blog/avoid-race-condition-in-rails/)
+- [Using ActiveRecord's #update_counters to Prevent Race Conditions](https://www.honeybadger.io/blog/activerecord-update-counters-race-conditions/)
 
 ### Optimistic vs. Pessimistic Locking
 
@@ -296,6 +297,7 @@
 - [Get Started with Hotwire in Your Ruby on Rails App](https://blog.appsignal.com/2022/07/06/get-started-with-hotwire-in-your-ruby-on-rails-app.html)
 - [Build a Table Editor with Trix and Turbo Frames in Rails](https://blog.appsignal.com/2022/10/26/build-a-table-editor-with-trix-and-turbo-frames-in-rails.html)
 - [Tutorials](https://onrails.blog/)
+- [Migrating From Turbolinks To Turbo](https://www.honeybadger.io/blog/hb-turbolinks-to-turbo/)
 
 # Design Patterns
 
@@ -363,7 +365,6 @@
 ### Policy Object
 
 - [Design Patterns with Ruby on Rails part 1: Introduction and Policy Object](https://dev.to/renatamarques97/design-patterns-with-ruby-on-rails-part-1-introduction-and-policy-object-1c37)
-- [Complete Guide To Managing User Permissions In Rails Apps](https://www.honeybadger.io/blog/complete-guide-to-managing-user-permissions-in-rails-apps/)
 - [Rails: Policy Objects Implementation](https://dev.to/kputra/rails-policy-objects-implementation-50ni)
 
 ## View
@@ -411,6 +412,7 @@
 - [Testing ActiveRecord Transactions the Right Way](https://anti-pattern.com/testing-activerecord-transactions-the-right-way)
 - [Mocking with RSpec: Doubles and Expectations](https://semaphoreci.com/community/tutorials/mocking-with-rspec-doubles-and-expectations)
 - [How to Use RSpec Mocks (Step-By-Step Tutorial)](https://www.rubyguides.com/2018/10/rspec-mocks/)
+- [The Case of the Flaky Test Suite](https://www.honeybadger.io/blog/case-of-the-flaky-test-suite/)
 
 ## FactoryBot
 
@@ -431,6 +433,11 @@
 - [Using Brakeman to secure your Rails app](https://medium.com/@andreas.tiefenthaler/using-brakeman-to-secure-your-rails-app-b59f1eecc807)
 - [Keeping vulnerable dependencies out of your Rails App](https://medium.com/@andreas.tiefenthaler/keeping-vulnerable-dependencies-out-of-your-rails-app-e2194d0f4101)
 
+## User Permissions and Authentication
+
+- [Complete Guide To Managing User Permissions In Rails Apps](https://www.honeybadger.io/blog/complete-guide-to-managing-user-permissions-in-rails-apps/)
+- [Multi-Factor Authentication for Rails With WebAuthn and Devise](https://www.honeybadger.io/blog/multi-factor-2fa-authentication-rails-webauthn-devise/)
+
 ## Serialization
 
 Serialization is the process of translating a data structure or object state into a format that can be stored (e.g. files) or transmitted and reconstructed later.
@@ -444,8 +451,10 @@ Serialization is the process of translating a data structure or object state int
 
 ## Configuration
 
+- [Security Risks On Rails: Misconfiguration and Unsafe Integrations](https://www.honeybadger.io/blog/rails-security-risks-part-3/)
 - [Rails 5.2 - Encrypted Credentials](https://gorails.com/episodes/rails-5-2-encrypted-credentials?autoplay=1)
 - [Environment Variables](https://gorails.com/episodes/environment-variables?autoplay=1)
+- [Configure Your App with SSM Parameter Store](https://www.honeybadger.io/blog/configuration-with-ssm-parameter-store/)
 
 ## Linting and Code Formatting
 
@@ -466,9 +475,48 @@ Serialization is the process of translating a data structure or object state int
 - [Delayed Job vs. Sidekiq: Which Is Better?](https://blog.appsignal.com/2022/02/15/delayed-job-vs-sidekiq-which-is-better.html)
 - [Three Ways To Avoid Duplicate Sidekiq Jobs](https://blog.appsignal.com/2021/05/12/three-ways-to-avoid-duplicate-sidekiq-jobs.html)
 
+## ActionCable
+
+- [Building a Real-Time Chat App in Rails Using ActionCable and Turbo](https://www.honeybadger.io/blog/chat-app-rails-actioncable-turbo/)
+
 ## CableReady
 
 - [System Notifications with Noticed and CableReady in Rails](https://blog.appsignal.com/2022/11/23/system-notifications-with-noticed-and-cableready-in-rails.html)
+
+## GraphQL
+
+- [GraphQL APIs in Rails](https://www.honeybadger.io/blog/graphql-apis-for-rails/)
+
+## Kubernetes
+
+- [Run Your Rails App On Kubernetes: A Step-by-Step Tutorial](https://www.honeybadger.io/blog/rails-on-kubernetes/)
+- [Running Rails on a Kubernetes Cluster: Part 2](https://www.honeybadger.io/blog/rails-kubernetes-cluster-2/)
+
+## AWS
+
+- [Using AWS S3 For File Storage in Rails Apps](https://www.honeybadger.io/blog/rails-app-aws-s3/)
+- [Deploying Rails with Docker and AWS Fargate](https://www.honeybadger.io/blog/rails-docker-aws-fargate/)
+- [Using DynamoDB in Your Rails App](https://www.honeybadger.io/blog/aws-dynamo-db-rails/)
+
+## Kafka
+
+- [Event Streaming in Rails with Kafka](https://www.honeybadger.io/blog/event-streaming-rails-kafka/)
+
+## Containerization
+
+- [Containerizing an Existing Rails Application](https://www.honeybadger.io/blog/containerizing-an-existing-rails-application/)
+
+## Elasticsearch
+
+- [Full-text Search with Elasticsearch in Rails](https://www.honeybadger.io/blog/rails-elasticsearch/)
+
+## Internationalization
+
+- [A Comprehensive Guide to Rails Internationalization (i18n)](https://www.honeybadger.io/blog/rails-i18n/)
+
+## React
+
+- [React on Rails: Building a Simple App](https://www.honeybadger.io/blog/react-rails/)
 
 # Style Guides
 
