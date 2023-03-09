@@ -6,65 +6,6 @@
 
 The best practice is to put the script element at the end of the `body` section after all the existing elements.
 
-# Objects
-
-- Objects are collections of key-value pairs.
-- If we have properties that are highly related, we want to encapsulate them inside of an object.
-- The object literal syntax to create an object:
-
-  ```Javascript
-  const circle = {
-    radius: 1,
-    location: {
-      x: 1,
-      y: 1
-    },
-    isVisible: true,
-    draw: function() {
-      console.log('draw');
-    }
-  }
-
-  circle.draw();        //=> "draw"
-  ```
-
-## Factory Function
-
-- **Factory functions produce objects**, just like a factory producing products.
-- The above object literal syntax can be written as:
-
-  ```Javascript
-  function createCircle(radius) {
-    return {
-      radius,   // this is equivalent to `radius: radius`, as the key and the value are the same
-      draw() {
-        console.log('draw');
-      }
-    }
-  }
-
-  const circle = new Circle(1);
-  ```
-
-- We can simply call a factory function to create an object.
-- Naming convention of factory functions: Camel notation
-
-## Constructor Functions
-
-- The job of the constructor function is to construct or create an object.
-- Naming convention of constructor functions: Pascal notation
-
-  ```Javascript
-    function Circle(radius) {
-      this.radius = radius;
-      this.draw = function() {
-        console.log('draw');
-      }
-    }
-
-    const circle = createCircle(1);
-  ```
-
 # Arrays
 
 - If we declare an array as a constant, we cannot reassign it to something else. But it does not stop us from modifying the contents of that array.
@@ -146,6 +87,22 @@ if (numbers.includes(1))    // better alternative
     // This function is called a predicate or a callback function
     return course.name === 'a'
   })
+  ```
+
+### Testing the Elements of an Array
+
+- Use `every()` method to check if all the elements matches a criteria
+
+  ```Javascript
+  const numbers = [1, 2, 3];
+  const allPositive = numbers.every(value => value >= 0); //=> Returns a boolean
+  ```
+
+- Use `some()` method to check if at least one element in the array matches a criteria.
+
+  ```Javascript
+  const numbers = [1, 2, 3];
+  const atLeastOnePositive = numbers.some(value => value >= 0); //=> Returns a boolean
   ```
 
 ### Concat Two Arrays
@@ -239,12 +196,162 @@ const numbers = [1, 2, 3];
 numbers.reverse();    //=> [3, 2, 1], changes the original array
 ```
 
+### Filtering an Array
+
+```Javascript
+const numbers = [-1, 1, 2, 3];
+numbers.filter(number => number >= 0);   //=> [1, 2, 3]
+```
+
+### Mapping an Array
+
+```Javascript
+const numbers = [1, 2, 3];
+numbers.map(number => number * number);   //=> [1, 4, 9]
+```
+
+- If we want to map our items to an object
+
+  ```Javascript
+  const numbers = [1, 2, 3];
+  const items = numbers.map(number => {
+    return { value: number };
+  })
+
+  // or if we want to use inline, we need to use a parenthesis. Because by default curly braces in an arrow function represents a code block.
+  const items = numbers.map(number => ({ value: number }));
+  ```
+
+- Both `map()` and `filter()` methods return an array. So they are chainable.
+
+  ```Javascript
+  const numbers = [-1, 1, 2, 3];
+  const items = numbers
+    .filter(number => number > 0)
+    .map(number => ({ value: number }))
+    .filter(obj => obj.value > 1)
+    .map(obj => obj.value);
+  ```
+
+### Reducing an Array
+
+- Reduce the items of an array to a single value.
+
+  ```Javascript
+  const numbers = [1, 2, 3];
+  const sum = numbers.reduce((accumulator, number) => {
+    return accumulator + number;
+  }, 0);  // the second argument is the initial value of the accumulator.
+  ```
+
+- The second argument is optional. If we don't pass it, the initial value of the accumulator will be set to the first item of the array.
+
+  ```Javascript
+  const numbers = [1, 2, 3];
+  const sum = numbers.reduce((accumulator, number) => accumulator + number);
+  ```
+
 ### Converting to Lowercase/Uppercase
 
 ```Javascript
 str.toLowerCase();
 str.toUpperCase();
 ```
+
+### Get the Maximum and Minimum Value
+
+```Javascript
+Math.max(a, b);
+Math.min(a, b);
+```
+
+# Objects
+
+- Objects are collections of key-value pairs.
+- If we have properties that are highly related, we want to encapsulate them inside of an object.
+- The object literal syntax (using curley braces) to create an object:
+
+  ```Javascript
+  const circle = {
+    radius: 1,
+    location: {
+      x: 1,
+      y: 1
+    },
+    isVisible: true,
+    draw: function() {
+      console.log('draw');
+    }
+  }
+
+  circle.draw();        //=> "draw"
+  ```
+
+- There are 2 ways to create an object -
+  1. Factory function
+  2. Constructor.
+
+## Factory Function
+
+- Creating object with the object literal syntax is an issue if the object has behaviour (one or more methods).
+- **Factory functions produce objects**, just like a factory producing products.
+- The above object literal syntax can be written as:
+
+  ```Javascript
+  function createCircle(radius) {
+    return {
+      radius,   // this is equivalent to `radius: radius`, as the key and the value are the same
+      draw() {
+        console.log('draw');
+      }
+    }
+  }
+
+  const circle = createCircle(1);
+  ```
+
+- We can simply call a factory function to create an object.
+- Naming convention of factory functions: Camel notation
+
+## Constructor Functions
+
+- The job of the constructor function is to construct or create an object.
+- Naming convention of constructor functions: Pascal notation
+- There is no explicit `return` statement.
+
+  ```Javascript
+    function Circle(radius) {
+      this.radius = radius;
+      this.draw = function() {
+        console.log('draw');
+      }
+    }
+
+  const circle = new Circle(1);
+  ```
+
+## Constructor Property
+
+- Every object in JS has a property called constructor which references the function that was used to create that object.
+
+## Functions are Objects
+
+- In JS, functions are Objects.
+
+## Value vs Reference Types
+
+- Primitive/Value types in JS
+  - Number
+  - String
+  - Boolean
+  - Symbol
+  - undefined
+  - null
+- Reference Types
+  - Objects
+  - Functions
+  - Arrays
+- Primitives are copied by their value. Objects are copied by their reference.
 
 # React
 
