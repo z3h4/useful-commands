@@ -36,7 +36,9 @@
 ## JSX
 
 - JSX stands for JavaScript XML.
-- It is a syntax that allows us to write components that combine HTML and JavaScript in a readable and expressive way, making it easier to create complex user interfaces
+- It is a syntax that allows us to write components that combine HTML and JavaScript in a readable and expressive way, making it easier to create complex user interfaces.
+- With JSX we can easily describe the user interface of our application with HTML and Javascript.
+- The great thing about JSX is that it allows us to easily create dynamic contents.
 
 # Creating a React App
 
@@ -78,12 +80,6 @@ npm run dev
 
 - This file contains bunch of settings for telling the Typescript compiler how to compile our code to Javascript.
 
-## `React.StrictMode`
-
-- This is one of the built in components of React.
-- It does not have a visual representation.
-- It's purpose is to identify potential problems.
-
 ## Component
 
 - At the heart of all react applications are components.
@@ -99,6 +95,28 @@ npm run dev
 
 - In React apps, a component can only return a single element.
 - To return multiple elements, we wrap them in a fragment, which is represented by empty angle brackets.
+- To use a Fragment we have to import it.
+
+  ```Javascript
+  import { Fragment } From 'React';
+
+  <Fragment>
+    <h1>List</h1>
+    <div>List Content</div>
+  </Fragment>
+  ```
+
+- If we use empty angle brackets, we don't have to import Fragment from React.
+
+### Handling Events
+
+- To pass a parameter of type event to a Javascript method in Typescript we have to specify the event type.
+
+  ```Javascript
+  import { MouseEvent } from 'React';
+
+  const handleClick = (event: MouseEvent) => console.log(event);
+  ```
 
 ### Props
 
@@ -114,9 +132,102 @@ npm run dev
 - When the state or props of a component change, React will re-render the component and update the DOM accordingly.
   - This is the common behaviour between states and props.
 
+### Passing Children
+
+- `children` is a special prop that all components support.
+
+  ```Typescript
+  interface Props {
+    children: string;
+    //or
+    children: ReactNode;
+  }
+  ```
+
+### Prop Interface
+
+To set a default value
+
+1. Make that prop optional using ?
+
+   ```Typescript
+   interface Props {
+     color?: 'primary' | 'secondary' | 'danger';
+     children: string;
+     onClick: () => void;
+   }
+   ```
+
+2. Set the default value
+
+   ```Typescript
+    const Button = ({ color = 'primary', children, onClick }: Props) => {
+      ...
+    }
+   ```
+
+- To allow a set of accepted values, specify those values (e.g. color)
+
 ### Icons
 
 We can add icons to our applications using the `react-icons` library.
+
+# State Management
+
+- The state hook allows us to add state to function components.
+- Three important points about state hooks
+
+  1. React updates states asynchronously. (for performance reasons)
+
+     - So updates are not applied immediately. Instead, they’re batched and applied at once after all event handlers have finished execution. Once the state is updated, React re-renders our component.
+
+  2. State variables are stored outside of a component in memory. React keeps the state in memory as long as the component is visible on the screen.
+
+     - State variables, unlike local variables in a function, stay in memory as long as the component is visible on the screen. This is because state is tied to the component instance, and React will destroy the component and its state when it is removed from the screen.
+
+  3. Hooks can only be called at the top level of components.
+     - We cannot use hooks inside for loops, if statements or nested functions. Because these constructs can impact the order in which the state hook is called.
+
+- Understanding the state hooks (Mosh React 18 course) \*\*\*
+
+## `useState` best practices
+
+- To keep state as minimal as possible, avoid redundant state variables that can be computed from existing variables.
+- Group related state variables into an object to keep them organized.
+
+  ```Javascript
+  const [person, setPerson] = useState({
+    firstName: '',
+    lastName: ''
+  });
+  ```
+
+- Avoid deeply nested state objects as they can be hard to update and maintain.
+
+## Purity
+
+- A pure function is one that given the same input, always returns the same result.
+- React expects our function components to be pure. A pure component should always return the same JSX given the same input.
+  - This is for performance reasons. So, if the inputs of a component have not changed, React can skip re-rendering that components.
+- To keep our components pure, we should avoid making changes during the render phase.
+
+## `React.StrictMode`
+
+- This is one of the built in components of React.
+- It does not have a visual representation.
+- It's only purpose is to catch potential problems.
+  - One of the potential problems is impure components.
+  - When the strict mode is enabled, in development, React renders each component twice.
+    - The first render is used to primarily for detecting and reporting potential issues with our code.
+    - The second render is used to actually update the UI.
+  - In production, the strict mode checks are not included, and the components are rendered only once.
+- Starting from React 18, it is enabled by default.
+
+## Updating Objects/Arrays
+
+- When updating objects or arrays, we should treat them as immutable objects.
+- Instead of mutating them, we should create new objects or arrays to update the state.
+  - `Immer` is a library that can help us update objects and arrays in a more concise and mutable way.
 
 ## Higher Order Components
 
