@@ -23,6 +23,7 @@
   - **With React we no longer need worry about querying and updating DOM elements.**
   - Instead, we describe a webpage using small, reusable components, and React will take care of efficiently creating and updating DOM elements.
 - So, components help us write reusable, modular, and better organized code.
+- Essentially a React application is a tree of components with the `App` being the root bringing everything together.
 
 ## How React Works?
 
@@ -63,7 +64,7 @@ npm run dev
 
 ## Project Structure
 
-### packege.json
+### `packege.json`
 
 - `package.json` file that includes metadata about the application.
 - It includes basic info about the app or project
@@ -73,6 +74,9 @@ npm run dev
 - To create a `package.json` file, run
   `npm init` (Then answers some questions)
   `npm init --yes` (Create project with default values)
+
+### `node_modules`
+
 - All the installed packages and their dependencies are stored under `node_modules` folders.
   - This folder should be excluded from the source control.
 
@@ -118,6 +122,8 @@ npm run dev
   const handleClick = (event: MouseEvent) => console.log(event);
   ```
 
+- This is called type annotation in Typescript. With type annotation we can specify type of our variables, parameters and so on.
+
 ### Props
 
 - Components can optionally have props (short for properties) to accept input.
@@ -135,12 +141,13 @@ npm run dev
 ### Passing Children
 
 - `children` is a special prop that all components support.
+- Using this prop we can pass children to a component.
 
   ```Typescript
   interface Props {
-    children: string;
+    children: string;   // if the children does not contain any HTML component
     //or
-    children: ReactNode;
+    children: ReactNode;    // if the children contains HTML component
   }
   ```
 
@@ -168,12 +175,25 @@ To set a default value
 
 - To allow a set of accepted values, specify those values (e.g. color)
 
+# Styling Components
+
+### Inline Styles
+
+- Inline CSS makes our code hard to read and maintain. We should avoid them.
+
+  ```Javascript
+  <ul style={{ backgroundColor: 'yellow' }}>
+  </ul>
+  ```
+
 ### Icons
 
 We can add icons to our applications using the `react-icons` library.
 
 # State Management
 
+- A hook is a function that allows us to tap into built-in features in React.
+- Using the state hook we can tell React that this component can have data or state that will change over time.
 - The state hook allows us to add state to function components.
 - Three important points about state hooks
 
@@ -181,7 +201,7 @@ We can add icons to our applications using the `react-icons` library.
 
      - So updates are not applied immediately. Instead, they’re batched and applied at once after all event handlers have finished execution. Once the state is updated, React re-renders our component.
 
-  2. State variables are stored outside of a component in memory. React keeps the state in memory as long as the component is visible on the screen.
+  2. State variables are stored outside of a component in memory.
 
      - State variables, unlike local variables in a function, stay in memory as long as the component is visible on the screen. This is because state is tied to the component instance, and React will destroy the component and its state when it is removed from the screen.
 
@@ -228,6 +248,38 @@ We can add icons to our applications using the `react-icons` library.
 - When updating objects or arrays, we should treat them as immutable objects.
 - Instead of mutating them, we should create new objects or arrays to update the state.
   - `Immer` is a library that can help us update objects and arrays in a more concise and mutable way.
+
+# Form
+
+## Accessing Input Fields
+
+- We can use `useRef` hook to reference a DOM element.
+
+  ```JavaScript
+  // 1. Use the ref hook to create a reference
+  const nameRef = useRef<HTMLInputElement>(null);
+  // 2. Use that reference in our HTML element
+  <input ref={nameRef} id="name" type="text" className="form-control" />
+
+  // 3. Get the value of a HTML element in our event handler
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    if (nameRef.current !== null)
+      console.log(nameRef.current.value);
+  };
+  ```
+
+- Accessing Input Fields (Mosh React 18 course) \*\*\*
+
+## React Hook Form
+
+- React Hook Form is a popular library that helps us build forms quickly with less code.
+- With React Hook Form, we no longer have to worry about using the ref or state hooks to manage the form state.
+
+## Schema-based Validation
+
+- We can validate our forms using schema-based validation libraries such as joi, yup, zod, etc.
+- With these libraries, we can define all our validation rules in a single place called a schema.
 
 ## Higher Order Components
 
@@ -285,3 +337,9 @@ Context provides a way to pass data through the component tree without having to
 
 - Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language.
 - Context is primarily used when some data needs to be accessible by many components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
+
+# Installing Libraries
+
+### Bootstrap
+
+- See React 18 Course, Creating a ListGroup component lesson
