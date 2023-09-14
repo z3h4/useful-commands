@@ -209,6 +209,7 @@
           </dl>
 
 - `<li>` is short for list item.
+- [::marker](https://developer.mozilla.org/en-US/docs/Web/CSS/::marker)
 
 ### Table
 

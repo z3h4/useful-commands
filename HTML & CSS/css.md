@@ -56,7 +56,7 @@
         color: orange;
       }
 
-- **Advaltage**: Relational selectors help us write cleaner markup codes. We can select elements without the need to assign them a specific ID or class.
+- **Advantage**: Relational selectors help us write cleaner markup codes. We can select elements without the need to assign them a specific ID or class.
 - **Disadvantage**: two problems
 
   1. Can be fragile. If we move elements around, our CSS rules may break.
@@ -103,7 +103,7 @@
 
 - In CSS we have a bunch of pseudo-classes that are automatically applied by the browser.
 - We can take advantage of these pseudo-classes to target elements without the need to give them a specific class.
-- The most common pseudo-classes are: `first-child`, `first-of-type`, `last-child`, `last-of-type`, `nth-of-type(n)` and `nth-child`.
+- The most common pseudo-classes are: `first-child`, `first-of-type`, `last-child`, `last-of-type`, `nth-child` and `nth-of-type(n)`.
 - Pseudo-classes start with a single colon.
 
       article :first-child {
