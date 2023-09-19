@@ -1,22 +1,31 @@
 # How the Web Works
 
-## What happens when you type a URL into your browser?
+## What happens when you type a URL into your browser and hit enter?
 
 1. Our browser sends an HTTP request to the server and receives an HTTP response.
 2. This response includes an HTML document.
 3. The browser reads that HTML document to construct a Document Object Model (DOM) and render the page.
 4. As the browser reads the HTML document, it discovers references to other resources in this document, like images, fonts etc.
-5. Each of these resources has an address or an url.
+5. Each of these resources has an address or an URL.
 6. So for each resource, the browser sends a separate HTTP request to the server to fetch that resource.
 7. Many of these HTTP requests are sent in parallel, so we can see the page as quickly as possible.
 8. Once the browser has all the necessary resources, it will render the HTML document.
    - Rendering an HTML document means displaying it.
 
 - [What happens when you type a URL into your browser?](https://aws.amazon.com/blogs/mobile/what-happens-when-you-type-a-url-into-your-browser/)
+- [ByteByteGo](https://youtu.be/AlkDbnbv7dk?si=JVkAf8eV0xnZVjDR)
+
+### Client server model
+
+- The above model is called client-server model.
+- Here, the browser is called the client, and the computer(s) that host our target website is called web servers (servers in short).
+- The client requests a service and the server provides that service.
+- The server and clients use HTTP to talk to each other.
 
 # HTML
 
 - HTML (Hypertext Markup Language) is a markup language used to define the **structure** and **contents** of web pages.
+  - This is not a programming language, it's just a plain textual language for communicating over the internet.
 - We use HTML to define the building blocks of our webpages.
 - HTML is not a case sensitive language.
   - Conventionally, we type everything in lowercase, except `DOCTYPE`.
@@ -24,9 +33,29 @@
 # HTTP
 
 - HTTP (Hypertext Transfer Protocol) is a set of rules that clients and servers use to communicate and exchange data over the internet.
-- HTTPS = HTTP + encryption
 
-# DOM
+# HTTPS
+
+- HTTP with encryption
+- In HTTPS the messages exchanged between the client and the server are encrypted.
+
+## HTTP vs HTTPS
+
+- The browser understands both HTTP and HTTPS.
+- HTTP goes to port 80 by default.
+- HTTPS goes to port 443 by default.
+
+# URL
+
+- The address we type in the address bar of the browser is called URL (Uniform Resource Locator).
+- Basically, it's a way to locate a resource on the internet.
+- Resources can be
+  - Web pages, also called HTML documents
+  - Images
+  - Video files
+  - Fonts etc.
+
+# Document object model (DOM)
 
 - Document object model is a model that represents the objects or elements (i.e. paragraphs, images, links) in our HTML document.
 - It is an in-memory representation of the elements on the page
