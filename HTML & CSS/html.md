@@ -45,6 +45,10 @@
 - HTTP goes to port 80 by default.
 - HTTPS goes to port 443 by default.
 
+# Browsers
+
+- Browsers ignore whitespaces in the HTML and CSS codes.
+
 # URL
 
 - The address we type in the address bar of the browser is called URL (Uniform Resource Locator).
@@ -60,32 +64,58 @@
 - Document object model is a model that represents the objects or elements (i.e. paragraphs, images, links) in our HTML document.
 - It is an in-memory representation of the elements on the page
 
-**`DOCTYPE` Declaration:** `<!DOCTYPE html>` says the browser that this is a HTML5 document.
+## `DOCTYPE` Declaration
 
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>google</title>
-      </head>
-      <body></body>
-    </html>
+- `<!DOCTYPE html>` says the browser that this is a HTML5 document.
+
+  ```HTML
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>google</title>
+    </head>
+    <body></body>
+  </html>
+  ```
 
 ## `<html>` element
 
 - Inside the `html` element, we define the structure of a web page.
 - As a best practice we add `lang` attribute with `html` element to tell the search engine that what is the language of the webpage.
 
-      <html lang="en">
+  ```HTML
+  <html lang="en">
+  ```
 
 ## `<head>` element
 
-- We use the `<head>` element to give browsers and search engines information about a web page.
+- We use the `<head>` element to give browsers and search engines **information about a web page**.
 - Inside the `<head>` element we can declare `<style>` element to define CSS styles.
+
+  ```HTML
+  <head>
+    <title>google</title>
+    <style>
+      img {
+        width: 100px;
+      }
+    </style>
+  </head>
+  ```
+
+- We use `<title>` element to specify the title of a page that appears on the browser tab.
+
+  ```HTML
+  <title>google</title>
+  ```
+
 - We use `<meta>` elements for giving information about the web page.
 
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ```HTML
+  <meta charset="UTF-8">   <!-- Defines the character set -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Configure the viewport. Here we are setting the initial width and the zoom factor for the viewport -->
+  ```
 
 ### Character Set
 
@@ -102,7 +132,7 @@
 
 ## `<body>` element
 
-- Here we add elements that would appear on our page
+- Here we add elements that would appear on our page.
 
 ### Text
 
@@ -124,7 +154,7 @@
 
 ### `<i>` and `<b>`
 
-- The `<i>` and `<b>` elements are considered deprecated because HTML should not be used for styling. That’s the role of CSS.
+- The `<i>` and `<b>` elements are considered deprecated because HTML should not be used for styling. That’s the role of CSS. HTML should only be used for structuring content.
 
 ### Heading
 
@@ -137,7 +167,7 @@
 
 ### HTML Entities
 
-- Some characters are reserved in HTML.
+- Some characters are reserved in HTML. And to display them we have to use special notation.
 - Entities are used to display special characters such as angle brackets, copyright symbol, etc.
 - All the entities start with `&` and ends with `;`
 - The most important entities are:
@@ -148,32 +178,37 @@
 
 ### Hyperlinks
 
-- The `<a>` (anchor) element, with its `href` attribute, is used to create a hyperlink to web pages, locations in the same page, files and email addresses.
+- The `<a>` (anchor) element, with its `href` (short for hypertext reference) attribute, is used to create a hyperlink to web pages, locations in the same page, files and email addresses.
 - `<a>` has an attribute `download`. If we want to download an image on a link click, we can use this attribute.
-
-      <a href="images/my-image.jpg" download>My Photo</a>
-
+  ```HTML
+  <a href="images/my-image.jpg" download>My Photo</a>
+  ```
 - We can use `id` in `href` to link to other part of the page
-
-      <a href="#my-image">My Photo</a>
-
+  ```HTML
+  <a href="#my-image">My Photo</a>
+  ```
 - Jump to the top of the page
-
-      <a href="#">Jump to top</a>
-
+  ```HTML
+  <a href="#">Jump to top</a>
+  ```
 - Link to external url
 
-  - Url should start with a protocol (eg `http://`) to represent a resource on a different website.
+  - Url should start with a protocol (eg. `http://`) to represent a resource on a different website.
 
-              <a href="https://google.com">Google</a>
+    ```HTML
+    <a href="https://google.com">Google</a>
+    ```
 
   - If we want the new page to be opened in a new browser tab
-
-          <a href="https://google.com" target="_blank">Google</a>
+    ```HTML
+    <a href="https://google.com" target="_blank">Google</a>
+    ```
 
 - Link to emails
 
-      <a href="mailto:zahid@gmail.com">Email Me</a>
+  ```HTML
+  <a href="mailto:zahid@gmail.com">Email Me</a>
+  ```
 
 - **What is the difference between a link and a hyperlink?**
 
@@ -188,10 +223,12 @@
 - It’s a common best practice to set the `alt` (alternative text) attribute.
   - This helps visually impaired people understand the page content.
   - It helps search engines read this text and understand what we are providing here.
-  - Also, if the image cannot be loaded, the alternative text is displayed.
-- Provide descriptive name to the images so that search engine can better understand and index our pages.
+  - Also, if the image cannot be loaded, the alternative text will be displayed.
+- We should provide descriptive names to the images so that search engine can better understand and index our pages.
 
-      <img src="images/coffee.jpg" alt="A coffee mug on a table">
+  ```HTML
+  <img src="images/coffee.jpg" alt="A coffee mug on a table">
+  ```
 
 - We use the css property `object-fit: cover` so that the image cover the entire containing box.
   - When we set this property our image gets resized and will potentially crop so it covers the entire containing box.
@@ -201,7 +238,9 @@
 
 - The `<video>` and `<audio>` elements are used to display video and audio. These elements have boolean attributes such as `controls`, `autoplay` and `loop`.
 
-      <video src="videos/ocean.mp4" controls autoplay loop></video>
+  ```HTML
+  <video src="videos/ocean.mp4" controls autoplay loop></video>
+  ```
 
 - **Attributes**
 
@@ -212,9 +251,11 @@
 - For styling, set the width using css. We don't have to set the height, the browser will automatically calculate the height based on the aspect ratio of the video.
 - As a best practice, we should provide a fallback text if the browser doesn't support the `<video>` element.
 
-      <video src="videos/ocean.mp4" controls>
-        Your browser doesn't support videos.
-      </video>
+  ```HTML
+  <video src="videos/ocean.mp4" controls>
+    Your browser doesn't support videos.
+  </video>
+  ```
 
 ### Lists
 
@@ -232,10 +273,12 @@
     - So, we can have a term and some details about that term.
     - Inside `<dl>` we have `<dt>` (description term) and `<dd>` (description details)
 
-          <dl>
-            <dt>HTML</dt>
-            <dd>Hypertext Markup Language</dd>
-          </dl>
+      ```HTML
+      <dl>
+        <dt>HTML</dt>
+        <dd>Hypertext Markup Language</dd>
+      </dl>
+      ```
 
 - `<li>` is short for list item.
 - [::marker](https://developer.mozilla.org/en-US/docs/Web/CSS/::marker)
@@ -246,9 +289,12 @@
 - A table can have zero or more `<tr>` (table row) elements.
 - Each `<tr>` element can have zero or more cells.
   - Cells can be data cells (`<td>`) or header cells (`<th>`).
+- By default, the `<table>` element does not have any styles.
 - We can use `colspan` attribute to define how many columns the cell should expand to.
 
-      <th colspan="2">Expenses</th>
+  ```HTML
+  <th colspan="2">Expenses</th>
+  ```
 
 - **CSS styles**:
 
@@ -256,17 +302,19 @@
 
 - **Difference between header and data cells in terms of styling?**
   - By default, in the header (and footer) cells the text is bold and aligned in the center. In contrast, in the data cells texts are aligned to the left.
+- Watch video
 
 ### Containers
 
 - Quite often we need to group a bunch of elements for styling purposes.
-- In HTML we have a few container elements. `<div>` and `<span>` are general purpose containers.
+- In HTML we have a few container elements.
+- `<div>` and `<span>` are general purpose containers.
   - `<div>` (division)
     - `<div>` is a block-level element.
-      - A block-level element always starts on a new line and fill up the entire available space.
+      - **A block-level element always starts on a new line and fill up the entire available space.**
   - `<span>`
     - `<span>` is an inline element. So, it does not take up the entire width of the page.
-    - It is often used for styling texts.
+    - **It is often used for styling texts.**
 
 ### Semantic Elements
 
@@ -275,6 +323,7 @@
   - So, whereever possible we should use these new elements instead of `<div>` and `<span>` because these helps search engines better understand our pages and what they contain.
   - Use `<div>` and `<span>` elements only when no other semantic element is appropriate.
 - The semantic elements in HTML5 are:
+
   - `<header>`
     - Represents introductory content.
     - We can use `<header>` inside a page, `<section>` or `<article>`
@@ -300,6 +349,8 @@
     - Highlights or mark contents.
   - `<time>`
 
+- Watch video
+
 ### Structuring web pages
 
 - Most web pages have at least 3 building blocks. `<header>`, `<main>` and `<footer>`.
@@ -315,6 +366,7 @@
   - `<aside>`
   - `<footer>`
     - `<nav>`
+- Watch video
 
 ---
 
@@ -411,7 +463,8 @@
 
 # Validating Web pages
 
-- Using validation services we can ensure that our HTML/CSS code is valid and follows the official rules. This helps us get better rankings in search engines.
+- Using validation services we can ensure that our HTML/CSS code is valid and follows the official rules.
+- This helps us get better rankings in search engines.
 - Validate html at http://validator.w3.org/
 - Validate css at https://jigsaw.w3.org/css-validator/
 
