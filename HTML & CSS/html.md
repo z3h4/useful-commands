@@ -158,7 +158,7 @@
 
 ### Heading
 
-- In HTML we have 6 heading elements
+- In HTML we have 6 heading elements.
 - Headings are represented using `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`.
 - We should use these headings to create a hierarchy. Otherwise it'll confuse the search engine.
 - **Every web page should have one and only one `<h1>` element.**
@@ -200,9 +200,22 @@
     ```
 
   - If we want the new page to be opened in a new browser tab
+
     ```HTML
-    <a href="https://google.com" target="_blank">Google</a>
+    <a href="https://google.com" target="_blank" rel="noopener">Google</a>
     ```
+
+    - When you link to a page on another site using the `target="_blank"` attribute, you can expose your site to performance and security issues:
+
+      - The other page may run on the same process as your page. If the other page is running a lot of JavaScript, your page's performance may suffer.
+      - The other page can access your window object with the `window.opener` property. This may allow the other page to redirect your page to a malicious URL.
+
+    - Adding `rel="noopener"` or `rel="noreferrer"` to your `target="_blank"` links avoids these issues. In general, when you use `target="_blank"`, always add `rel="noopener"` or `rel="noreferrer"`
+      - `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.
+      - `rel="noreferrer"` has the same effect but also prevents the `Referer` header from being sent to the new page.
+    - [Links to cross-origin destinations are unsafe](https://developer.chrome.com/docs/lighthouse/best-practices/external-anchors-use-rel-noopener/)
+    - [This is How rel=”noopener” Protects Your Outgoing Links](https://www.youtube.com/watch?v=wWzlN096DvA)
+    - [Noopener vs Noreferrer vs Nofollow Links Explained](https://www.youtube.com/watch?v=I3YZPx3VMUw)
 
 - Link to emails
 
