@@ -1,3 +1,24 @@
+# HTTP vs HTTPS
+
+- Without HTTPS the communication between the browser and the server is in plain text. This means that the password you enter or the credit card number you send over the internet can be read by anyone who has the ability to intercept it.
+- HTTPS is designed to solve this problem to make the data sent over the Internet unreadable by anyone other than the sender and the receiver.
+
+## HTTPS
+
+- HTTPS is an extension of the HTTP protocol.
+- With HTTPS data is sending an encrypted form using something called TLS.- TLS stands for transport layer security. If the encrypted data gets intercepted by a hacker all they could see is jumbled data.
+- Let's take a look at how the TLs handshake works. There are several steps
+  1. **TCP Handshake:** Just like in the case for HTTP the browser establishes a TCP connection with the server.
+  2. **Certificate Check** This is where the TLs handshake begins the process sends a "Client Hello"" to the server.
+     - In this Hello message the browser tells the server the following things:
+       - What TLS version it can support. It could be TLS 1.2 TLS 1.3 etc.
+       - What cyber Suite it supports. A cyber Suite is a set of encryption algorithms to use to encrypt data.
+     - After receiving the "Client Hello" the server gets to choose the Cyber suite and the TLs version to use based on the options it got from the client. It sends those in the "Server Hellow" message back to the client.
+     - The server then sends the certificate to the client. The certificate includes a lot of different things. One of the key things is the public key for the server. The client uses the public key in something called asymmetric encryption. In asymmetric encryption a piece of data that is encrypted by a public key can only be decrypted by the private key.
+     - this concludes step two - "the Hellow Phase" of the TLs handshake. At this point the client has a service certificate and the client and server have agreed on the TLS version and the Cyber Suite to use.
+  3. **Key Exchange:** In this step the client and the server come up with a shared encryption key to use to encrypt data.
+     - With asymmetric encryption the data encrypted on the client side using the public key from the server can only be decrypted by the server. This is how the client sends an encryption key safely to the server over the wide open internet. All this is done in the "client key exchange" message. The exact detail varies depending on the Cyber Suite used.
+
 # Process vs Thread
 
 ## Process
@@ -254,7 +275,7 @@ Two common types of proxy are forward proxy and reverse proxy.
 
 ## Reverse Proxy
 
-A reverse proxy sits between the internet and the web servers. It intercepts the requests from clients and talks to the web server on behalf of the clients.
+A reverse proxy sits between **the internet and the web servers**. It intercepts the requests from clients and talks to the web server on behalf of the clients.
 
 ![Reverse Proxy](images/reverse-proxy.png)
 
@@ -275,6 +296,133 @@ Reverse proxies are everywhere. For a modern website, it is not uncommon to have
 - The first layer could be an **edge service like Cloudflare**. The reverse proxies are deployed to hundreds of locations worldwide close to the users.
 - The second layer could be an **API gateway or load balancer at the hosting provider**. Many cloud providers combine these two layers into a single ingress service. The user would enter the cloud network at the edge close to the user, and from the edge, the reverse proxy connects over a fast fiber network to the load balancer where the request is evenly distributed over a cluster of web servers.
 
-## References
+### References
 
 - [Proxy vs Reverse Proxy](https://www.youtube.com/watch?v=4NB0NDtOwIQ)
+
+# API Gateway
+
+- An API gateway is a **single point of entry** to the clients of an application.
+- It sits between the clients and a collection of backend services for the application.
+- An API gateway typically provides several important functions. Some common ones are:
+  - authentication and security policy enforcements
+  - load balancing and circuit breaking,
+  - protocol translation and service discovery,
+  - monitoring, logging, analytics, and billing.
+  - Caching.
+
+### Typical flow of a client request through the API gateway and onto the backend service.
+
+1. Step 1 - the client sends a request to the API gateway. The request is typically HTTP-based. It could be REST, GraphQL, or some other higher-level abstractions.
+2. Step 2 - the API gateway validates the HTTP request.
+3. Step 3 - the API gateway checks the caller’s IP address and other HTTP headers against its allow-list and deny-list. It could also perform basic rate limit checks against attributes such as IP address and HTTP headers. For example, it could reject requests from an IP address exceeding a certain rate.
+4. Step 4 - the API gateway passes the request to an identity provider for authentication and authorization. The API gateway receives an authenticated session back from the provider with the scope of what the request is allowed to do.
+5. Step 5 - a higher level rate-limit check is applied against the authenticated session. If it is over the limit, the request is rejected at this point.
+6. Step 6 and 7 - With the help of a service discovery component, the API gateway locates the appropriate backend service to handle the request by path matching.
+7. Step 8 - the API gateway transforms the request into the appropriate protocol and sends the transformed request to the backend service. An example would be gRPC.
+
+When the response comes back from the backend service, the API gateway transforms the response back to the public-facing protocol and returns the response to the client.
+
+- A proper API gateway also provides other critical services.
+  - For example, an API gateway should track errors and provide circuit-breaking functionality to protect the services from overloading.
+- An API gateway should also provide logging, monitoring, and analytics services for operational observability.
+- An API gateway is a critical piece of the infrastructure. It should be deployed to multiple regions to improve availability. For many cloud provider offerings, the API gateway is deployed across the world close to the clients.
+
+# Documention
+
+- [What happens when you type a URL into your browser?](https://blog.bytebytego.com/p/what-happens-when-you-type-a-url)
+- [Everything You Always Wanted to Know About TCP But Too Afraid to Ask](https://blog.bytebytego.com/p/everything-you-always-wanted-to-know)
+- [The Foundation of REST API: HTTP](https://blog.bytebytego.com/p/the-foundation-of-rest-api-http)
+- [HTTP and Statelessness](https://medium.com/@jaimietn/http-and-statelessness-5e290fec80c0)
+- [HTTP 1.0 -> HTTP 1.1 -> HTTP 2.0 -> HTTP 3.0 (QUIC)](https://blog.bytebytego.com/p/http-10-http-11-http-20-http-30-quic)
+- [Explaining 8 Popular Network Protocols in 1 Diagram](https://blog.bytebytego.com/i/137744340/explaining-popular-network-protocols-in-diagram)
+- [Network Protocols Run the Internet](https://blog.bytebytego.com/p/network-protocols-run-the-internet)
+- [A Crash Course in DNS (Domain Name System)](https://blog.bytebytego.com/p/a-crash-course-in-dns-domain-name?utm_source=profile&utm_medium=reader2)
+- [How does the Domain Name System (DNS) lookup work?](https://blog.bytebytego.com/p/how-does-the-domain-name-system-dns)
+- [HTTPS, SSL Handshake, and Data Encryption Explained to Kids](https://blog.bytebytego.com/i/136212400/https-ssl-handshake-and-data-encryption-explained-to-kids)
+- [Is HTTPs safe?](https://blog.bytebytego.com/i/70478435/is-https-safe)
+- [TCP vs. UDP: 7 Differences You Should Know](https://blog.bytebytego.com/i/113419155/tcp-vs-udp-differences-you-should-know)
+- [URL, URI, URN - Do you know the differences?](https://blog.bytebytego.com/i/132279282/url-uri-urn-do-you-know-the-differences)
+
+## Database
+
+- [How is a SQL statement executed in the database?](https://blog.bytebytego.com/i/69544276/how-is-a-sql-statement-executed-in-the-database)
+- [Database Indexing Strategies](https://blog.bytebytego.com/p/database-indexing-strategies?utm_source=profile&utm_medium=reader2)
+- [Database Indexing Strategies - Part 2](https://blog.bytebytego.com/p/database-indexing-strategies-part?utm_source=profile&utm_medium=reader2)
+- [A nice cheat sheet of different databases in cloud services](https://blog.bytebytego.com/i/136212400/a-nice-cheat-sheet-of-different-databases-in-cloud-services)
+- [Which database shall I use?](https://blog.bytebytego.com/p/which-database-shall-i-use)
+- [How do you decide which type of database to use?](https://blog.bytebytego.com/i/89821739/how-do-you-decide-which-type-of-database-to-use)
+- [How to choose the right database](https://blog.bytebytego.com/i/72593300/how-to-choose-the-right-database)
+- [Understanding Database Types](https://blog.bytebytego.com/p/understanding-database-types)
+- [Factors to Consider in Database Selection](https://blog.bytebytego.com/p/factors-to-consider-in-database-selection)
+- [Key Steps in the Database Selection Process](https://blog.bytebytego.com/p/key-steps-in-the-database-selection)
+- [Vertical partitioning vs horizontal partitioning](https://blog.bytebytego.com/p/vertical-partitioning-vs-horizontal)
+
+### Data Replication
+
+- [Data Replication: A Key Component for Building Large-Scale Distributed Systems](https://blog.bytebytego.com/p/data-replication-a-key-component?utm_source=profile&utm_medium=reader2)
+- [How to Choose a Replication Strategy](https://blog.bytebytego.com/p/how-to-choose-a-replication-strategy?utm_source=profile&utm_medium=reader2)
+- [Read replica pattern](https://blog.bytebytego.com/p/read-replica-pattern)
+- [How to implement read replica pattern](https://blog.bytebytego.com/p/how-to-implement-read-replica-pattern)
+- [Latency and consistency tradeoffs for data replication](https://blog.bytebytego.com/p/latency-and-consistency-tradeoffs)
+
+## Caching
+
+- [A Crash Course in Caching - Part 1](https://blog.bytebytego.com/p/a-crash-course-in-caching-part-1)
+- [A Crash Course in Caching - Part 2](https://blog.bytebytego.com/p/a-crash-course-in-caching-part-2)
+- [A Crash Course in Caching - Final Part](https://blog.bytebytego.com/p/a-crash-course-in-caching-final-part)
+- [A Crash Course in Redis](https://blog.bytebytego.com/p/a-crash-course-in-redis?utm_source=profile&utm_medium=reader2)
+- [The 6 Most Impactful Ways Redis is Used in Production Systems](https://blog.bytebytego.com/p/the-6-most-impactful-ways-redis-is?utm_source=profile&utm_medium=reader2)
+- [Redis Can Do More Than Caching](https://blog.bytebytego.com/p/redis-can-do-more-than-caching?utm_source=profile&utm_medium=reader2)
+- [Why is redis so fast?](https://blog.bytebytego.com/p/why-is-redis-so-fast)
+- [Top caching strategies](https://blog.bytebytego.com/p/top-caching-strategies)
+- [Where do we cache data?](https://blog.bytebytego.com/i/92688517/where-do-we-cache-data)
+- [Redis vs Memcached](https://blog.bytebytego.com/p/redis-vs-memcached)
+
+## Message Queue
+
+- [Why Do We Need a Message Queue?](https://blog.bytebytego.com/p/why-do-we-need-a-message-queue?utm_source=profile&utm_medium=reader2)
+- [How to Choose a Message Queue? Kafka vs. RabbitMQ](https://blog.bytebytego.com/p/how-to-choose-a-message-queue-kafka?utm_source=profile&utm_medium=reader2)
+- [Why is Kafka so fast? How does it work?](https://blog.bytebytego.com/p/why-is-kafka-so-fast-how-does-it?utm_source=profile&utm_medium=reader2)
+
+## API Design
+
+- [What is an API](https://blog.bytebytego.com/i/69544276/what-is-an-api)
+- [How to design a secure web API access for your website?](https://blog.bytebytego.com/p/how-to-design-a-secture-web-api-access)
+- [How do we design effective and safe APIs?](https://blog.bytebytego.com/i/111973267/how-do-we-design-effective-and-safe-apis)
+- [Design Effective and Secure REST APIs](https://blog.bytebytego.com/p/design-effective-and-secure-rest)
+- [Mastering the Art of API Design](https://blog.bytebytego.com/p/api-design)
+- [How to improve API performance](https://blog.bytebytego.com/i/128938667/how-to-improve-api-performance)
+- [Why is RESTful API so popular?](https://blog.bytebytego.com/p/why-is-restful-api-so-popular)
+- [How does REST API work?](https://blog.bytebytego.com/i/89821739/how-does-rest-api-work)
+- [SOAP vs REST vs GraphQL vs RPC](https://blog.bytebytego.com/p/soap-vs-rest-vs-graphql-vs-rpc)
+- [What does API gateway do?](https://blog.bytebytego.com/i/72593300/what-does-api-gateway-do)
+- [What is GraphQL? Is it a replacement for the REST API?](https://blog.bytebytego.com/i/72593300/what-is-graphql-is-it-a-replacement-for-the-rest-api)
+- [What Is GraphQL? REST vs. GraphQL](https://blog.bytebytego.com/i/84137023/what-is-graphql-rest-vs-graphql)
+
+## Scaling
+
+- [How to scale a website to support millions of users?](https://blog.bytebytego.com/p/how-to-scale-a-website-to-support)
+- [From 0 to Millions: A Guide to Scaling Your App - Part 1](https://blog.bytebytego.com/p/from-0-to-millions-a-guide-to-scaling)
+- [From 0 to Millions: A Guide to Scaling Your App - Part 2](https://blog.bytebytego.com/p/from-0-to-millions-a-guide-to-scaling-7b4)
+- [From 0 to Millions: A Guide to Scaling Your App - Part 3](https://blog.bytebytego.com/p/from-0-to-millions-a-guide-to-scaling-b53)
+- [From 0 to Millions: A Guide to Scaling Your App - Part 4](https://blog.bytebytego.com/p/from-0-to-millions-a-guide-to-scaling-47a)
+
+## Misc
+
+- [Explaining JSON Web Token (JWT) to a 10 year old Kid](https://blog.bytebytego.com/i/135350048/explaining-json-web-token-jwt-to-a-year-old-kid)
+- [Password, Session, Cookie, Token, JWT, SSO, OAuth - Authentication Explained - Part 1](https://blog.bytebytego.com/p/password-session-cookie-token-jwt)
+- [Password, Session, Cookie, Token, JWT, SSO, OAuth - Authentication Explained - Part 2](https://blog.bytebytego.com/p/password-session-cookie-token-jwt-ec1)
+- [Sessions, Tokens, JWT, SSO, and OAuth in One Diagram](https://blog.bytebytego.com/i/137535415/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram)
+- [Oauth 2.0 Explained With Simple Terms](https://blog.bytebytego.com/i/135955829/oauth-explained-with-simple-terms)
+- [Batch v.s. Stream Processing](https://blog.bytebytego.com/i/113419155/batch-vs-stream-processing)
+- [Storage systems overview](https://blog.bytebytego.com/p/storage-systems-overview)
+- [How to upload a large file to S3?](https://blog.bytebytego.com/p/how-to-upload-a-large-file-to-s3)
+- [CDN](https://blog.bytebytego.com/i/75883385/cdn)
+- [How does CDN work?](https://blog.bytebytego.com/p/how-does-cdn-work)
+- [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
+- [CAP theorem: one of the most misunderstood terms](https://blog.bytebytego.com/i/75883385/cap-theorem-one-of-the-most-misunderstood-terms)
+- [Why is Nginx called a “reverse” proxy?](https://blog.bytebytego.com/i/75883385/why-is-nginx-called-a-reverse-proxy)
+- [Rate Limiting Fundamentals](https://blog.bytebytego.com/p/rate-limiting-fundamentals)
+- [Rate Limiter For The Real World](https://blog.bytebytego.com/p/rate-limiter-for-the-real-world)
+- [What is a webhook?](https://blog.bytebytego.com/i/130740815/what-is-a-webhook)
