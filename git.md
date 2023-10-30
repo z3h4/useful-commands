@@ -1,4 +1,32 @@
-## Installation
+# Git
+
+- git is the most popular version control system in the world.
+- A version control system records the changes made to our code over time in a special database called repository.
+- We can look at our project history and see who has made what changes, when and why.
+- And if we screw something up, we can easily revert our project back to an earlier state.
+- So, in a nutshell, with a version control system, we can track our project history and work together.
+
+## Why git?
+
+Git is
+
+- free
+- open source
+- super fast
+- sclable
+- faster branching/merging.
+
+## Types of version control system
+
+Version control system fall into 2 categories-
+
+1. **Centralized:** In a centralized system, all team members connect to a central server to get the latest copy of the code and share their changes with others. Example: Subversion, Microsoft Team Foundation Server.
+
+- **Cons:** Single point of failure - if the server goes offline, we cannot collaborate or save snapshots of our projects.
+
+2. **Distributed:** In a distributed system, every team member has a copy of the project with his history on their machine. So, we can save snapshot of our project locally on our machine. If the central server is offline, we can synchronize our work directly with others. Example: Git, Mercurial.
+
+# Installation
 
 Download and install git from https://git-scm.com/downloads
 
@@ -36,13 +64,43 @@ All these configurations are stored in a text file. To see/edit this file use
 
         git config --global -e
 
+- We can specify git configuration settings at 3 different levels
+
+  1. **System:** The settings will apply to all users in the current computer.
+  2. **Global:** The settings will apply to all repositories of the current user.
+  3. **Local:** The settings will appy to the current repository, or the repository in the current folder.
+
 ### Check git version
 
     git --version
 
 ### Initialize a git repository
 
-        git init
+- The first time we want to add files to a git repository, we have to initialize a new empty repository.
+
+  ```
+  git init
+  ```
+
+- **Watch video**
+  - Git Workflow
+  - Staging Files
+
+### Staging Files
+
+- To see the status of the working directory and the staging area
+
+  ```
+  git status
+  ```
+
+- To add files we can use patterns
+
+  ```
+  git add *.txt
+  ```
+
+- `git add .` command adds the entire directory recursively.
 
 ### Make terminal window colorful
 
@@ -56,23 +114,27 @@ All these configurations are stored in a text file. To see/edit this file use
 ## `.gitignore`
 
 - Use this to ignore files and directories in git.
-- Adding any file/directory to `gitignore` only works if we have not already included that file/directory in our git repository.
+- Adding any file/directory to `.gitignore` only works if we have not already included that file/directory in the git repository.
 - This file should be at the root of the project.
 - https://github.com/github/gitignore contains various `gitignore` templates for different programming languages.
 
 ### `.gitignore` global configuration
+
 - To exclude same (type of) files from all projects, use global `.gitignore` file localted at the root directory.
+
   - For example, we never want to include `.DS_Store` files, so make a global rule.
+    ```
+    echo .DS_Store >> ~/.gitignore
+    ```
 
-            echo .DS_Store >> ~/.gitignore
- - Now tell git to use it for all repositories:
-
-            git config --global core.excludesfile ~/.gitignore
+- Now tell git to use it for all repositories:
+  ```
+  git config --global core.excludesfile ~/.gitignore
+  ```
 
 ## Using multiple github accounts with ssh keys
+
 - https://gist.github.com/oanhnn/80a89405ab9023894df7
-
-
 
 ### Diff Tool
 
@@ -94,43 +156,96 @@ All these configurations are stored in a text file. To see/edit this file use
 
 ### List files in the staging area
 
-      git ls-files
+```
+git ls-files
+```
 
 ### Remove a file from both the working directory and staging area
 
-      git rm fileName.js
+```
+git rm fileName.js
+```
 
 ### Remove a file from the staging area only
 
-      git rm --cached fileName.js
+```
+git rm --cached fileName.js
+```
 
 ### Renaming a file
 
-      git mv old-name.txt newName.js
+```
+git mv old-name.txt newName.js
+```
+
+### Viewing History
+
+- We use `log` command to see the history of commits we have made.
+
+  ```
+  git log
+  ```
+
+- To view short summary of the commits
+
+  ```
+  git log --oneline
+  git log --oneline --reverse   # Display the history in reverse order.
+  ```
+
+- `master` is the main branch or main line of work in git.
+- `HEAD` is a reference to the current branch. This is how git knows which branch we are working on.
+
+### Viewing a commit
+
+- To see exactly what changes we have made in a given commit we use `show` command.
+
+  ```
+  git show COMMIT-ID/HEAD~2
+  ```
+
+- If we want to see the exact version of the file stored in a particular commit
+  ```
+  git show HEAD~2:path-to-that-file
+  ```
+- See all the files and directories in a commit
+
+  ```
+  git ls-tree COMMIT-ID/HEAD~2
+  ```
 
 ### Unstaging a file
 
-      git restore --staged fileName.js
+```
+git restore --staged fileName.js
+```
 
 ### Discard local changes
 
-      git restore fileName.js
+```
+git restore fileName.js
+```
 
 - It does not discard newly added files. Because those files are untracked.
 - To remove all the newly added untracked files, use
 
-      git clean -fd
+  ```
+  git clean -fd
+  ```
 
-- `-f` force
-- `-d` remove whole directory
+  - `-f` force
+  - `-d` remove whole directory
 
 ### Restoring a file to an earlier version
 
 - By default git will restore the file from the next environment.
-- So, if the file we want to store is in the working directory, git will restore it from the staging area.
-- And if the file is in the staging area, git will restore it from the last snapshot/commit.
 
-      git restore --source=HEAD~1 fileName.js
+  - So, if the file we want to store is in the working directory, git will restore it from the staging area.
+  - And if the file is in the staging area, git will restore it from the last snapshot/commit.
+
+  ```
+  git restore --source=HEAD~1 fileName.js
+  ```
 
 ## Browsing History
 
