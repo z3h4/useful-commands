@@ -131,6 +131,13 @@
 - [Rails Concerns: To Concern Or Not To Concern](https://blog.appsignal.com/2020/09/16/rails-concers-to-concern-or-not-to-concern.html)
   - [`included` method](https://api.rubyonrails.org/v7.0.4.2/classes/ActiveSupport/Concern.html#method-i-included)
 - [An Introduction to Polymorphism in Ruby on Rails](https://blog.appsignal.com/2022/05/25/an-introduction-to-polymorphism-in-ruby-on-rails.html)
+- [When To Be Concerned About Concerns](https://www.cloudbees.com/blog/when-to-be-concerned-about-concerns)
+
+### Duck Typing
+
+- [Duck typing and the importance of good public interfaces](https://www.brainstobytes.com/duck-typing/)
+- [Duck Typing in Ruby](https://viblo.asia/p/duck-typing-in-ruby-1VgZv9gOKAw)
+- [Duck Typing in Rails](https://blog.eq8.eu/article/duck-type-ducktyping-in-rails.html)
 
 ## Association
 
@@ -376,6 +383,36 @@
 - [10 Rails Antipatterns to avoid - Writing well reasoned code](https://acuments.com/10-rails-antipatterns-to-avoid-writing-well-reasoned-code.html)
 - [Antipatterns: Model](https://gist.github.com/dcuadraq/f63476b3048c5b76318abd28831a00d6)
 
+# API
+
+- [API Lifecycle, Versioning, and Deprecation](https://zapier.com/engineering/api-geriatrics/)
+- [4 Ways Your API Is Not Quite What I Want](https://zapier.com/engineering/api-pet-peeves/)
+- [Who Actually Uses Your API?](https://zapier.com/engineering/non-developer-experience/)
+- [The Perfect Integration-ready API](https://zapier.com/engineering/integration-ready-api/)
+- [3 Ways to Make Your API Responses Flexible](https://zapier.com/engineering/flexible-api-responses/)
+- [The Best Tools for Working with API Requests](https://zapier.com/engineering/api-request-tools/)
+- [API Best Practices: Webhooks, Deprecation, and Design](https://zapier.com/engineering/api-best-practices/)
+
+## Cross-Origin Resource Sharing (CORS)
+
+- [What is CORS?](https://aws.amazon.com/what-is/cross-origin-resource-sharing/)
+- [Rails CORS Guide: What It Is and How to Enable It](https://www.stackhawk.com/blog/rails-cors-guide/)
+- [CORS](https://infinum.com/handbook/rails/api/cors)
+- [Rails CORS Middleware For Multiple Resources](https://danielabaron.me/blog/rails-cors-middleware-multiple/)
+- [Understanding CORS When Using Ruby on Rails As An API](https://medium.com/ruby-daily/understanding-cors-when-using-ruby-on-rails-as-an-api-f086dc6ffc41)
+
+# Webhooks
+
+- [Twilio: What is a Webhook?](https://www.twilio.com/docs/glossary/what-is-a-webhook)
+- [Zapier: What are Webhooks?](https://zapier.com/blog/what-are-webhooks/)
+- [Webhook vs. API: differences (and when to use each)](https://zapier.com/blog/webhook-vs-api/)
+- [Add Webhooks to Your API the Right Way](https://zapier.com/engineering/webhook-design/)
+- [Webhooks for Productive Developers](https://zapier.com/engineering/using-webhooks/)
+
+# Ngrok
+
+- [Using ngrok in Rails in 2022](https://developer.vonage.com/en/blog/using-ngrok-in-rails-in-2022)
+
 # System Design
 
 - [System Design Interview Format - 6 Steps to passing](https://www.kcoleman.me/2020/06/14/system-design-interview-format.html)
@@ -398,7 +435,31 @@
 - [Debugging exceptions in Rails](https://blog.appsignal.com/2018/02/13/debugging-exceptions-in-rails.html)
 - [Ensuring execution, retrying failures and reraising exceptions in Ruby](https://blog.appsignal.com/2018/05/16/ensure-retry-and-reraise-exceptions-in-ruby.html)
 - [Raising Exceptions in Ruby](https://rollbar.com/guides/ruby/how-to-raise-exceptions-in-ruby/#)
+- [How to Handle Exceptions in Ruby](https://rollbar.com/guides/ruby/how-to-handle-exceptions-in-ruby/#)
+- [How to handle Ruby exceptions](https://www.bootrails.com/blog/how-to-handle-ruby-exceptions/)
 - [Don’t confuse Ruby’s ‘throw’ statement with ‘raise’](https://coderwall.com/p/lhkkug/don-t-confuse-ruby-s-throw-statement-with-raise)
+- [Clean Code and the Art of Exception Handling](https://www.toptal.com/abap/clean-code-and-the-art-of-exception-handling)
+- [Rescuing from ActiveRecord Exceptions in Ruby on Rails](https://medium.com/@wyou130/rescuing-from-activerecord-exceptions-in-ruby-on-rails-a21a4ed6e69b)
+- [Error Handling in Rails Applicaitons](https://backend.turing.edu/module3/lessons/error_handling)
+- [Application Exception Handling in Rails](https://takeonrules.com/2022/04/01/application-exception-handling-in-rails/)
+- [Error Handling in Rails — The Modular Way](https://medium.com/rails-ember-beyond/error-handling-in-rails-the-modular-way-9afcddd2fe1b)
+- [The art of errors](https://www.paweldabrowski.com/articles/art-of-errors-in-ruby)
+
+## Exception Handling in Rails API
+
+- [Handling exceptions in Rails API applications](https://driggl.com/blog/a/handling-exceptions-in-rails-applications)
+- [Handling Errors in an API Application the Rails Way](https://blog.rebased.pl/2016/11/07/api-error-handling.html)
+- [Rails API elegant error handling — The centralized way](https://robinseo.medium.com/rails-api-elegant-error-handling-the-centralized-way-c564dc5d1fa3)
+- [Building APIs with Rails: Handling Errors Nicely](https://phil.tech/2017/building-apis-with-rails-handling-errors-nicely/)
+- [Rails API Painless Error Handling and Rendering](https://www.thegreatcodeadventure.com/rails-api-painless-error-handling-and-rendering-2/)
+
+# Logging
+
+- [Making the Most of Your Logs in Rails](https://blog.appsignal.com/2023/03/01/making-the-most-of-your-logs-in-rails.html)
+
+# Debugging
+
+- [Ruby Debugging Magic Cheat Sheet](https://www.schneems.com/2016/01/25/ruby-debugging-magic-cheat-sheet.html)
 
 # Testing
 
@@ -413,6 +474,12 @@
 - [Mocking with RSpec: Doubles and Expectations](https://semaphoreci.com/community/tutorials/mocking-with-rspec-doubles-and-expectations)
 - [How to Use RSpec Mocks (Step-By-Step Tutorial)](https://www.rubyguides.com/2018/10/rspec-mocks/)
 - [The Case of the Flaky Test Suite](https://www.honeybadger.io/blog/case-of-the-flaky-test-suite/)
+
+## Capybara
+
+- [Introduction to Rails testing with RSpec and Capybara](https://rubyyagi.com/intro-rspec-capybara-testing/)
+- [5 Tips for More Effective Capybara Tests](https://semaphoreci.com/community/tutorials/5-tips-for-more-effective-capybara-tests)
+- [How We Test Rails Applications](https://thoughtbot.com/blog/how-we-test-rails-applications)
 
 ## FactoryBot
 
@@ -437,6 +504,8 @@
 
 - [Complete Guide To Managing User Permissions In Rails Apps](https://www.honeybadger.io/blog/complete-guide-to-managing-user-permissions-in-rails-apps/)
 - [Multi-Factor Authentication for Rails With WebAuthn and Devise](https://www.honeybadger.io/blog/multi-factor-2fa-authentication-rails-webauthn-devise/)
+- [Authentication for Great Apps](https://zapier.com/engineering/api-authentication/)
+- [API Keys vs OAuth Tokens vs JSON Web Tokens](https://zapier.com/engineering/apikey-oauth-jwt/)
 
 ## Serialization
 
@@ -566,3 +635,4 @@ Serialization is the process of translating a data structure or object state int
 
 - The Well-Grounded Rubyist
 - Metaprogramming Ruby 2
+- Practical Object-Oriented Design: An Agile Primer Using Ruby
