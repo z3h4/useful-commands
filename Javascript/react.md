@@ -24,15 +24,16 @@
   - Instead, we describe a webpage using small, reusable components, and React will take care of efficiently creating and updating DOM elements.
 - So, components help us write reusable, modular, and better organized code.
 - Essentially a React application is a tree of components with the `App` being the root bringing everything together.
+- [Video Lecture](https://members.codewithmosh.com/courses/ultimate-react-part1-1/lectures/45915058)
 
 ## How React Works?
 
 - When our application starts, React takes a tree of components and builds a JavaScript data structure called the virtual DOM.
   - This virtual DOM is different from the actual DOM in the browser.
-  - It’s a lightweight, in-memory representation of our component tree.
+  - It’s a lightweight, in-memory representation of our component tree where each node represents a component and it's properties.
 - When the state or the data of a component changes, React updates the corresponding node in the virtual DOM to reflect the new state.
 - Then, it compares the current version of virtual DOM with the previous version to identify the nodes that should be updated. It’ll then update those nodes in the actual DOM.
-- In browser-based apps, updating the DOM is done by a companion library called ReactDOM. In mobile apps, React Native uses native components to render the user interface.
+- Technically updating the DOM is not done by React itself. In browser-based apps, it is done by a companion library called ReactDOM. In mobile apps, React Native uses native components to render the user interface.
 
 ## JSX
 
@@ -70,19 +71,33 @@ npm run dev
 - It includes basic info about the app or project
   - Name of the application
   - It’s version
-  - It’s dependencies etc.
+  - A list of scripts
+  - It’s dependencies (dependent libraries)
+  - It's development dependencies. They are not going to be deployed with our application in the future.
 - To create a `package.json` file, run
   `npm init` (Then answers some questions)
   `npm init --yes` (Create project with default values)
 
-### `node_modules`
+### `node_modules` folder
 
-- All the installed packages and their dependencies are stored under `node_modules` folders.
+- This is where all the third party and their dependencies are installed.
   - This folder should be excluded from the source control.
 
-### tsconfig.json
+### `public` folder
+
+- This is where our public assets are stored like images, video files etc.
+
+### `src` folder
+
+- It contains the source code of our application.
+
+### `tsconfig.json`
 
 - This file contains bunch of settings for telling the Typescript compiler how to compile our code to Javascript.
+
+### `vite.config.ts`
+
+- Configuration file for vite.
 
 ## Component
 
