@@ -6,6 +6,7 @@
 interface Props {
   items: string[];
   heading: string;
+  count: number;
   onSelectItem: (item: string) => void;
   children: string;   // if the children does not contain any HTML component
     //or

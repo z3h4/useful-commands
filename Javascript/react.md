@@ -170,7 +170,7 @@ npm run dev
 
 To set a default value
 
-1. Make that prop optional using ?
+1. Make that prop optional using `?`
 
    ```Typescript
    interface Props {
@@ -191,6 +191,21 @@ To set a default value
 - To allow a set of accepted values, specify those values (e.g. color)
 
 # Styling Components
+
+### CSS Module
+
+- A CSS module is a CSS file in which all class names are scoped locally.
+- It allows us to use same class names in different files without worrying about name clashes.
+
+### Separation of Concerns
+
+- The separation of concerns is an important design principle in software engineering.
+- This principle recommends that we should divide a program into distinct sections or modules where each section handles specific functionality, rather than having everything in one place.
+- It helps us build modular applications and our application will be easier to understand, easier to maintain and easier to modify.
+- With this principle, the complexity and implementation details of a module are hidden behind a well-defined interface.
+- Separation of concerns is not just about organizing code into files, but rather dividing areas of functionality.
+  - Therefore, CSS-in-JS does not violate the separation of concerns principle as all the complexity for a component remains hidden behind its interface.
+- See video
 
 ### Inline Styles
 
@@ -214,7 +229,7 @@ We can add icons to our applications using the `react-icons` library.
 
   1. React updates states asynchronously. (for performance reasons)
 
-     - So updates are not applied immediately. Instead, they’re batched and applied at once after all event handlers have finished execution. Once the state is updated, React re-renders our component.
+     - So updates are not applied immediately. To minimize unnecessary re-renders, React batches the updates, applies them all at once after all event handlers have finished execution and then re-renders a component.
 
   2. State variables are stored outside of a component in memory.
 
@@ -245,6 +260,9 @@ We can add icons to our applications using the `react-icons` library.
 - React expects our function components to be pure. A pure component should always return the same JSX given the same input.
   - This is for performance reasons. So, if the inputs of a component have not changed, React can skip re-rendering that components.
 - To keep our components pure, we should avoid making changes during the render phase.
+- How can we keep our components pure?
+  - We should keep any type of changes out of the render phase. We should not change any object that existed before rendering.
+  - But it is totally fine to update an object that was created as part of rendering.
 
 ## `React.StrictMode`
 
@@ -260,7 +278,7 @@ We can add icons to our applications using the `react-icons` library.
 
 ## Updating Objects/Arrays
 
-- When updating objects or arrays, we should treat them as immutable objects.
+- When updating objects or arrays, we should treat them as immutable (readonly).
 - Instead of mutating them, we should create new objects or arrays to update the state.
   - `Immer` is a library that can help us update objects and arrays in a more concise and mutable way.
 

@@ -4,6 +4,8 @@
 
 OOP is basically a style of programming where we see a program as a collection of objects that talk to each other to perform some functionality.
 
+- [Mosh Youtube Video](https://www.youtube.com/watch?v=pTB0EiLXUC8)
+
 ## Difference Between a Function and a Method
 
 If a function is part of an object, in OOP terms we refer to that function as a method.
@@ -42,7 +44,9 @@ A class is a blueprint or template for creating objects. An object is an instanc
 
 ### What is encapsulation?
 
-Encapsulation is the first principle of object-oriented programming. It suggests that we should bundle the data and operations on the data inside a single unit (class).
+- Encapsulation is the first principle of object-oriented programming.
+- It suggests that we should bundle the data and operations on the data inside a single unit (object).
+- [LaunchSchool](https://launchschool.com/books/oo_ruby/read/the_object_model#whyobjectorientedprogramming)
 
 ### Why should we declare fields as private?
 
@@ -94,6 +98,8 @@ With inheritance we can reuse code and achieve polymorphic behavior.
 
 - Poly means many and morph means form. So, Polymorphism means many forms.
 - It’s basically a mechanism that allows an object to take many forms and behave differently.
+- Polymorphism is the ability for different types of data to respond to a common interface.
+  - That is, it lets objects of different types respond to the same method invocation.
 - This helps us build extensible applications.
 
 ### What is a module?
@@ -119,7 +125,7 @@ With inheritance we can reuse code and achieve polymorphic behavior.
 ### What’s a Mixin?
 
 - A mixin can basically be thought of as a set of code that can be added to one or more classes to add additional capabilities without using inheritance.
-- In Ruby, a mixin is code wrapped up in a module that a class can include or extend
+- In Ruby, a mixin is code wrapped up in a module that a class can include or extend.
 
 ### Access control in Ruby
 
@@ -180,7 +186,7 @@ Load and need are both used in Ruby to load available code into the current code
 
 ### Ruby `yield` Keyword
 
-- `yield` is a Ruby keyword that is used to transfer control from a method to a block and then back to the method again once the blockexecuted.
+- `yield` is a Ruby keyword that is used to transfer control from a method to a block and then back to the method again once the block is executed.
 - `yield` is a Ruby keyword that calls a block when you use it.
 
 ### What are the differences between Procs and Lambdas?
@@ -189,6 +195,24 @@ Load and need are both used in Ruby to load available code into the current code
 - `return` and `break` behave differently in procs and lambdas. Lambdas will not interrupt the flow, even if `return` or `break` is encountered.
   - Procs return from the current method, while lambdas return from the lambda itself.
 - There is no dedicated Lambda class. A `lambda` is just a special `Proc` object. If you take a look at the instance methods from `Proc`, you will notice there is a `lambda?` method.
+
+### How does Ruby’s garbage collection work?
+
+- Ruby Garbage Collection (GC) is the process by which Ruby automatically manages memory.
+- When your Ruby code creates objects (strings, arrays, hashes, etc.), they occupy space in memory. If an object is no longer reachable (no variable points to it anymore), it becomes garbage — and Ruby’s GC can safely reclaim that memory.
+- https://chatgpt.com/s/t_68f40691bd18819198fbb40dde647b0d
+
+### What is metaprogramming in Ruby?
+
+- Metaprogramming is writing code that manipulates classes, methods, or objects at runtime.
+- It allows dynamic method creation, reflection, and DSL building using features like `define_method`, `method_missing`, `send`, and `class_eval`.
+- It’s powerful but should be used carefully for readability and maintainability.
+- https://chatgpt.com/s/t_68f4195b46b08191ae378fb88bb00899
+
+### What are frozen objects in Ruby, and why are they useful?
+
+- A frozen object in Ruby is an immutable object that cannot be modified after creation.
+- It’s useful for improving performance, ensuring thread safety, and preventing accidental mutation — especially for constants and string literals.
 
 # Rails
 
@@ -230,6 +254,65 @@ Here are some Ruby on Rails features that make it stand out from the IT crowd:
   - The Model handles data and business logic.
   - The View is for the presentation of the data and the user interface.
   - The Controller ties the two together by getting data from the Model and showing the View to the user.
+
+## Explain the Rails request lifecycle from browser request to response.
+
+When you hit a Rails app endpoint (like https://example.com/posts/1), a lot happens behind the scenes before you get your HTML or JSON response.
+
+1. The browser sends an HTTP request to your Rails application:
+   - Includes URL, method (GET, POST, etc.), headers, cookies, params, and body.
+   - Example:
+     ```Ruby
+     GET /posts/1 HTTP/1.1
+     Host: example.com
+     ```
+2. This request reaches your web server (like Nginx, Apache, or Caddy).
+3. Your web server forwards the request to the Rails application server, which could be:
+
+   - Puma (default in modern Rails)
+   - Unicorn
+   - Passenger
+
+   a. The application server is responsible for:
+
+   - Managing Ruby threads/processes
+   - Passing requests to the Rails framework via Rack
+
+4. Rack Middleware Stack
+
+   - Rails sits on top of Rack, a Ruby webserver interface that provides a common API between web servers and Ruby frameworks.
+   - When the request reaches Rack, it runs through a middleware stack, which are small classes that process the request before hitting Rails’ router.
+   - Each middleware can:
+     - Modify the request
+     - Short-circuit (return a response early, e.g., cached pages)
+     - Pass the request deeper down the stack
+
+5. After passing through middleware, the request reaches the Rails router:
+   - The router matches the URL and HTTP verb to a controller action.
+6. Rails runs the matched controller method
+   - During this phase:
+     - Parameters are available via params
+     - Cookies and session data can be accessed
+     - Business logic and Active Record queries run
+     - Background jobs may be enqueued
+     - API responses (JSON/XML) can be constructed
+7. After the action finishes, Rails determines what to render
+   - For HTML requests Rails automatically looks for a view template matching the action name.
+   - For API responses Rails might render JSON directly or use `JBuilder` / `ActiveModel::Serializer`.
+   - If applicable, the view is wrapped in a layout
+8. The rendered HTML/JSON is sent back up the middleware stack.
+
+   - At this stage, middlewares can:
+     - Modify headers (e.g., add caching headers)
+     - Compress content (e.g., gzip)
+     - Log performance metrics
+
+9. Finally, a Rack-compliant response is returned
+10. The web/application server sends the HTTP response back to the browser, which:
+    - Parses HTML/JSON
+    - Renders the page or processes the API response
+
+- https://chatgpt.com/s/t_68f4412130a08191bc237b70815386af
 
 ## Routing
 
@@ -470,6 +553,273 @@ The execute method can be used to execute arbitrary SQL.
 While there can be many reasons behind an application’s slowness, database queries usually play the biggest role in an application’s performance footprint. Loading too much data into memory, N+1 queries, lack of cached values, and the lack of proper databases indexes are the biggest culprits that can cause slow requests.
 
 - https://semaphoreci.com/blog/2017/05/09/faster-rails-is-your-database-properly-indexed.html
+
+### How would you optimize a slow Active Record query or an endpoint under heavy load?
+
+1.  **Step 1: Identify the Bottleneck**
+
+    a. Rails logger to see SQL execution. Identify expensive queries.
+
+    b. Use `EXPLAIN/ANALYZE` command in SQL to see query plan, indexes used, and whether a full table scan occurs.
+
+    ```Ruby
+    User.where(email: "test@example.com").explain
+    ```
+
+    c. Use Bullet gem to detect N+1 queries.
+
+    d. Use `rack-mini-profiler` for timing
+
+    d. Use tools like New Relic/Scout/Skylight/Datadog/AppSignal to monitors performance under real traffic.
+
+    - View slowest queries, error rates, database time
+
+Once you know where the time is spent (DB, memory, Ruby code, I/O), you can target fixes.
+
+2.  **Step 2: Optimize ActiveRecord Queries**
+
+    a. Use `includes`, `preload`, `eager_load` to get rid of N + 1 queries.
+
+    b. Add indexes on foreign keys and frequently filtered columns.
+
+    c. Avoid loading unnecessary columns. Select only needed columns with `select`.
+
+    d. Use `pluck` or `exists?` When Appropriate.
+
+    - `pluck` pulls only needed fields; avoids instantiating AR objects.
+
+    e. Cache Expensive Queries
+
+    - If a query takes hundreds of milliseconds, runs frequently, and returns data that doesn’t change often, then caching can save database load, reduce latency, and improve scalability.
+    - https://chatgpt.com/s/t_68f46cd104648191af274d4cbde59ea1
+
+    g. Avoid joining too many tables unnecessarily. Sometimes a subquery or prefetch is faster.
+
+3.  **Cache Aggressively**
+
+    a. Redis for query result caching
+
+    b. Fragment or page caching in views
+
+    - Cache heavy partials or full pages when data changes infrequently.
+
+    c. HTTP-level caching with ETags
+
+    d. Browser caching headers
+
+4.  **Move Heavy Work**
+
+    a. Background jobs with Sidekiq
+
+    b. Batch processing for large datasets
+
+    c. Async notifications and emails
+
+    d. Move slow logic (emails, exports, notifications) to Sidekiq
+
+5.  **Endpoint Optimization**
+
+    a. Pagination (limit, offset, cursor)
+
+    - Use limit/offset. But it is slow with large offsets. In that case use Cursor-based pagination.
+
+      - In cusros-based pagination, instead of skipping rows, we use a stable ordering column (like `id` or `created_at`) and remember the last seen value (“cursor”).
+
+    - https://chatgpt.com/s/t_68f46e7df3c08191b9df8a14844ae29e
+
+    b. Efficient serializers
+
+    c. Response compression
+
+    d. Rate limiting
+
+    - https://chatgpt.com/s/t_68f475ebcc5481918f30daf92e6d6a25
+
+    - Use `Rack::Attack` to protect endpoints under load.
+
+      - https://chatgpt.com/s/t_68f4838c7988819182386f4ce7d23274
+
+6.  **Database**
+
+    a. Proper indexing strategy
+
+    b. Connection pooling
+
+    - Connection pooling is a mechanism that keeps a reusable pool of database connections open instead of opening a new connection for every request.
+
+      - Without pooling → every incoming request creates and tears down a new DB connection → slow and expensive.
+
+      - With pooling → connections are kept open and checked out / returned as requests come and go.
+
+      - https://chatgpt.com/s/t_68f46865bfac8191864f732255b50252
+      - https://chatgpt.com/s/t_68f49078822c8191aa47cad99f49d2c2
+
+    c. Read replicas for read-heavy apps
+
+7.  **Monitor**
+
+    a. APM tools (New Relic, DataDog, AppSignal)
+
+    b. Performance alerts
+
+    c. Continuous monitoring
+
+- If we still require improvement, we can do Infrastructure-Level Optimization
+
+  a. Scale Vertically & Horizontally
+
+  - DB replication: read replicas for heavy read loads
+
+  - CDN: offload static assets and API responses
+
+  - Load balancer: distribute requests across multiple app servers
+
+  b. Caching Layers
+
+  - Use Redis / Memcached for caching query results or computed data
+
+  - Use HTTP reverse proxies (like Cloudflare or Varnish)
+
+### How do you apply service objects, form objects, or presenters in Rails?
+
+- https://chatgpt.com/s/t_68f4902a3b7081919fb287ab39a39556
+
+### What strategies would you use to scale a Rails application horizontally?
+
+- https://chatgpt.com/s/t_68f4913af9e48191aac9d6392e231490
+
+### What are ActiveJob and Sidekiq, and how do they work with Redis?
+
+- https://chatgpt.com/s/t_68f491e4f328819191af2f1da2715843
+
+### What are background jobs, and how do you ensure idempotency and retries?
+
+- https://chatgpt.com/s/t_68f4937311f48191af5b7cc1a2c9e6fa
+
+### Process, thread and connection pool
+
+# 1. Processes 🧑‍💻
+
+A process is an independent unit of execution. It has its own memory space, code, and resources. In the context of web servers like Puma or Unicorn, each worker is essentially a process.
+
+### Puma Workers:
+
+- Each worker in Puma runs in its own process.
+- For example, if you configure `workers = 4`, Puma starts 4 separate processes to handle requests.
+
+### System Processes:
+
+- On your machine, there’s a system-wide process table where each process can be monitored, killed, or managed by the OS.
+
+### In Rails:
+
+- Workers handle incoming HTTP requests.
+- Each worker is an isolated process, with its own memory space.
+
+---
+
+# 2. Threads 🧵
+
+A thread is a smaller unit of execution within a process. Multiple threads can run within a single process, sharing the same memory space. The threads in a process communicate with each other easily because they all access the same memory, but this can also lead to complications like race conditions (if not handled properly).
+
+### Puma’s Threading Model:
+
+- Puma’s ability to handle multiple threads within each worker is key to how it scales.
+- You can configure Puma to run, say, 5 threads per worker.
+- Each thread is capable of handling a request.
+- If a thread is waiting on a resource (like a database query), another thread can continue processing requests.
+
+### In Rails:
+
+- Each thread is tied to a specific request.
+- If the request needs to interact with the database, it will borrow a connection from the connection pool.
+- Threads are lighter weight than processes, but you need to ensure thread safety.
+
+---
+
+# 3. Connection Pools 💧
+
+The connection pool is essentially a cache of reusable database connections. Instead of opening a new database connection for each incoming request, the pool allows multiple threads or processes to reuse existing connections, improving efficiency.
+
+### How it works:
+
+- Threads/Workers request a connection from the pool when they need to interact with the database.
+- Once they’re done (i.e., the query is finished), they return the connection to the pool for reuse.
+- If there are no free connections in the pool, the thread will have to wait for one to become available, or the request will timeout.
+
+### In Rails:
+
+- ActiveRecord automatically manages the connection pool for you.
+- The pool size is configured in `database.yml` under the `pool` setting.
+- The pool size should be carefully chosen based on the number of threads and workers you're running.
+
+---
+
+# Putting It All Together 👨‍💻
+
+Let’s break it down into a scenario with Puma, Threads, and Connection Pool.
+
+### Example: Puma with 4 Workers, 5 Threads
+
+- **Processes**: You have 4 workers in Puma (`workers = 4`), so there are 4 separate processes running the Rails application.
+- **Threads**: Each worker has 5 threads (`threads = 5`), so there are 5 threads per worker. These threads handle incoming requests.
+
+### Connection Pool:
+
+- Each thread needs to interact with the database. When a thread starts a query, it asks the connection pool for a connection.
+- If the pool is configured with `pool: 20`, you have 20 total database connections available. If all threads are using them, any other thread that needs a connection will have to wait until one is free. If the wait time exceeds the timeout configuration (default is 5000ms), an error will be raised.
+
+---
+
+### Flow of Requests:
+
+1. When a request comes in, one of the 5 threads in Worker 1 will process it.
+2. The thread checks if there’s a free database connection available in the pool.
+3. If yes, the thread takes that connection to interact with the database.
+4. If no, the thread waits for a free connection.
+5. Once the database query is complete, the connection is released back into the pool, and the thread can continue serving the next request.
+
+---
+
+### What Happens When You Hit the Pool Limit?
+
+If the pool is exhausted (e.g., all 20 connections are being used), any new requests will either:
+
+- Wait for a connection to be available (based on timeout), or
+- Timeout if it exceeds the configured timeout duration (e.g., `timeout: 5000ms`).
+
+---
+
+### Key Points to Balance:
+
+#### Workers vs Threads:
+
+- More workers mean more independent processes (more memory and CPU).
+- More threads mean more concurrency within each worker (more efficient but limited by CPU cores).
+
+#### Database Connection Pool Size:
+
+- A common rule of thumb is:  
+  `pool size ≈ (number of workers * number of threads per worker) + some buffer`
+
+- If you configure Puma to run 4 workers with 5 threads each, you need at least 20 connections in your pool (`pool: 20`). If you're using background jobs (e.g., Sidekiq), don’t forget to account for those as well.
+
+---
+
+### Real-World Example
+
+Let’s say you configure Puma to use 4 workers and 5 threads per worker. Your `database.yml` would look like this:
+
+```yaml
+production:
+  adapter: postgresql
+  database: myapp_production
+  username: myuser
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  pool: 20 # 4 workers × 5 threads per worker
+  timeout: 5000
+```
 
 # Views
 

@@ -530,26 +530,30 @@ users & new_users
 # Class
 
 - A class is a blueprint or template for creating objects.
+  - You can think of classes as basic outlines of what an object should be made of and what it should be able to do.
+- Classes hold data, and methods that interact with that data, and are used to instantiate objects.
 - When defining a class, we typically focus on two things: state and behaviors.
-  - State refers to the data associated to an individual object (which are tracked by instance variables).
-  - Behaviors are what objects are capable of doing. We define these behaviors as instance methods in a class.
+  - State refers to the data associated to an individual object (which are tracked by **instance variables**).
+  - Behaviors are what objects are capable of doing. We define these behaviors as **instance methods** in a class.
+- All objects of the same class have the same behaviors, though they contain different states.
 - [LaunchSchool](https://launchschool.com/books/oo_ruby/read/classes_and_objects_part1)
 
 ## Mixin
 
-- A mixin is a set of code that can be added to other classes.
-  - In Ruby, mixins are modules that we include in classes where they are needed.
-- mixin is a design pattern
+- A mixin can basically be thought of as a set of code that can be added to one or more classes to add additional capabilities without using inheritance.
+  - In Ruby, mixins are modules that a class can include or extend.
+- mixin is a design pattern.
 - Ruby implements the single inheritance mechanism, which means that a class can only inherit from one other class. We may often need to inherit from more classes. In Ruby, we can cover that need by using the composition over inheritance pattern.
 - This is doable by using the mixins. When we mix in a piece of code in another Ruby class we are adding to this class more behavior without using inheritance.
 
 ## Module
 
-- A module is a collection of methods and constants.
-  - Modules give you an easy way to namespace the rest of your code.
+- A module is a container of Ruby code that can be used to group related methods, classes, and constants. Modules provide a way to organize and reuse code in Ruby, making it easier to maintain and extend applications.
+- Modules can be thought of as a package of functionality that can be included or extended in other classes. Unlike classes, modules cannot be instantiated or inherited. Instead, they are used to mix in functionality to classes.
+- Ruby uses modules to share behaviour across classes. A module will contain all the logic for the desired behaviour. Any class which would like to use the same behaviour, can either `include` or `extend` the module.
 - In Ruby modules provide two great benefits:
-  - we can create namespaces to prevent name clashes
-  - we can use them as mixins to share code across the application.
+  - We can create namespaces to prevent name clashes.
+  - We can use them as mixins to share code across the application.
 - Modules are great places to have services, concerns, constants and any other code that, by having the same responsibility they should stay together.
 - Create a module in `lib/modules` directory.
 - A module can provide two kinds of methods:
@@ -564,6 +568,142 @@ users & new_users
 - We can't inherit from modules, so we use them as mixins instead.
 - Modules are standalone code, so there's no inheritance hierarchy of modules.
 
+### Include vs Extend vs Prepend
+
+- By using `include` and `prepend` keywords, the instance methods of a module becomes instance methods of the class that extends it. By using `extend`, the instance methods of a module becomes class methods of the class that extends it.
+  - `include`/`extend` only adds instance methods of the module as instance/class methods to the class where it is included. It does not apply to the class methods of the module.
+- While `include` and `prepend` both works similar in functionality, the difference comes where the module will be added in the ancestor chain.
+- When you `include` a module, Ruby will insert the module into the class's ancestry chain just above the class that includes it (between the class that includes it and it's superclass).
+- In `prepend` the module is added before the class in the ancestor chain. So, the module methods take precedence over any methods with the same name defined in the class.
+- But, when you `extend` a module, Ruby will not insert the module into the class's ancestry chain.
+- If it makes sense for an instance of a class to implement the behaviour, then you would include the module. Then each instance has access to the module methods.
+- If the behaviour is not tied to a particular instance, then you can extend the module. Then the methods will be available as class methods.
+
+  ```Ruby
+  module Animal
+    def say_hello
+      puts "Hello from Animal module"
+    end
+  end
+
+  class Human
+    include Animal
+
+    def say_hello
+      puts "Hello from Human class"
+    end
+  end
+
+  class Dog
+    prepend Animal
+
+    def say_hello
+      puts "Hello from Dog class"
+    end
+  end
+
+  class Cat
+    extend Animal
+
+    def say_hello
+      puts "Hello from Cat class"
+    end
+  end
+
+  Human.new.say_hello #=> Hello from Human class
+  Dog.new.say_hello   #=> Hello from Animal module
+  Cat.new.say_hello   #=> Hello from Cat class
+  Cat.say_hello       #=> Hello from Animal module
+  Human.ancestors     #=> [Human, Animal, Object, Kernel, BasicObject]
+  Dog.ancestors       #=> [Animal, Dog, Object, Kernel, BasicObject]
+  Cat.ancestors       #=> [Cat, Object, Kernel, BasicObject]
+  ```
+
+- `extend` adds methods as `singleton_methods` to Cat class.
+
+  ```Ruby
+  Cat.singleton_methods #=>[say_hello]
+  ```
+
+### Use of `super` with `include` and `prepend`
+
+- `Animal` class is the ancestor of `Human` class. So, we can invoke `super` inside `say_hello` method of `Animal` class.
+
+  ```Ruby
+  class Human
+    include Animal
+
+    def say_hello
+      super
+      puts "Hello from Human class"
+    end
+  end
+
+  puts Human.new.say_hello #=> Hello from Animal module
+                           #=> Hello from Human class
+  ```
+
+- But if we use `prepend` (as in `Dog` class), we can call the ancestors from `Animal` class.
+
+  ```Ruby
+    module Animal
+      def say_hello
+        super
+        puts "Hello from Animal module"
+      end
+    end
+
+    class Dog
+      prepend Animal
+
+      def say_hello
+        puts "Hello from Dog class"
+      end
+    end
+
+    puts Dog.new.say_hello #=> Hello from Dog class
+                            #=> Hello from Animal module
+  ```
+
+- If you include several modules, the module which was included last will be the first to appear in the ancestors chain:
+
+  ```Ruby
+  module CalculateInvoice
+    # ...
+  end
+
+  module GenerateInvoice
+    # ...
+  end
+
+  class Invoice
+    include CalculateInvoice
+    include GenerateInvoice
+  end
+
+  Invoice.ancestors       #=> [Invoice, GenerateInvoice, CalculateInvoice, Object, Kernel, BasicObject]
+  ```
+
+#### References
+
+- [Ruby Modules and Extend, Include, and Prepend keywords](https://blog.rubyonrails.ba/articles/ruby-modules-and-extend-include-and-prepend-keywords)
+- [Modules in Ruby: Include vs Extend vs Prepend](https://amitnatani.medium.com/modules-in-ruby-include-vs-extend-vs-prepend-4ea3cec2cc69)
+- [Ruby Include, Extend and Prepend](https://hackmd.io/@nMuhqqCnRo-W7AZ9CGKD1g/SkzT_PW5q)
+- [Ruby Modules: include vs extend vs prepend](https://dev.to/abbiecoghlan/ruby-modules-include-vs-extend-vs-prepend-4gmc)
+- [Include, prepend and extend with Ruby modules](https://albertoalmagro.com/include-prepend-and-extend-with-ruby-modules/)
+
+### The Ancestors chain
+
+The ancestor chain is the order of lookup Ruby follows when determining if a method is defined on an object.
+
+#### References
+
+- [Include, prepend and extend with Ruby modules](https://albertoalmagro.com/include-prepend-and-extend-with-ruby-modules/)
+- [Include, Extend, And Prepend In Ruby](https://veerpalbrar.github.io/blog/2021/11/26/Include,-Extend,-and-Prepend-In-Ruby)
+- [Understanding Ancestor Chains in Ruby](https://www.mintbit.com/blog/understanding-ancestor-chains-in-ruby)
+- [Metaprogramming, ancestors chain and super](https://dev.to/wizardhealth/metaprogramming-ancestors-chain-and-super-2pbd)
+- [Up the Ancestor Chain with method_missing](https://blog.appsignal.com/2019/05/07/method-missing.html)
+
 ## Method Lookup
 
 - [LaunchSchool](https://launchschool.com/books/oo_ruby/read/the_object_model#methodlookup)
@@ -571,7 +711,8 @@ users & new_users
 ## Instance Variables
 
 - It is a variable that exists as long as the object instance exists and it is one of the ways we tie data to objects.
-- instance variables are responsible for keeping track of information about the **state** of an object.
+- Instance variables are responsible for keeping track of information about the **state** of an object.
+- Every object's state is distinct, and instance variables are how we keep track.
 
 ## Instance Methods
 
@@ -580,7 +721,7 @@ users & new_users
 
 ## Accessor Methods
 
-- These methods have the same name as the instance variable.
+- As a convention, these methods have the same name as the instance variable.
 
   ```Ruby
   def initialize(name)
@@ -602,7 +743,7 @@ users & new_users
   class Dog
     def name=(name)
       @name = name
-      "Laddieboy"              # value will be ignored
+      "Bob"              # value will be ignored
     end
   end
   ```
@@ -612,6 +753,54 @@ users & new_users
 - [LaunchSchool](https://launchschool.com/books/oo_ruby/read/classes_and_objects_part1#callingmethodswithself)
 - prefixing `self`. is not restricted to just the accessor methods; you can use it with any instance method.
 - The general rule from the Ruby style guide is to "Avoid self where not required."
+
+## Class Variable
+
+- Just as instance variables capture information related to specific instances of classes (i.e., objects), we can create variables for an entire class that are appropriately named class variables.
+- Class Variables are available to all instances of that class.
+- Class variables are created using two `@` symbols like so: `@@`.
+
+  ```Ruby
+  class Square
+    @@sides = 4
+
+    def sides
+      @@sides
+    end
+  end
+
+  puts Square.new.sides #=> 4
+  ```
+
+- When using an Instance Variable, the same is not true:
+
+  ```Ruby
+  class Square
+    @sides = 4
+
+    def sides
+      @sides
+    end
+  end
+
+  puts Square.new.sides #=> nil
+  ```
+
+- To make it work use `initialize`
+
+  ```Ruby
+  class Square
+    def initialize
+      @sides = 4
+    end
+
+    def sides
+      @sides
+    end
+  end
+
+  puts Square.new.sides #=> nil
+  ```
 
 ## Class Methods
 
@@ -624,11 +813,14 @@ Class methods are where we put functionality that does not pertain to individual
 
 ## Constants
 
+- When creating classes there may also be certain variables that you never want to change. You can do this by creating what are called **constants**.
 - You define a constant by using an upper case letter at the beginning of the variable name.
 - While technically constants just need to begin with a capital letter, most Rubyists will make the entire variable uppercase.
-- It is possible to reassign a new value to constants but Ruby will throw a warning.
+- **It is possible to reassign a new value to constants but Ruby will throw a warning**.
 
 ## `self`
+
+- `self` is a special variable that points to the object that "owns" the currently executing code.
 
 so far we've seen two clear use cases for `self`:
 
@@ -638,8 +830,62 @@ so far we've seen two clear use cases for `self`:
 
 Follow this rule: from within a class
 
-1. `self`, inside of an instance method, references the instance (object) that called the method - the calling object. Therefore, `self.weight=` is the same as `sparky.weight=`, in our example.
+1. `self`, inside of an instance method, references the instance (object) that called the method - the calling object.
 
-2. `self`, outside of an instance method, references the class and can be used to define class methods. Therefore if we were to define a name class method, def `self.name=(n)` is the same as `def GoodDog.name=(n)`.
+2. `self`, outside of an instance method, references the class and can be used to define class methods.
 
 - [More About self](https://launchschool.com/books/oo_ruby/read/classes_and_objects_part2#moreaboutself)
+- [Understanding `self` in Ruby](https://www.honeybadger.io/blog/ruby-self-cheat-sheet/)
+
+# Inheritance
+
+- Inheritance is when a class inherits behavior from another class.
+- The class that is inheriting behavior is called the subclass and the class it inherits from is called the superclass.
+- We use inheritance as a way to extract common behaviors from classes that share that behavior, and move it to a superclass. This lets us keep logic in one place.
+- Inheritance can be a great way to remove duplication in your code base (DRY).
+- Ruby implements the single inheritance mechanism, which means that a class can only inherit from one other class. We may often need to inherit from more classes. In Ruby, we can cover that need by using the composition over inheritance pattern.
+  - This is doable by using the mixins. When we mix in a piece of code in another Ruby class we are adding to this class more behavior without using inheritance.
+
+## super
+
+- When you call `super` from within a method, it searches the method lookup path for a method with the same name, then invokes it.
+- A common way of using `super` is with `initialize` method.
+- Inside `initialize` method `super` automatically forwards the arguments that were passed to the method from which `super` is called.
+- If you call `super()` -- with parentheses -- it calls the method in the superclass with no arguments at all.
+- [Launchschool](https://launchschool.com/books/oo_ruby/read/inheritance#super)
+
+## Modules
+
+### What is a module?
+
+- A module is a collection of methods and constants.
+- In Ruby modules provide two great benefits:
+  - We can create namespaces in our code to prevent name clashes.
+  - We can use them as mixins to share code across the application.
+- Modules are great places to have services, concerns, constants and any other code that, by having the same responsibility they should stay together.
+- Create a module in `lib/modules` directory.
+- A module can provide two kinds of methods:
+  1. Module methods
+     - We can use it without having to include (or extend) the module in any other object. This is very common when we are creating service objects.
+  2. Instance methods
+     - To be able to use instance methods, we need to include the module to a class.
+
+### Differences between a module and a plain Ruby class
+
+- We can't instantiate modules, so no objects can be created from it.
+- We can't inherit from modules, so we use them as mixins instead.
+- Modules are standalone code, so there's no inheritance hierarchy of modules.
+
+### What’s a Mixin?
+
+- A mixin can basically be thought of as a set of code that can be added to one or more classes to add additional capabilities without using inheritance.
+- In Ruby, a mixin is code wrapped up in a module that a class can include or extend.
+- With minin we can keep our code clean and the responsibilities separated, as they should be.
+
+# Composition
+
+In composition, we create classes that are responsible to provide specific functionalities to others
+
+```
+
+```

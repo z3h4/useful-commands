@@ -10,6 +10,12 @@ The best practice is to put the script element at the end of the `body` section 
 
 - If we declare an array as a constant, we cannot reassign it to something else. But it does not stop us from modifying the contents of that array.
 
+## Count number of elements in an array
+
+```
+numbers.length
+```
+
 ## Adding Elements
 
 - Beginning of an array

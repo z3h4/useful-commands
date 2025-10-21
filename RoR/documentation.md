@@ -42,7 +42,8 @@
 ## Modules
 
 - [How to Use Mixins and Modules in Your Ruby on Rails Application](https://blog.appsignal.com/2021/01/13/using-mixins-and-modules-in-your-ruby-on-rails-application.html)
-- [Ruby modules: Include vs Prepend vs Extend](https://medium.com/@leo_hetsch/ruby-modules-include-vs-prepend-vs-extend-f09837a5b073)
+- [Include, Extend, And Prepend In Ruby](https://veerpalbrar.github.io/blog/2021/11/26/Include,-Extend,-and-Prepend-In-Ruby)
+- [Ruby Modules: include vs extend vs prepend](https://dev.to/abbiecoghlan/ruby-modules-include-vs-extend-vs-prepend-4gmc)
 
 ## Access control in Ruby
 

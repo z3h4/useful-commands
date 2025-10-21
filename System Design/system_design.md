@@ -328,6 +328,13 @@ When the response comes back from the backend service, the API gateway transform
 - An API gateway should also provide logging, monitoring, and analytics services for operational observability.
 - An API gateway is a critical piece of the infrastructure. It should be deployed to multiple regions to improve availability. For many cloud provider offerings, the API gateway is deployed across the world close to the clients.
 
+# Databases
+
+## How to pick the right database?
+
+- [ByteByteGo](https://www.youtube.com/watch?v=kkeFE6iRfMM)
+- [7 Database Paradigms](https://www.youtube.com/watch?v=W2Z7fbCLSTw)
+
 # Documention
 
 - [What happens when you type a URL into your browser?](https://blog.bytebytego.com/p/what-happens-when-you-type-a-url)
