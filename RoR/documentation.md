@@ -25,6 +25,7 @@
 
 - [The Arguments Forwarding shorthand in Ruby 2.7](https://medium.com/rubycademy/the-arguments-forwarding-shorthand-in-ruby-2-7-af32d58c223b)
 - [Using Ruby 2.7's new triple-dot syntax to clean up service objects](https://ryanbigg.com/2021/07/ruby-27s-new-triple-dot-syntax)
+- [Argument forwarding in Ruby 2 and 3](https://chatgpt.com/s/t_690fdd1c0ecc8191a87ba2905acd9f7a)
 
 ## Class
 

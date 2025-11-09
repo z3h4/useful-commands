@@ -218,9 +218,10 @@ Load and need are both used in Ruby to load available code into the current code
 
 ### What is Ruby on Rails?
 
-- Ruby on Rails (RoR) is a server-side, open-source web application framework.
-- Built using the Ruby programming language, it’s a collection of code libraries that offers an efficient way to write codes.
-- It uses model-view-controller (MVC) pattern.
+- Ruby on Rails (RoR) is a server-side, open-source web application framework written in Ruby.
+- It follows the Model–View–Controller (MVC) pattern and emphasizes two principals:
+  - Don’t Repeat Yourself
+  - Convention over Configuration
 - RoR provides a pre-made solution to help developers save time on tedious and repetitive tasks. Essentially, you don’t have to write each line of code all over again.
 
 ### Key principles emphasized in Ruby on Rails
@@ -237,9 +238,63 @@ Here are some Ruby on Rails features that make it stand out from the IT crowd:
 - **Localization.** The localization feature helps you integrate your pre-designed code into the RoR framework for a bigger project.
 - **Scaffolding.** This feature allows the programmer to define how the application database should function. After that, the framework automatically generates the required code according to it. The scaffolding technique creates interfaces automatically.
 - **Libraries.** RoR has a lot of vast libraries to equip a developer with all the necessary tools to produce high-quality product AJAX library, Database access library, and Common tasks library are some of the few that RoR comprises in its collection.
+- https://chatgpt.com/s/t_691014d49d248191ba2fe9d3a503dd46
 
 ### Pros and cons of RoR
 
+In Short,
+Rails Strengths:
+
+- Rapid development
+- Convention-driven
+- Mature ecosystem
+
+Rails Weaknesses:
+
+- Slower performance
+- Harder scaling for very large systems
+- Heavy abstractions that can hide complexity
+
+### Pros
+
+- **Convention over Configuration:** Rails makes countless decisions for you - folder structure, naming conventions, database migrations. You spend less time on setup and more time building features. New developers can jump into any Rails project and immediately understand the layout.
+- **Rapid Development:** Rails excels at getting MVPs and prototypes built quickly. Generators create boilerplate code instantly, ActiveRecord handles database operations without writing SQL, and built-in helpers streamline common tasks. What might take weeks in other frameworks can take days in Rails.
+- **Mature Ecosystem:** Over 20 years of gems (libraries) solve nearly every problem - authentication (Devise), file uploads (ActiveStorage), background jobs (Sidekiq), admin panels (ActiveAdmin). You rarely need to reinvent the wheel.
+- **Integrated Full-Stack Solution:** Unlike frameworks that only handle the backend, Rails includes everything: ORM, routing, view rendering, asset pipeline, testing framework, email handling, and more. It's a complete package out of the box.
+- **Strong Testing Culture:** Rails was built with testing in mind. RSpec, Minitest, and Capybara integrate seamlessly. The community emphasizes test-driven development, making it easier to maintain quality code.
+
+### Cons
+
+#### Performance Limitations:
+
+- Rails can be slower compared to lower-level frameworks (e.g., Go, Node.js, or Elixir Phoenix) due to:
+
+  - Ruby’s interpreted nature (not compiled)
+  - Heavy middleware stack
+  - Object allocation overhead
+
+- For most web apps, this isn’t critical — but at very large scale, it matters. Rails apps can struggle with extremely high-traffic scenarios without significant optimization and caching layers.
+
+#### Monolithic Structure
+
+- Rails promotes a monolithic architecture — great early on, but as the app scales, maintaining a single large codebase can become complex.
+- Although modularization (engines, services) is possible, it’s not the default pattern.
+- Rails' "full-stack" nature becomes a weakness when you want microservices or need to mix technologies.
+
+#### Memory Intensive
+
+- Rails applications consume significant memory, due to loaded dependencies and abstractions.
+- This increases hosting costs compared to lighter frameworks and makes it harder to run multiple services on limited resources.
+
+#### Magic Can Be Confusing
+
+- Convention over configuration is great until something breaks or behaves unexpectedly. Debugging can be frustrating because so much happens behind the scenes. Junior developers especially struggle to understand what Rails is doing automatically.
+
+#### Less Suitable for Real-Time
+
+- While ActionCable exists for WebSockets, Rails isn't ideal for real-time applications, streaming data, or scenarios requiring persistent connections at scale. Node.js or Go are better suited for these use cases.
+
+- https://chatgpt.com/s/t_69101aba9c5c8191bb72893d4a405b98
 - https://fullscale.io/blog/ruby-on-rails-pros-and-cons/
 
 ### Pros and Cons of ActiveRecord
