@@ -462,6 +462,11 @@ Active Record gives us several mechanisms, the most important being the ability 
 
 The `find_each` and `find_in_batches` methods are intended for use in the batch processing of a large number of records that wouldn't fit in memory all at once.
 
+- https://chatgpt.com/s/t_68f860031070819183e9ecfcf2479604
+- https://chatgpt.com/s/t_68f852e493f481918c267a9648a57ff4
+- https://chatgpt.com/s/t_68f8613e119c8191ab94c1cc493ecae5
+- https://chatgpt.com/s/t_68f866e80b088191841d0227a9e29da1
+
 ### Why do we need locking?
 
 - Locking is helpful for **preventing race conditions** when updating records in the database and ensuring atomic updates.
@@ -479,6 +484,10 @@ The `find_each` and `find_in_batches` methods are intended for use in the batch 
 - The great advantage here is that it is impossible to operate on stale data.
 - The major disadvantage, though, is that it also blocks reading the data from a given row.
 
+- https://chatgpt.com/s/t_68f86b2d8ea881919599e78c2b057215
+- https://chatgpt.com/s/t_68f86e8e9f1081919cda9df9e1a5af5c
+- https://chatgpt.com/s/t_68f870bfd3708191b73f3975854d0231
+
 ### What is Eager Loading Associations?
 
 Eager loading is the mechanism for loading the associated records of the objects returned by `Model.find` using as few queries as possible.
@@ -493,12 +502,15 @@ Eager loading is the mechanism for loading the associated records of the objects
 
 `#count` will always do a `COUNT` query, while `#size` will skip the query if the responses are already loaded.
 
+- https://chatgpt.com/s/t_68f8825c24f8819192ba94636b80415c
+- [`post.comments.load` vs `post.includes(:comments)`](https://chatgpt.com/s/t_68f8838a25108191844f3de53d7fe21d)
+
 ### What is Polymorphic Associations?
 
 ### What is a scope?
 
 - Scoping allows you to specify commonly-used queries which can be referenced as method calls on the association objects or models.
-- All scope bodies should return an `ActiveRecord::Relation` or `nil` to allow for further methods (such as other scopes) to be called on it.
+- All scope bodies should return an `ActiveRecord::Relation` to allow for further methods (such as other scopes) to be called on it.
 - We can call a scope as if it were a class method or access it via the association object.
 
   ```Ruby
@@ -556,6 +568,8 @@ While there can be many reasons behind an application’s slowness, database que
 
 ### How would you optimize a slow Active Record query or an endpoint under heavy load?
 
+- https://chatgpt.com/s/t_68f89aa251fc8191b36769f0d2210efa
+
 1.  **Step 1: Identify the Bottleneck**
 
     a. Rails logger to see SQL execution. Identify expensive queries.
@@ -565,6 +579,9 @@ While there can be many reasons behind an application’s slowness, database que
     ```Ruby
     User.where(email: "test@example.com").explain
     ```
+
+    - https://chatgpt.com/s/t_68f8911992388191a4945882ae9c3101
+    - https://chatgpt.com/s/t_68f89125efd48191b859b2f6298a9123
 
     c. Use Bullet gem to detect N+1 queries.
 
@@ -820,6 +837,28 @@ production:
   pool: 20 # 4 workers × 5 threads per worker
   timeout: 5000
 ```
+
+### What’s your approach to observability — logging, metrics, tracing in Rails apps?
+
+### How would you implement event-driven architecture or Pub/Sub in Rails?
+
+### Explain how to structure a multi-tenant Rails application.
+
+### What are caching strategies available in Rails?
+
+### Explain the Rails request lifecycle from browser request to response.
+
+- https://chatgpt.com/s/t_68f4412130a08191bc237b70815386af
+- https://chatgpt.com/s/t_68f8b7c36d4c81918c3e26268b5a9117
+
+## Concurrency
+
+- [Concurrency problems in databases](https://chatgpt.com/s/t_690ab20da3808191a0f2afa29c2ba381)
+- [Race Condition](https://chatgpt.com/s/t_690aab104abc81918d45ef96441020be)
+- [How to prevent deadlock in Rails?](https://chatgpt.com/s/t_690aac015f508191b16b28b01a927ad0)
+  - [`User.transaction` vs `ActiveRecord.Base.transaction`](https://chatgpt.com/s/t_690bb6293000819196ea32128318ebd4)
+  - [Serialize updates in a job queue (e.g., Sidekiq), so only one worker modifies that record at a time.](https://chatgpt.com/s/t_690ab0a61f048191a8f9d6a513718dae)
+  - [`User.lock.find(1)` vs `User.find(1).lock`](https://chatgpt.com/s/t_690bd7db24688191b7700b96f87c10a8)
 
 # Views
 

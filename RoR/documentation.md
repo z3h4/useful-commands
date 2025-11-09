@@ -189,6 +189,42 @@
 - [What is Optimistic Locking](https://api.rubyonrails.org/v7.0.4/classes/ActiveRecord/Locking/Optimistic.html)
 - [**Preventing Conflicts with Optimistic Locking**](https://gorails.com/episodes/optimistic-locking-with-rails)
 - [**Optimistic Locking in Rails REST APIs**](https://blog.appsignal.com/2021/10/20/optimistic-locking-in-rails-rest-apis.html)
+- [How to implement Optimistic Locking in Rails REST APIs?](https://chatgpt.com/s/t_690b06e6b8ac8191ad6c12c604accda0)
+- [How we can use Etag and If-Match header in Rails API to implement optimistic locking?](https://chatgpt.com/s/t_690b0768ab248191ae54fe17a36dfa6d)
+- [Explain the different use cases of Etag and If-Match header in Rails API](https://chatgpt.com/s/t_690b0a4311608191a1f280dcdeb0d49b)
+
+### `If-Match` vs `If-None-Match`
+
+`If-Match` and `If-None-Match` are HTTP request headers used for conditional requests, primarily for optimizing caching and preventing data corruption, especially with concurrent updates. They both rely on Entity Tags (ETags), which are identifiers for a specific version of a resource.
+
+### `If-Match`
+
+**Purpose:** `If-Match` is used to ensure that an operation (like a `PUT` or `DELETE`) is performed only if the resource on the server matches a specific `ETag` value provided by the client.
+
+**Behavior:**
+
+- If the `ETag` in the `If-Match` header matches the current `ETag` of the resource on the server, the request proceeds.
+- If the ETags do not match, or if the special value `*` is used and no current entity exists, the server returns a `412 Precondition Failed` status.
+
+**Use Cases:** Preventing "lost updates" when multiple clients might be modifying the same resource, ensuring that a client is operating on the most up-to-date version of a resource before making changes.
+
+### `If-None-Match`
+
+**Purpose:** `If-None-Match` is used to request a resource only if its ETag does not match the value(s) provided by the client. This is commonly used for caching.
+
+**Behavior:**
+
+- If the `ETag` in the `If-None-Match` header does not match the current `ETag` of the resource on the server, the server returns the requested resource with a `200 OK` status.
+- If the `ETag` in the `If-None-Match` header does match the current `ETag`, the server returns a `304 Not Modified` status, indicating that the client's cached version is still valid.
+- If the special value `_` is used, the request will only proceed if no resource exists at the target URL.
+
+**Use Cases:** Efficiently updating cached information by avoiding re-downloading resources that haven't changed, and preventing accidental overwrites of existing resources when using methods like `PUT` with the `*` directive.
+
+**Key Difference:**
+The core distinction lies in their conditional logic:
+
+- `If-Match`: The condition is met if the ETags match.
+- `If-None-Match`: The condition is met if the ETags do not match.
 
 ### Pessimistic Locking
 

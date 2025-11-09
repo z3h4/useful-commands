@@ -1,3 +1,7 @@
+### Concepts
+
+- [`Invoice.select("MAX(amount)")` vs `Invoice.maximum(:amount)`](https://chatgpt.com/s/t_690be8e7e3b48191a7ee98b300878f3d)
+
 # Retrieving Objects from the Database
 
 - Finder methods that return a collection, such as `where` and `group`, return an instance of `ActiveRecord::Relation`.
@@ -7,23 +11,23 @@
 
 ### `find`
 
-- Retrieve the object using its primary key.
-
-      customer = Customer.find(10)
+- Retrieve the object using its **_primary key_**.
 
 - We can pass an array of primary keys as argument. It will return an array containing all of the matching records for the supplied primary keys.
 - The returned records are in the same order as the ids you provide.
 - If the primary key is an integer, find by id coerces its arguments by using `to_i`.
 
-      Person.find(1)          # returns the object for ID = 1
-      Person.find("1")        # returns the object for ID = 1
-      Person.find("31-sarah") # returns the object for ID = 31
-      Person.find(1, 2, 6)    # returns an array for objects with IDs in (1, 2, 6)
-      Person.find([7, 17])    # returns an array for objects with IDs in (7, 17)
-      Person.find([1])        # returns an array for the object with ID = 1
-      Person.where("administrator = 1").order("created_on DESC").find(1)
+  ```Ruby
+  Person.find(1)          # returns the object for ID = 1
+  Person.find("1")        # returns the object for ID = 1
+  Person.find("31-sarah") # returns the object for ID = 31
+  Person.find(1, 2, 6)    # returns an array for objects with IDs in (1, 2, 6)
+  Person.find([7, 17])    # returns an array for objects with IDs in (7, 17)
+  Person.find([1])        # returns an array for the object with ID = 1
+  Person.where("administrator = 1").order("created_on DESC").find(1)
+  ```
 
-- The `find` method will raise an `ActiveRecord::RecordNotFound` exception unless a matching record is found for **all** of the supplied primary keys.
+- It will raise an `ActiveRecord::RecordNotFound` exception unless a matching record is found for **all** of the supplied primary keys.
 
 - https://guides.rubyonrails.org/active_record_querying.html#find
 - https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/FinderMethods.html#method-i-find
@@ -34,11 +38,22 @@
 - It returns `nil` if no record is found and no exception will be raised.
 - You can pass in a numerical argument to the `take` method to return up to that number of results.
 
-      Person.take # returns an object fetched by SELECT * FROM people LIMIT 1
-      Person.take(5) # returns 5 objects fetched by SELECT * FROM people LIMIT 5
-      Person.where(["name LIKE '%?'", name]).take
+  ```Ruby
+  Person.take # returns an object fetched by SELECT * FROM people LIMIT 1
+  Person.take(5) # returns 5 objects fetched by SELECT * FROM people LIMIT 5
+  Person.where(["name LIKE '%?'", name]).take
+  ```
 
 - The `take!` method behaves exactly like `take`, except that it will raise `ActiveRecord::RecordNotFound` if no matching record is found.
+
+### `find` vs `take`
+
+- `find` is used to retrieve one or more records by their primary key(s).
+  - Raises `ActiveRecord::RecordNotFound` if record doesn’t exist.
+- `take` retrieves a record without any implicit ordering. It’s typically used when you just want a record, not necessarily the first or last.
+  - Returns `nil` if no record exists.
+  - Does not raise an error.
+- https://chatgpt.com/s/t_6903f3478e648191a5291714fd3a1405
 
 ### `first`
 

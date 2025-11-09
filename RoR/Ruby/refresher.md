@@ -85,7 +85,7 @@ irb :002 > '4 hi there'.to_i
 => 4
 
 irb :003 > 'hi there 4'.to_i
-=> 0
+=> 0    # If the string does not start with a number, it returns 0.
 
 irb :004 > '4'.to_f
 => 4.0
@@ -150,7 +150,7 @@ puts a   #=> nil
 
 # Conditional Logic
 
-## == vs eq? vs eql? vs equal?
+## == vs eql? vs equal?
 
 ### `a.equal?(b)`
 
@@ -188,7 +188,7 @@ puts a   #=> nil
   2 == 2.0 # Output: => true
 ```
 
-- `eq?` uses the `==` operator for comparison, and `eql?` ignores type conversions.
+- In `RSpec` `eq` matcher uses the `==` operator internally to compare the expected and actual values.
 
 - [TheOdinProject](https://www.theodinproject.com/lessons/ruby-conditional-logic#boolean-logic)
 - [Difference Between ==, eql?, equal? in ruby](https://medium.com/@khalidh64/difference-between-eql-equal-in-ruby-2ffa7f073532)
@@ -226,7 +226,7 @@ Basically instead of returning 1 (true) or 0 (false) depending on whether the ar
       if a > b then return  1
       if a and b are not comparable then return nil
 
-It's useful for sorting an array.
+This makes it ideal for sorting and ordering collections (i.e. arrays), as it allows custom comparison logic in methods like `sort` and `sort_by`.
 
 - **Sort by zip code, ascending**
 
@@ -246,6 +246,8 @@ It's useful for sorting an array.
   my_objects.sort! { |a, b| 2 * (a.last <=> b.last) + (a.first <=> b.first) }
   ```
 
+  - It gives double weight to the comparison of last values. This means sorting is primarily by `last`, and if those are equal, by `first`. The multiplication by 2 makes the last comparison more significant in the sort order.
+
 - [TheOdinProject](https://www.theodinproject.com/lessons/ruby-conditional-logic#boolean-logic)
 
 # Parameters and Arguments
@@ -256,8 +258,20 @@ It's useful for sorting an array.
 ## Anonymous splat parameter
 
 - In ruby, we can define a parameter without a name using the anonymous splat parameter.
+- It is written as \* in a method definition.
 - With this we can ignore the arguments with which a method was called.
 - Anonymous splat parameter actually comes into play when you’re not referring to the arguments inside the function, and instead calling super.
+
+  ```Ruby
+  def example(a, *)
+    puts a
+  end
+
+  example(1, 2, 3) # prints 1, ignores 2 and 3
+  ```
+
+- This is useful when you want to accept (and ignore) extra arguments without naming them.
+- https://chatgpt.com/s/t_68f75838761081918a323d3a44f06465
 
 # Loop
 
@@ -441,7 +455,7 @@ Array(1..5)                   # => [1, 2, 3, 4, 5]
 
 ## Iterate an Array From the End
 
-- Use the ` reverse_each` method.
+- Use the `reverse_each` method.
 
 ## Operations With Multiple Arrays
 
@@ -776,7 +790,7 @@ The ancestor chain is the order of lookup Ruby follows when determining if a met
 
   ```Ruby
   class Square
-    @sides = 4
+    @sides = 4  # this not set for each instance. It is set on the class level.
 
     def sides
       @sides
@@ -786,7 +800,7 @@ The ancestor chain is the order of lookup Ruby follows when determining if a met
   puts Square.new.sides #=> nil
   ```
 
-- To make it work use `initialize`
+- To make it work use `initialize` or use a constant
 
   ```Ruby
   class Square
@@ -800,6 +814,17 @@ The ancestor chain is the order of lookup Ruby follows when determining if a met
   end
 
   puts Square.new.sides #=> nil
+
+  # Using constant
+  class Square
+    SIDES = 4
+
+    def sides
+      SIDES
+    end
+  end
+
+  puts Square.new.sides # => 4
   ```
 
 ## Class Methods
