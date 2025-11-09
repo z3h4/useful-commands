@@ -4,6 +4,8 @@
 
 OOP is basically a style of programming where we see a program as a collection of objects that talk to each other to perform some functionality.
 
+- It helps make code more modular, reusable, and easier to maintain.
+
 - [Mosh Youtube Video](https://www.youtube.com/watch?v=pTB0EiLXUC8)
 
 ## Difference Between a Function and a Method
@@ -46,6 +48,7 @@ A class is a blueprint or template for creating objects. It defines the attribut
 
 - Encapsulation is the first principle of object-oriented programming.
 - It suggests that we should bundle the data and operations on the data inside a single unit (object).
+- [Difference between Encapsulation and Abstraction](https://chatgpt.com/s/t_6910514d8a7c819181dd3dceb6eff43f)
 - [LaunchSchool](https://launchschool.com/books/oo_ruby/read/the_object_model#whyobjectorientedprogramming)
 
 ### Why should we declare fields as private?
@@ -68,7 +71,11 @@ By hiding the implementation details, we prevent other classes from getting affe
 
 ### What are constructors?
 
-Constructors are called when we instantiate our class. We use them to initialize our objects. Initialization means putting an object into an early or initial state (e.g. giving it initial values).
+- A constructor is a special method in a class that is automatically called when we create a new object.
+- Its main job is to initialize the object’s state — i.e., set up its instance variables.
+  - Initialization means putting an object into an early or initial state (e.g. giving it initial values).
+- So, constructors make sure each new object starts out properly configured and ready to use.
+- In Ruby, the constructor method is named `initialize`. It’s automatically called when we use `.new` on a class.
 
 ### What is method overloading?
 
@@ -97,10 +104,9 @@ With inheritance we can reuse code and achieve polymorphic behavior.
 ### Polymorphism
 
 - Poly means many and morph means form. So, Polymorphism means many forms.
-- It’s basically a mechanism that allows an object to take many forms and behave differently.
-- Polymorphism is the ability for different types of data to respond to a common interface.
-  - That is, it lets objects of different types respond to the same method invocation.
-- This helps us build extensible applications.
+  - It’s basically a mechanism that allows an object to take many forms and behave differently.
+- Polymorphism allows different objects to respond to the same method call in different ways.
+- It lets you use a common interface for multiple types of objects — improving flexibility and extensibility.
 
 ### What is a module?
 
