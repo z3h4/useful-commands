@@ -28,7 +28,7 @@ If a function is part of an object, in OOP terms we refer to that function as a 
 
 ### What is the difference between a class and an object?
 
-A class is a blueprint or template for creating objects. An object is an instance of a class.
+A class is a blueprint or template for creating objects. It defines the attributes (data) and methods (behavior) that its objects will have. An object is a specific instance of a class.
 
 ### Instance variable
 
@@ -219,7 +219,7 @@ Load and need are both used in Ruby to load available code into the current code
 ### What is Ruby on Rails?
 
 - Ruby on Rails (RoR) is a server-side, open-source web application framework written in Ruby.
-- It follows the Model–View–Controller (MVC) pattern and emphasizes two principals:
+- It follows the Model–View–Controller (MVC) pattern and emphasizes two key principals:
   - Don’t Repeat Yourself
   - Convention over Configuration
 - RoR provides a pre-made solution to help developers save time on tedious and repetitive tasks. Essentially, you don’t have to write each line of code all over again.
@@ -227,17 +227,29 @@ Load and need are both used in Ruby to load available code into the current code
 ### Key principles emphasized in Ruby on Rails
 
 - Don’t Repeat Yourself
+
+  - Rails promotes reusability and clean code — avoid duplication by using:
+    - Filters and callbacks
+    - Helpers and partials
+    - Concerns and modules
+    - ActiveSupport utilities
+    - https://chatgpt.com/s/t_69103e90aadc8191a9e2bba79b703689
+
 - Convention over Configuration
+  - Rails assumes sensible defaults, so you don’t need to configure everything manually. For example:
+    - A model named `User` automatically maps to a database table `users`.
+    - A controller named `UsersController` maps to a view folder `app/views/users/`.
 
 ### What are the features of Rails?
 
 Here are some Ruby on Rails features that make it stand out from the IT crowd:
 
-- **Convention over configuration.** It helps to create the corresponding advanced components by automatically sensing simple conventional elements.
-- **Automated Testing.** RoR runs its own set of tests on the code you write. You can save time and effort in quality assurance.
-- **Localization.** The localization feature helps you integrate your pre-designed code into the RoR framework for a bigger project.
-- **Scaffolding.** This feature allows the programmer to define how the application database should function. After that, the framework automatically generates the required code according to it. The scaffolding technique creates interfaces automatically.
-- **Libraries.** RoR has a lot of vast libraries to equip a developer with all the necessary tools to produce high-quality product AJAX library, Database access library, and Common tasks library are some of the few that RoR comprises in its collection.
+- **MVC Architecture (Model–View–Controller)**
+- **Convention over configuration**
+- **DRY (Don’t Repeat Yourself)**
+- **ActiveRecord ORM (Object–Relational Mapping).** ActiveRecord bridges Ruby objects and database tables seamlessly. You can interact with your database using Ruby code instead of SQL.
+- **Database Migrations.** Rails migrations let you version-control your database schema — no need to write raw SQL.
+- **Scaffolding and Generators.** Rails can auto-generate CRUD code (controllers, models, views, routes, tests). It saves enormous time in prototyping and early development.
 - https://chatgpt.com/s/t_691014d49d248191ba2fe9d3a503dd46
 
 ### Pros and cons of RoR
@@ -270,6 +282,7 @@ Rails Weaknesses:
 - Rails can be slower compared to lower-level frameworks (e.g., Go, Node.js, or Elixir Phoenix) due to:
 
   - Ruby’s interpreted nature (not compiled)
+    - [Explain Ruby’s interpreted nature](https://chatgpt.com/s/t_69101e18d8d481918f3c24bd667e4e5d)
   - Heavy middleware stack
   - Object allocation overhead
 
