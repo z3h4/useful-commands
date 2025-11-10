@@ -47,7 +47,8 @@ A class is a blueprint or template for creating objects. It defines the attribut
 ### What is encapsulation?
 
 - Encapsulation is the first principle of object-oriented programming.
-- It suggests that we should bundle the data and operations on the data inside a single unit (object).
+- It suggests that we should bundle the data (state) and operations on the data (behaviour) inside a single unit (object).
+- The goal is to protect the internal state of an object from unintended modification.
 - [Difference between Encapsulation and Abstraction](https://chatgpt.com/s/t_6910514d8a7c819181dd3dceb6eff43f)
 - [LaunchSchool](https://launchschool.com/books/oo_ruby/read/the_object_model#whyobjectorientedprogramming)
 
@@ -92,10 +93,12 @@ Method overloading means declaring a method with the same name but with differen
 
 ### Inheritance
 
+- Inheritance allows a class (child or subclass) to inherit attributes and methods from another class (parent or superclass) — enabling code reuse and hierarchical relationships.
 - We use inheritance to reuse code.
 - We define all the common behavior in a single class and then have other classes inherit these behaviors from this class.
 - Inheritance represents and is a relationship.
 - Inheritence is for specialization, it's not for sharing code. (Sandy Metz)
+- [Inheritance](https://chatgpt.com/s/t_691082be24fc819180576b1354766b8d)
 
 ### Benefits of Inheritance
 
@@ -107,6 +110,7 @@ With inheritance we can reuse code and achieve polymorphic behavior.
   - It’s basically a mechanism that allows an object to take many forms and behave differently.
 - Polymorphism allows different objects to respond to the same method call in different ways.
 - It lets you use a common interface for multiple types of objects — improving flexibility and extensibility.
+- [Polymorphism](https://chatgpt.com/s/t_6910611d96188191b55595c4f4ff0f1e)
 
 ### What is a module?
 
@@ -120,7 +124,7 @@ With inheritance we can reuse code and achieve polymorphic behavior.
   1. Module methods
      - We can use it without having to include (or extend) the module in any other object. This is very common when we are creating service objects.
   2. Instance methods
-     - To be able to use instance methods, we need to include the module to a class.
+     - To be able to use instance methods, we need to include/extend the module to a class.
 
 ### Differences between a module and a plain Ruby class
 
@@ -133,6 +137,18 @@ With inheritance we can reuse code and achieve polymorphic behavior.
 - A mixin can basically be thought of as a set of code that can be added to one or more classes to add additional capabilities without using inheritance.
 - In Ruby, a mixin is code wrapped up in a module that a class can include or extend.
 
+### Difference between `include` and `extend`
+
+- When a class include’s a module, it adds the instance methods of the module as instance methods on the class.
+- When a class extend’s a module, it adds the instance methods of the module as class methods on the class.
+- If it makes sense for an instance of a class to implement the behaviour, then you would `include` the module. Then each instance has access to the module methods.
+- If the behaviour is not tied to a particular instance, then you can `extend` the module. Then the methods will be available as class methods.
+
+### What is `self.included`?
+
+- If we use `include`, it adds the instance methods of the module as instance methods on the class. And, if we use `extend`, it adds the instance methods of the module as class methods on the class.
+- If we want some methods to be instance methods and others to be class methods when the module is included, we can use `self.included`.
+
 ### Access control in Ruby
 
 - A Ruby method can be:
@@ -142,26 +158,30 @@ With inheritance we can reuse code and achieve polymorphic behavior.
 - All methods, no matter the access control, can be accessed within the class.
 - `Public` methods enforce no access control -- they can be called in any scope.
 - `Protected` methods are only accessible to other objects of the same class.
+  - It allows object-to-object comparison within the same class while keeping the method hidden from the outside world.
 - `Private` methods are only accessible within the context of the current object.
+- [Access control in Ruby](https://chatgpt.com/s/t_691164f8a01081919a3a2aad807741e6)
 
 ### Private vs Protected Methods
 
-That’s the difference, the fact that `protected` keeps the method `private`, but it also allows you to call that method on an object.
+- Protected methods are similar to private methods.
+- The main distinction is protected methods can be called on other instances of the same class or subclass.
+- Common use case would be while comparing or interacting with other instances of the same class.
 
 ### There are four ways to invoke a method in ruby. Can you give me at least two?
 
 - https://gist.github.com/ryansobol/5252653#there-are-four-ways-to-invoke-a-method-in-ruby--can-you-give-me-at-least-two
 
-### What does self mean?
+### What does `self` mean?
 
-- Self is a Ruby keyword that gives you access to the current object.
+- `self` is a Ruby keyword that gives you access to the current object.
 - This “current object” depends on the context. The context is where your code is at any given moment.
-- So if you're in an instance, self refers to the instance. If you're in a class, self refers to that class.
+- So if you're in an instance, `self` refers to the instance. If you're in a class, `self` refers to that class.
 
 ### Other Questions
 
-- Explain this ruby idiom: a ||= b
-- What is a Proc?
+- Explain this ruby idiom: `a ||= b`
+  - [`a ||= b`](https://chatgpt.com/s/t_691169e08b0c819199fc404aa99865ed)
 - https://gist.github.com/ryansobol/5252653
 - https://www.adaface.com/questions/ruby
 
@@ -172,6 +192,7 @@ Load and need are both used in Ruby to load available code into the current code
 ## Blocks, Procs & Lambdas
 
 - Blocks are used for passing blocks of code to methods, and procs and lambda’s allow storing blocks of code in variables.
+- [Blocks, Procs & Lambdas](https://chatgpt.com/s/t_6911ba5dc524819186b5f8e69e59e0bb)
 
 ### Blocks
 
@@ -179,7 +200,8 @@ Load and need are both used in Ruby to load available code into the current code
 - It is useful for passing a block of code to a method. Many of the Ruby methods that implements enumerable module requires a block to be passed.
 - Methods can accept blocks implicitly and explicitly.
 - A method can accept a block implicitly and use the `block_given?` and `yield` keywords to find and execute the block in the current scope.
-- A method can also accept a block explicitly (by adding it as an argument using an ampersand parameter) and execute the block using `call` method directly.
+- A method can also accept a block explicitly by adding it as an argument using an ampersand parameter (usually called `&block`) and execute the block using `call` method directly.
+- [implicit vs. explicit block passing](https://chatgpt.com/s/t_6911b70aaae481918c3467f147b5fd94)
 
 ### Procs
 
@@ -188,12 +210,15 @@ Load and need are both used in Ruby to load available code into the current code
 
 ### Lambdas
 
-- Lambdas are procs that behave like methods, meaning they enforce arity and return as methods rather than in their parent scope.
+- Lambdas are essentially procs with some distinguishing factors.
+- They are more like "regular" methods in two ways:
+  - they enforce arity (the number of arguments passed) when they're called and
+  - they use "normal" returns.
 
 ### Ruby `yield` Keyword
 
-- `yield` is a Ruby keyword that is used to transfer control from a method to a block and then back to the method again once the block is executed.
 - `yield` is a Ruby keyword that calls a block when you use it.
+- `yield` is a Ruby keyword that is used to transfer control from a method to a block and then back to the method again once the block is executed.
 
 ### What are the differences between Procs and Lambdas?
 
@@ -206,19 +231,22 @@ Load and need are both used in Ruby to load available code into the current code
 
 - Ruby Garbage Collection (GC) is the process by which Ruby automatically manages memory.
 - When your Ruby code creates objects (strings, arrays, hashes, etc.), they occupy space in memory. If an object is no longer reachable (no variable points to it anymore), it becomes garbage — and Ruby’s GC can safely reclaim that memory.
-- https://chatgpt.com/s/t_68f40691bd18819198fbb40dde647b0d
+- So, it prevents memory leaks and improves performance.
+- [Ruby Garbage Collection](https://chatgpt.com/s/t_68f40691bd18819198fbb40dde647b0d)
 
 ### What is metaprogramming in Ruby?
 
 - Metaprogramming is writing code that manipulates classes, methods, or objects at runtime.
 - It allows dynamic method creation, reflection, and DSL building using features like `define_method`, `method_missing`, `send`, and `class_eval`.
 - It’s powerful but should be used carefully for readability and maintainability.
-- https://chatgpt.com/s/t_68f4195b46b08191ae378fb88bb00899
+- [Metaprogramming in Ruby](https://chatgpt.com/s/t_68f4195b46b08191ae378fb88bb00899)
 
 ### What are frozen objects in Ruby, and why are they useful?
 
 - A frozen object in Ruby is an immutable object that cannot be modified after creation.
 - It’s useful for improving performance, ensuring thread safety, and preventing accidental mutation — especially for constants and string literals.
+- [frozen objects](https://chatgpt.com/s/t_6911c09e708881919f007768617a725c)
+- [If I have `#frozen_string_literal: true` at top of the file, do I have to use freeze here: `arr = ["a", "b"].freeze`](https://chatgpt.com/s/t_6911c05058588191a0c24efb46727374)
 
 # Rails
 

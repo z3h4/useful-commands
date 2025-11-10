@@ -22,3 +22,8 @@
 ## Decorator Design Pattern
 
 - [Explain decorator design pattern](https://chatgpt.com/s/t_690dc835f0388191ac026a3c9b13b4dc)
+
+## Concepts
+
+- [Separation of Concerns](https://deviq.com/principles/separation-of-concerns)
+- [Composition vs Inheritance](https://thoughtbot.com/blog/reusable-oo-composition-vs-inheritance)

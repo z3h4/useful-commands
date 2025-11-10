@@ -37,6 +37,7 @@
 
 ### Singleton Class
 
+- [What is a Singleton Class?](https://chatgpt.com/s/t_69115baece388191aa9116ff449e0fca)
 - [Diving into Ruby Singleton Classes](https://medium.com/@leo_hetsch/demystifying-singleton-classes-in-ruby-caf3fa4c9d91)
 - [Understanding Ruby Singleton Classes](https://devalot.com/articles/2008/09/ruby-singleton)
 
@@ -64,6 +65,13 @@
 - [Refactoring From Inheritance To Composition To Data](https://www.rubypigeon.com/posts/refactoring-inheritance-composition-data/)
 - [An Introduction to Ractors in Ruby](https://blog.appsignal.com/2022/08/24/an-introduction-to-ractors-in-ruby.html)
 - [Decoupling Ruby: Delegation vs Dependency Injection](https://www.honeybadger.io/blog/decoupling-ruby-delegation-dependency-injection/)
+
+### Duck Typing
+
+- [An Introduction to Polymorphism in Ruby on Rails](https://blog.appsignal.com/2022/05/25/an-introduction-to-polymorphism-in-ruby-on-rails.html)
+- [Duck typing and the importance of good public interfaces](https://www.brainstobytes.com/duck-typing/)
+- [Duck Typing in Ruby](https://viblo.asia/p/duck-typing-in-ruby-1VgZv9gOKAw)
+- [Duck Typing in Rails](https://blog.eq8.eu/article/duck-type-ducktyping-in-rails.html)
 
 ## Performance
 
@@ -132,14 +140,10 @@
 
 - [Rails Concerns: To Concern Or Not To Concern](https://blog.appsignal.com/2020/09/16/rails-concers-to-concern-or-not-to-concern.html)
   - [`included` method](https://api.rubyonrails.org/v7.0.4.2/classes/ActiveSupport/Concern.html#method-i-included)
-- [An Introduction to Polymorphism in Ruby on Rails](https://blog.appsignal.com/2022/05/25/an-introduction-to-polymorphism-in-ruby-on-rails.html)
+    - `included` method is for Rails, `self.included` method is for Ruby.
+  - [`self.included`](https://chatgpt.com/s/t_691160925d2c8191aa482af4a4547af3)
 - [When To Be Concerned About Concerns](https://www.cloudbees.com/blog/when-to-be-concerned-about-concerns)
-
-### Duck Typing
-
-- [Duck typing and the importance of good public interfaces](https://www.brainstobytes.com/duck-typing/)
-- [Duck Typing in Ruby](https://viblo.asia/p/duck-typing-in-ruby-1VgZv9gOKAw)
-- [Duck Typing in Rails](https://blog.eq8.eu/article/duck-type-ducktyping-in-rails.html)
+- [Should You Use Rails Concerns?](https://www.scoutapm.com/blog/rails-concerns)
 
 ## Association
 
