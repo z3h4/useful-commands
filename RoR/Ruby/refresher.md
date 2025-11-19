@@ -59,6 +59,13 @@
 - Everything in Ruby has a return value. When a piece of code doesn’t have anything to return, it will return `nil`.
 - The `puts` method prints out a string and returns nothing, so we see `nil` being returned after the string is displayed.
 
+- Example
+
+  ```Ruby
+  a = puts "stuff"
+  puts a   #=> nil
+  ```
+
 ## What is an expression?
 
 - **An expression is anything that can be evaluated**, and pretty much everything you write in Ruby is an expression.
@@ -107,13 +114,6 @@ irb :001 > 'one' + 1
    from /usr/local/rvm/rubies/ruby-2.5.3/bin/irb:16:in `<main>'
 ```
 
-- Example
-
-```Ruby
-a = puts "stuff"
-puts a   #=> nil
-```
-
 # Variables
 
 ### What is a method?
@@ -146,11 +146,12 @@ puts a   #=> nil
 - Ruby has yet another printing method called `pp`.
 - This is like `p`, but it prints big hashes & arrays in a nicer way.
 
-- [Understanding The Differences Between Puts, Print & P](https://www.rubyguides.com/2018/10/puts-vs-print/)
+- [Differences Between `puts`, `print`, and `p`](https://chatgpt.com/s/t_691d032cccf88191b3c427dba0d1b5cf)
+- [Understanding The Differences Between `puts`, `print`, and `p`](https://www.rubyguides.com/2018/10/puts-vs-print/)
 
 # Conditional Logic
 
-## == vs eql? vs equal?
+## `==` vs `eql?` vs `equal?`
 
 ### `a.equal?(b)`
 
@@ -191,8 +192,8 @@ puts a   #=> nil
 - In `RSpec` `eq` matcher uses the `==` operator internally to compare the expected and actual values.
 
 - [TheOdinProject](https://www.theodinproject.com/lessons/ruby-conditional-logic#boolean-logic)
+- [Difference Between ==, eql?, equal? in ruby](https://chatgpt.com/s/t_691d07c079408191a890865fa3cf3a64)
 - [Difference Between ==, eql?, equal? in ruby](https://medium.com/@khalidh64/difference-between-eql-equal-in-ruby-2ffa7f073532)
-- https://stackoverflow.com/a/32926980
 
 ## Case equality operator: ===
 
@@ -218,7 +219,7 @@ puts a   #=> nil
 
 ## [What is the Ruby <=> (spaceship) operator?](https://stackoverflow.com/questions/827649/what-is-the-ruby-spaceship-operator)
 
-Basically instead of returning 1 (true) or 0 (false) depending on whether the arguments are equal or unequal, the spaceship operator will return 1, 0, or −1 depending on the value of the left argument relative to the right argument.
+The spaceship operator (`<=>`) in Ruby is a comparison operator. Basically instead of returning 1 (`true`) or 0 (`false`) depending on whether the arguments are equal or unequal, the spaceship operator will return 1, 0, or −1 depending on the value of the left argument relative to the right argument.
 
     a <=> b :=
       if a < b then return -1
@@ -248,6 +249,7 @@ This makes it ideal for sorting and ordering collections (i.e. arrays), as it al
 
   - It gives double weight to the comparison of last values. This means sorting is primarily by `last`, and if those are equal, by `first`. The multiplication by 2 makes the last comparison more significant in the sort order.
 
+- [What is the Ruby <=> (spaceship) operator?](https://chatgpt.com/s/t_691d103b50f881918cbd76908967ecab)
 - [TheOdinProject](https://www.theodinproject.com/lessons/ruby-conditional-logic#boolean-logic)
 
 # Parameters and Arguments
@@ -529,6 +531,7 @@ users & new_users
   shoes.fetch("hiking")   #=> KeyError: key not found: "hiking"
   ```
 
+- [Different ways of accessing hash](https://chatgpt.com/s/t_691b4c66b8088191be43b2f75e76e068)
 - [Hashes as Optional Parameters](https://launchschool.com/books/ruby/read/hashes#hashesasoptionalparameters)
 - [Common Hash Methods](https://launchschool.com/books/ruby/read/hashes#commonhashmethods)
 - [A Note on Hash Order](https://launchschool.com/books/ruby/read/hashes#anoteonhashorder)

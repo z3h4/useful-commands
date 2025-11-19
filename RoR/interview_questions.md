@@ -54,13 +54,17 @@ A class is a blueprint or template for creating objects. It defines the attribut
 
 ### Why should we declare fields as private?
 
-How we store data in an object is considered an implementation detail. We may change how we store the data internally. Plus, we don’t want our objects to go into a bad state (hold bad data). That’s why we should declare fields as private and provide getters and/or setters only if required. These setters can ensure our objects don’t go into a bad state by validating the values that are passed to them.
+- How we store data in an object is considered an implementation detail. We may change how we store the data internally.
+- Plus, we don’t want our objects to go into a bad state (hold bad data). That’s why we should declare fields as private and provide getters and/or setters only if required.
+  - These setters can ensure our objects don’t go into a bad state by validating the values that are passed to them.
 
 ### What is abstraction?
 
 - Abstraction is the second principle of object-oriented programming.
 - It suggests that we should reduce complexity by hiding the unnecessary implementation details.
-- Metaphor: the implementation details of a remote control is hidden from us. We only work with its public interface.
+- The goal is to reduce complexity and simplify the use of an object by providing a simple interface.
+- Abstraction lets us focus on what an object does, not how it does it.
+  - Metaphor: the implementation details of a remote control is hidden from us. We only work with its public interface.
 
 ### What is coupling?
 
@@ -374,6 +378,8 @@ When you hit a Rails app endpoint (like https://example.com/posts/1), a lot happ
    - Puma (default in modern Rails)
    - Unicorn
    - Passenger
+     - [Puma vs Unicorn vs Passenger](https://chatgpt.com/s/t_69191320fa0881918fa5d46a14130065)
+       - [Worker vs Thread](https://chatgpt.com/s/t_69191937af888191b5ca8b815664b7ff)
 
    a. The application server is responsible for:
 

@@ -18,6 +18,8 @@
 ## Factory Design Pattern
 
 - [Explain Factory design pattern](https://chatgpt.com/s/t_690dc646bc708191b5171b1bfae4b23f)
+- [When to use strategy vs factory pattern](https://chatgpt.com/s/t_6919b37e8f7481918bb140c864ff3209)
+- [A combined Factory + Strategy example](https://chatgpt.com/s/t_6919b3a688948191834143013e63219f)
 
 ## Decorator Design Pattern
 
