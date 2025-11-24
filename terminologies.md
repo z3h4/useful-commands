@@ -15,3 +15,8 @@
 # Whitespace
 
 - White space is a character in a string that represents horizontal or vertical space in typography. In other words: tabs, line feeds, carriage returns and, yes, spaces.
+
+# Alphanumeric characters
+
+- Alphanumeric characters are a combination of letters (A–Z, both uppercase and lowercase) and numbers (0–9).
+- Alphanumeric characters are distinct from special characters, which include symbols like `!`,`$`, `#`, and `@`.

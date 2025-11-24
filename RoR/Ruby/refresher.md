@@ -145,6 +145,7 @@ irb :001 > 'one' + 1
 
 - Ruby has yet another printing method called `pp`.
 - This is like `p`, but it prints big hashes & arrays in a nicer way.
+- [Pretty Printing](https://chatgpt.com/s/t_691d78646d188191ad4fc33dac0efcdf)
 
 - [Differences Between `puts`, `print`, and `p`](https://chatgpt.com/s/t_691d032cccf88191b3c427dba0d1b5cf)
 - [Understanding The Differences Between `puts`, `print`, and `p`](https://www.rubyguides.com/2018/10/puts-vs-print/)

@@ -373,6 +373,10 @@ When you hit a Rails app endpoint (like https://example.com/posts/1), a lot happ
      Host: example.com
      ```
 2. This request reaches your web server (like Nginx, Apache, or Caddy).
+
+   - It is responsible for SSL termination, serving static files etc.
+   - [What is the role of webserver?](https://chatgpt.com/s/t_691f595c7e7081918d8a9e85a2a75b1d)
+
 3. Your web server forwards the request to the Rails application server, which could be:
 
    - Puma (default in modern Rails)
