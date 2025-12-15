@@ -12,23 +12,23 @@ The best practice is to put the script element at the end of the `body` section 
 
 ## Count number of elements in an array
 
-```
-numbers.length
+```javascript
+numbers.length;
 ```
 
 ## Adding Elements
 
 - Beginning of an array
-  ```Javascript
+  ```javascript
   numbers.unshift(1, 2);
   ```
 - End of an array
-  ```Javascript
+  ```javascript
   numbers.push(5, 6);
   ```
 - Middle of an array
 
-  ```Javascript
+  ```javascript
   numbers.splice(2, 0, 3, 3);
   ```
 
@@ -156,6 +156,13 @@ numbers.forEach(number => console.log(number));
   numbers.forEach((number, index) => console.log(index, number));
   ```
 
+### Get the Maximum and Minimum Value
+
+```javascript
+Math.max(a, b);
+Math.min(a, b);
+```
+
 ### Convert an Array to a String
 
 ```Javascript
@@ -257,19 +264,148 @@ numbers.map(number => number * number);   //=> [1, 4, 9]
   const sum = numbers.reduce((accumulator, number) => accumulator + number);
   ```
 
-### Converting to Lowercase/Uppercase
+# String
+
+## Substrings
+
+### `substring()` method
 
 ```Javascript
+string.substring(startIndex, endIndex);
+"Hello".substring(0, 4);  //=> "Hell"
+"Hello".substring(2);     //=> "llo" (from index 2 to the end)
+```
+
+- `startIndex` → required
+- `endIndex` → optional (non-inclusive)
+- If `endIndex` is omitted, substring goes until the end of the string.
+- If `startIndex` is greater than `endIndex`, `substring()` automatically **swaps** the two arguments internally.
+
+  ```javascript
+  "Hello".substring(3, 1); //=> "el"
+  ```
+
+- **No negative indexes allowed** - if you use negative values, they are treated as 0.
+  ```Javascript
+  "Hello".substring(-3, 1); //=> "H"
+  "Hello".substring(1, -1); //=> "H"
+  "Hello".substring(1, -2); //=> "H"
+  "Hello".substring(-3);    //=> "Hello"
+  ```
+- If start and end indices are the same, an empty string is returned.
+  ```javascript
+  "Hello".substring(3, 3); //=> ""
+  ```
+- If `endIndex` is greater than the length of the string, it'll return till the end of the string.
+  ```javascript
+  "Hello".substring(3, 10); //=> "lo"
+  ```
+
+### `substring()` vs `substr()`
+
+- The `substring()` method has distinct differences from the deprecated `substr()` method.
+- `substring()` takes start and end indices, while `substr()` takes a start index and a length (number of characters to extract). `substr()` is a legacy function and should be avoided in new code.
+
+### `slice()` method
+
+The `slice()` method is similar to `substring()`. But, `slice()` is more predictable and more powerful.
+
+- `slice()` supports negative indices. So, if you ever need "last N characters", use `slice()`.
+
+  ```Javascript
+  "Hello".slice(-3);      //=> "llo"
+  "Hello".substring(-3);  //=> "Hello" (negative becomes 0)
+  ```
+
+- `substring()` swaps arguments if the start is greater than the end. `slice()` returns an empty string if the start index is greater than the end index.
+
+  ```Javascript
+  "Hello".substring(4, 1);    //=> "ell" (same as substring(1,4))
+  "Hello".slice(4, 1);        //=> "" (empty string)
+  ```
+
+- [When to prefer `slice()` over `substring()`](https://chatgpt.com/s/t_693a96e79c148191b2f5ebe5fa22931e)
+
+## String Length
+
+```Javascript
+"Hello".length;    //=> 5 (no parenthesis in the method name)
+```
+
+## Accessing Characters
+
+```Javascript
+let text = "Hello";
+console.log(text[0]);           //=> "H"
+console.log(text.charAt(1));    //=> "e"
+console.log(text.charAt(5));    //=> "" (empty string)
+console.log(text.charAt(-1));   //=> "" (empty string)
+```
+
+The `charAt()` method returns:
+
+- A new string containing a single character if the index is within the valid range (0 to string.length - 1).
+- An empty string (`""`) if the specified index is out of the valid range.
+- An empty string (`""`) if the index is negative.
+
+## Convert to Uppercase/Lowercase
+
+```javascript
 str.toLowerCase();
 str.toUpperCase();
 ```
 
-### Get the Maximum and Minimum Value
+## Searching Within Strings
 
 ```Javascript
-Math.max(a, b);
-Math.min(a, b);
+let text = "Hello World";
+
+console.log(text.indexOf("World"));   //=> 6
+console.log(text.includes("Hello"));  //=> true
+console.log(text.startsWith("H"));    //=> true
+console.log(text.endsWith("d"));      //=> true
 ```
+
+## Check if a String is Empty
+
+- [Explain null/empty checking in javascript](https://chatgpt.com/s/t_693a98d632a08191928d71b444a894bf)
+
+## Remove Leading/Trailing Spaces from a String
+
+- `trim()`: Removes whitespace (spaces, tabs, and line terminators) from both ends.
+- `trimStart()`: Removes whitespace from the beginning (left) of the string.
+- `trimEnd()`: Removes whitespace from the end (right) of the string.
+
+  ```Javascript
+  let str = "  Hello, World! \n ";
+
+  str.trim(); //=> "Hello, World!"
+  str.trimStart() //=> "Hello, World! \n "
+  str.trimEnd() //=> "  Hello, World!"
+  ```
+
+- All of these methods return a new string, without modifying the original string.
+
+## Replacing Strings
+
+```Javascript
+let text = "Hello World";
+console.log(text.replace("World", "JS"));             //=> "Hello JS"
+console.log(text.replace(/l/, "*"));                  //=> "He*lo World"
+console.log(text.replace(/l/g, "*"));                 //=> "He**o Wor*d"
+console.log("HelLo World".replace(/l/ig, "*"));       //=> "He**o Wor*d"
+console.log(text.replaceAll("l", "*"));               //=> "He**o Wor*d"
+```
+
+- Both `replace()` and `replaceAll()` methods return a new string and do not modify the original string, as strings are immutable in JavaScript.
+- The `/g` in a regular expression is a flag (or modifier) that stands for **global search**. It instructs the regular expression engine to find all occurrences of a pattern within a string, rather than stopping after the first match.
+- `i` (ignore casing): Makes the search case-insensitive (e.g., `/a/i` matches "a" or "A")
+- The `replaceAll()` method is a newer, more direct method that replaces all occurrences of a substring without needing a regular expression, making it the preferred choice for simple global replacements.
+
+## Misc
+
+- [Explain the difference between == and === in javascript](https://chatgpt.com/s/t_693a9ee942ec8191a945ac74a1ad00be)
+  - Coercion vs. Conversion in programming (especially JavaScript) refers to how data types change: Coercion (or implicit conversion) is automatic, hidden type changes by the engine (e.g., '5' - 2 becomes 3), while Conversion (explicit conversion) is manually controlled by the developer using functions like Number() or String() (e.g., Number('5') becomes 5).
 
 # Objects
 

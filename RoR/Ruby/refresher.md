@@ -44,15 +44,52 @@
 ### Split a string
 
 ```Ruby
-"hello world".split  #=> ["hello", "world"]
-"hello".split("")    #=> ["h", "e", "l", "l", "o"]
+"hello world".split           #=> ["hello", "world"]
+"hello".split("")             #=> ["h", "e", "l", "l", "o"]
+"foo, bar,baz".split(/,\s*/)  #=> ["foo", "bar", "baz"]
+"foo,bar,,".split(",")        #=> ["foo", "bar"]      (trailing empty strings are suppressed)
 ```
+
+- To split a string by commas and optional spaces using a regular expression, the common pattern is `,\s*`. Here is a breakdown of the pattern:
+
+  - `,` matches the literal comma character.
+  - `\s*` matches any occurrences of whitespace character (space, tab, newline) zero or more times.
+
+    - `\s`: This is a metacharacter that stands for any single whitespace character. This typically includes:
+
+      - A space character (` `).
+      - A tab character (`\t`).
+      - A newline (line feed) character (`\n`).
+      - A carriage return character (`\r`).
+      - A vertical tab character (`\v`).
+      - A form feed character (`\f`).
+
+    - `*`: This is a quantifier that means the preceding element (in this case, `\s`) should be matched zero or more times.
+
+- The `split` method accepts an optional second argument, a `limit` (an integer), to control the maximum number of elements in the resulting array.
 
 ### Remove Leading/Trailing Spaces from a String
 
 ```Ruby
-" hello, world   ".strip  #=> "hello, world"
+" hello, world   ".strip   #=> "hello, world"
+" hello, world   ".strip!  #=> "hello, world" (Modifies original string)
+" hello world ".lstrip     #=> "hello world " (Removes only leading (left-side) whitespace)
+" hello world ".rstrip     #=> " hello world"	(Removes only trailing (right-side) whitespace)
 ```
+
+- If the original string is `nil`, calling these methods will raise an error, so a common practice is to use `.to_s` first, like `str.to_s.strip`
+
+## Searching Within Strings
+
+```Ruby
+"hello world".include?("hello")  # => true
+"hello world".index("world")     # => 6
+"hello world".index("bye")       # => nil
+"hello world" =~ /world/         # => 6 (Using Regex)
+"hello world".match?(/hello/)    # => true (Using Regex)
+```
+
+- [Check if a string is a substring of another](https://chatgpt.com/s/t_693b6b90144c8191bec7e1cde3a7312e)
 
 ## Why `puts` method returns `nil`?
 
@@ -536,6 +573,23 @@ users & new_users
 - [Hashes as Optional Parameters](https://launchschool.com/books/ruby/read/hashes#hashesasoptionalparameters)
 - [Common Hash Methods](https://launchschool.com/books/ruby/read/hashes#commonhashmethods)
 - [A Note on Hash Order](https://launchschool.com/books/ruby/read/hashes#anoteonhashorder)
+
+## Creating Hash
+
+### `Hash.new(0)`
+
+- `Hash.new(0)` creates a new Hash with a default value of `0`.
+- When you access a key that does not exist, instead of returning `nil`, the hash will return `0`.
+
+  ```Ruby
+  h = Hash.new(0)
+
+  h[:a]     # => 0   (default value)
+  h[:b]     # => 0
+  ```
+
+- It’s very common for counting, tallying, or building histograms.
+- [Explain `Hash.new(0)`](https://chatgpt.com/s/t_693b3470f500819193a5fc597d78bc9f)
 
 ## Nested Hashes
 
